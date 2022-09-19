@@ -3315,7 +3315,7 @@ body,
 .ionic-body {
   -webkit-touch-callout: none;
   -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: none;
   -moz-text-size-adjust: none;
   text-size-adjust: none;
