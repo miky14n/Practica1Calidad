@@ -1,0 +1,18 @@
+<ion-view view-title="{{ 'PlanBHelp' | translate }}">
+    <ion-content ng-controller="AlsupCtrl">
+        <div class="list">
+            <a class="item item-thumbnail-left" href="#/app/helpCategories">
+                <img src="img/mainHelp/icon-step1.png"> {{ 'EmpathyStep' | translate }}
+            </a>
+            <a class="item item-thumbnail-left" href="#/app/mainHelp/helpDefineAdultsConcern">
+                <img src="img/mainHelp/icon-step2.png"> {{ 'DefineAdultsConcern' | translate }}
+            </a>
+            <a class="item item-thumbnail-left" href="#/app/helpForInvitation">
+                <img src="img/mainHelp/icon-step3.png"> {{ 'InvitationStep' | translate }}
+            </a>
+            <a class="item item-thumbnail-left" ng-click="checkPlanBVideoConnection()">
+                <img src="img/planBHelp/video.png"> {{ 'VideoOfPlanBInAction' | translate }}
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

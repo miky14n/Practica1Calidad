@@ -1,0 +1,21 @@
+<ion-view ng-controller="TourCtrl">
+  <div class="bar bar-subheader bar-positive item-text-wrap">
+    <h2 class="title">ALSUP</h2>
+    <a ng-if="sharedChild == 0" class=" button button-small button-clear button-white icon ion-help-circled" href="#/app/alsupHelp"></a>
+  </div>
+  <ion-content class="has-subheader">
+    <div class="list">
+      <a class="item item-thumbnail-left" ng-click="checkActiveToContinue('app.laggingSkills')">
+        <img src="img/home/laggingskills-icon.png">
+       {{'LaggingSkillsTitle' | translate }}
+      </a>
+      <a class="item item-thumbnail-left" ng-if="sharedChild == 0" ng-click="checkActiveToContinue('app.newUnsolvedProblem')">
+        <img src="img/home/unsolvedproblem-icon.png">
+        {{'UnsolvedProblemsTitle' | translate }}
+      </a>
+      <a class="item item-thumbnail-left" ng-if="sharedChild > 0" ng-click="getDataChildShared(sharedChild)" href="#/app/unsolvedProblems/shared/{{sharedChild}}">
+        <img src="img/home/unsolvedproblem-icon.png"> {{'UnsolvedProblemsTitle' | translate }}
+      </a>
+    </div>
+  </ion-content>
+</ion-view>

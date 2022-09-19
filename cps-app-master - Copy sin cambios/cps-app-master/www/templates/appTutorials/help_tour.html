@@ -1,0 +1,82 @@
+<ion-view view-title="Tutorial" ng-controller="HelpTourCtrl">
+        <ion-nav-buttons side="left">
+        </ion-nav-buttons>
+        
+        <ion-nav-buttons side="right">
+          <button class="button button-positive button-clear no-animation"
+                  ng-click="next()" ng-show="slideIndex != 4">
+            Next
+          </button>
+          <button class="button button-positive button-clear no-animation"
+                  ng-click="startApp()" ng-show="slideIndex == 4">
+            Finish
+          </button>
+        </ion-nav-buttons>
+
+        <ion-slide-box on-slide-changed="slideChanged(index)">
+          <ion-slide>
+            <h3>Welcome to the Main Help!</h3>
+            <div id="logo">
+              <img src="http://code.ionicframework.com/assets/img/app_icon.png">
+            </div>
+            <p>
+              At any given time you might need some help.
+            </p>
+            <p>
+              Now we are going to explain you how to access for help.
+            </p>
+          </ion-slide>
+          <ion-slide>
+            <h3>Icons used in help section</h3>
+            <div id="list">
+              <ul>
+                 <li><i class="icon ion-help-circled positive"></i>
+                  This icon will allow you to access for help in the specific area of the CPS Model you are currently located in.
+                 </li>
+                 <li><i class="icon ion-plus positive"></i> This icon displays more information.</li>
+                 <li><i class="icon icon ion-ios-browsers-outline"></i> This icon represents a website provided by Lives in the Balance.</li>
+              </ul>
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <h3>Accessing help in a specific help area of the CPS Model:</h3>
+
+            <div id="list">
+              <ol>
+                <li>Tap on the <i class="icon ion-help-circled positive"></i> icon.</li>
+                <li>Search for the topic you need help in.</li>
+                <li>If a topic has a <i class="icon ion-plus positive"></i> tap on it and it will display more information.</li>
+                <li>If this icon appear <i class="icon icon ion-ios-browsers-outline"></i> it means that it is a website provided by Lives in the Balance.</li>
+              </ol>
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <h3>Accessing the Main Help:</h3>
+            <div id="list">
+              <ol>
+                <li>Swipe to the left to see the menu options.</li>
+                <li>Tap on the "Main Help" option</li>
+                <li>Choose the area of the CPS model you need help with.</li>
+                <li>Tap on it</li>
+                <li>Look at the topics we can help you with</li>
+                <li>Tap on the one you need help with</li>
+              </ol>
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <h3>Using the search bar</h3>
+            <div id="list">
+              <ol>
+                <li>Swipe to the left to see the menu options.</li>
+                <li>Tap on the "Main Help" option</li>
+                <li> This bar will help you <label class="item-input-wrapper">
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <label class= "disabled" type="search" placeholder="Search"></label>
+                  </label>
+                  search for a specific topic
+                </li>
+              </ol>
+            </div>
+          </ion-slide>
+        </ion-slide-box>
+      </ion-view>
