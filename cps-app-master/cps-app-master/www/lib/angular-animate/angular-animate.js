@@ -1713,7 +1713,7 @@ var $$AnimateCssDriverProvider = ['$$animationProvider', function($$animationPro
     }
 
     function prepareFromToAnchorAnimation(from, to, classes, anchors) {
-      var fromAnimation = prepareRegularAnimation(from, noop);
+      var fromAnimation = prepareRegularAnimation(from);
       var toAnimation = prepareRegularAnimation(to, noop);
 
       var anchorAnimations = [];
