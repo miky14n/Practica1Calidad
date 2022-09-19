@@ -1,6 +1,0 @@
-projectKey=projectFront
-serverUrl=http://localhost:9000
-serverVersion=9.6.1.59531
-dashboardUrl=http://localhost:9000/dashboard?id=projectFront
-ceTaskId=AYNS9-cBUbQRUyaDF2kW
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYNS9-cBUbQRUyaDF2kW
