@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/sortSave-icons.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ionic-close-popup/ionic-close-popup.js"></script>
+
+    <!-- ngCordova -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <script type="text/javascript">
+      var db = null;
+      db = window.openDatabase("CPSdatabase","1.0","Demo",2000);
+    </script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/seed.js"></script>
+    <script src="js/controllers/unsolvedProblemController.js"></script>
+    <script src="js/controllers/empathyStepController.js"></script>
+    <script src="js/controllers/defineAdultConcernsStepController.js"></script>
+    <script src="js/controllers/invitationStepController.js"></script>
+    <script src="js/controllers/solutionsController.js"></script>
+    <script src="js/controllers/faqController.js"></script>
+    <script src="js/controllers/mainHelpController.js"></script>
+    <script src="js/factories/ChildrenFactory.js"></script>
+    <script src="js/factories/UnsolvedProblemFactory.js"></script>
+    <script src="js/factories/ChildConcernFactory.js"></script>
+    <script src="js/factories/AdultConcernFactory.js"></script>
+    <script src="js/factories/PossibleSolutionFactory.js"></script>
+    <script src="js/factories/HelpInformationFactory.js"></script>
+    <script src="js/factories/AppTools.js"></script>
+    <script src="js/controllers/planBHelpController.js"></script>
+    <script src="js/controllers/childsController.js"></script>
+    <script src="js/controllers/alsupHelpController.js"></script>
+    <script src="js/controllers/heatOfTheMomentController.js"></script>
+    <script src="js/controllers/usersController.js"></script>
+    <script src="lib/angular-translate/angular-translate.js"></script>
+    <script src="languages/en.js"></script>
+    <script src="languages/es.js"></script>
+    <script src="js/controllers/contactsController.js"></script>
+    <script src="js/push.js"></script>
+
+
+  </head>
+
+  <body ng-app="starter">
+    <ion-nav-view></ion-nav-view>
+    <p id="gcm_id"></p>
+  </body>
+</html>
