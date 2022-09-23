@@ -11937,7 +11937,7 @@ ionic.views.Slider = ionic.views.View.inherit({
             //Opera & IE
             if (e.detail) delta = -e.detail;
             //WebKits
-            else if (we === 'mousewheel') {
+            else if (we == 'mousewheel') {
                 if (s.params.mousewheelForceToAxis) {
                     if (isH()) {
                         if (Math.abs(e.wheelDeltaX) > Math.abs(e.wheelDeltaY)) delta = e.wheelDeltaX * rtlFactor;
@@ -11953,9 +11953,9 @@ ionic.views.Slider = ionic.views.View.inherit({
                 }
             }
             //Old FireFox
-            else if (we === 'DOMMouseScroll') delta = -e.detail;
+            else if (we == 'DOMMouseScroll') delta = -e.detail;
             //New FireFox
-            else if (we === 'wheel') {
+            else if (we == 'wheel') {
                 if (s.params.mousewheelForceToAxis) {
                     if (isH()) {
                         if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) delta = -e.deltaX * rtlFactor;
@@ -12868,8 +12868,8 @@ ionic.views.Slider = ionic.views.View.inherit({
                 var compareWith, i;
                 if (typeof selector === 'string') {
                     var el = this[0];
-                    if (el === document) return selector === document;
-                    if (el === window) return selector === window;
+                    if (el == document) return selector === document;
+                    if (el == window) return selector === window;
 
                     if (el.matches) return el.matches(selector);
                     else if (el.webkitMatchesSelector) return el.webkitMatchesSelector(selector);
