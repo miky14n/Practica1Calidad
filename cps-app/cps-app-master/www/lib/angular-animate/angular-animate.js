@@ -1713,8 +1713,8 @@ var $$AnimateCssDriverProvider = ['$$animationProvider', function($$animationPro
     }
 
     function prepareFromToAnchorAnimation(from, to, classes, anchors) {
-      var fromAnimation = prepareRegularAnimation(from, noop);
-      var toAnimation = prepareRegularAnimation(to, noop);
+      var fromAnimation = prepareRegularAnimation(from);
+      var toAnimation = prepareRegularAnimation(to);
 
       var anchorAnimations = [];
       forEach(anchors, function(anchor) {
@@ -1928,7 +1928,7 @@ var $$AnimateJsProvider = ['$animateProvider', function($animateProvider) {
           return runner;
 
           function onComplete(success) {
-            close(success);
+            close();
             runner.complete(success);
           }
 
