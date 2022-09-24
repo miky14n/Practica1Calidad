@@ -692,7 +692,7 @@ function $UrlMatcherFactory() {
    */
   this.defaultSquashPolicy = function(value) {
     if (!isDefined(value)) return defaultSquashPolicy;
-    if (value !== true && value !== false && !isString(value))
+    if (value != true && value != false && !isString(value))
       throw new Error("Invalid squash policy: " + value + ". Valid policies: false, true, arbitrary-string");
     defaultSquashPolicy = value;
     return value;
