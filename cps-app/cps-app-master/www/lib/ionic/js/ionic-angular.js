@@ -9408,7 +9408,7 @@ function RepeatManagerFactory($rootScope, $window, $$rAF) {
             scrollView.__scrollTop > scrollView.__maxScrollTop) {
           scrollView.resize();
         }
-        forceRerender(true);
+        forceRerender();
       }
     };
 
