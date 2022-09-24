@@ -1296,10 +1296,10 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
    * @param {object} cache boolean, string or cache-object
    */
   this.useLoaderCache = function (cache) {
-    if (cache === false) {
+    if (cache == false) {
       // disable cache
       loaderCache = undefined;
-    } else if (cache === true) {
+    } else if (cache == true) {
       // enable cache using AJS defaults
       loaderCache = true;
     } else if (typeof(cache) === 'undefined') {
