@@ -108,7 +108,7 @@ app
         });
     };
 
-    $scope.shareLaggingSkills;
+    $scope.shareLaggingSkills = 0;
     $scope.getSharedLaggingSkills = function(user_id,child_id) {
         $http.get($link_root +"/users/"+user_id+"/children/"+child_id+"/getLaggingSkills", {
             headers: { Authorization: localStorage.getItem("auth_token") }
@@ -121,7 +121,7 @@ app
           });
       };
 
-    $scope.childFromShared;
+    $scope.childFromShared = 0;
 
     $scope.getDataChildShared = function(child_id) {
       var user_id = localStorage.getItem("user_id");
@@ -137,7 +137,7 @@ app
         });
     };
 
-    $scope.unsolvedProblemFromShared;
+    $scope.unsolvedProblemFromShared = 0;
 
     $scope.getDataUnsolvedProblem = function(unsolved_problem_id) {
       $http.get($link_root+"/unsolved_problem/"+unsolved_problem_id, {
