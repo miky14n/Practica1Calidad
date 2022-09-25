@@ -237,7 +237,7 @@
    * @returns {string} The trimmed string.
    */
   function trim(string) {
-    return String(string).replace(/^ +| +$/g, '');
+    return String(string).replace(/( +| +$)/g, '');
   }
 
   /*--------------------------------------------------------------------------*/
@@ -941,7 +941,7 @@
       }
     }
     // Detect Opera desktop modes.
-    if (name == 'Opera' &&  (data = /\bzbov|zvav$/.exec(os))) {
+    if (name == 'Opera' &&  (data = /(\bzbov|zvav$)/.exec(os))) {
       name += ' ';
       description.unshift('desktop mode');
       if (data == 'zvav') {
