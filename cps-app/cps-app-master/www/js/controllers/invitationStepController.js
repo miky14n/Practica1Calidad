@@ -304,7 +304,6 @@ $scope.editablePair=[];
     // Execute action
   });
   function findUnsolvedProblem() {
-    // var query ="SELECT u.id, u.description FROM unsolved_problems AS u, childs_concerns AS c, adults_concerns AS a WHERE u.id = c.unsolved_problem_id AND c.id = a.child_concern_id AND a.id = ?";
     var query ="SELECT * FROM unsolved_problems WHERE id = ?";
     $cordovaSQLite.execute(db,query,[$stateParams.unsolvedProblemId])
       .then( function(result) {

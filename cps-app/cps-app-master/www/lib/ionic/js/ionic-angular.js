@@ -7725,18 +7725,6 @@ function($scope, $attrs, $ionicSideMenuDelegate, $ionicPlatform, $ionicBody, $io
     self.content.setCanScroll(percentage == 0);
   };
 
-  /*
-  function freezeAllScrolls(shouldFreeze) {
-    if (shouldFreeze && !self.isScrollFreeze) {
-      $ionicScrollDelegate.freezeAllScrolls(shouldFreeze);
-
-    } else if (!shouldFreeze && self.isScrollFreeze) {
-      $ionicScrollDelegate.freezeAllScrolls(false);
-    }
-    self.isScrollFreeze = shouldFreeze;
-  }
-  */
-
   /**
    * Open the menu the given pixel amount.
    * @param {float} amount the pixel amount to open the menu. Positive value for left menu,
@@ -7923,7 +7911,6 @@ function($scope, $attrs, $ionicSideMenuDelegate, $ionicPlatform, $ionicBody, $io
 
     if (isDragging) {
       self.openAmount(offsetX + (lastX - startX));
-      //self.content.setCanScroll(false);
     }
   };
 

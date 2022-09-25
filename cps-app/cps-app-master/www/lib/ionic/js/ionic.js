@@ -947,8 +947,6 @@ window.ionic.version = '1.3.1';
           }
         }
 
-        //debug(sourceEventType +" "+ eventType);
-
         // on the end we reset everything
         if(!count_touches) {
           last_move_event = null;
@@ -1049,7 +1047,6 @@ window.ionic.version = '1.3.1';
           }
 
           if(this.srcEvent.preventDefault) {
-            // this.srcEvent.preventDefault();
           }
         },
 
@@ -2931,7 +2928,6 @@ function tapClick(e) {
 
   var c = ionic.tap.pointerCoord(e);
 
-  //console.log('tapClick', e.type, ele.tagName, '('+c.x+','+c.y+')');
   triggerMouseEvent('click', ele, c.x, c.y);
 
   // if it's an input, focus in on the target, otherwise blur
@@ -2947,7 +2943,6 @@ function triggerMouseEvent(type, ele, x, y) {
 }
 
 function tapClickGateKeeper(e) {
-  //console.log('click ' + Date.now() + ' isIonicTap: ' + (e.isIonicTap ? true : false));
   if (e.target.type == 'submit' && e.detail === 0) {
     // do not prevent click if it came from an "Enter" or "Go" keypress submit
     return null;
@@ -2956,7 +2951,6 @@ function tapClickGateKeeper(e) {
   // do not allow through any click events that were not created by ionic.tap
   if ((ionic.scroll.isScrolling && ionic.tap.containsOrIsTextInput(e.target)) ||
       (!e.isIonicTap && !ionic.tap.requiresNativeClick(e.target))) {
-    //console.log('clickPrevent', e.target.tagName);
     e.stopPropagation();
 
     if (!ionic.tap.isLabelWithTextInput(e.target)) {
@@ -2969,11 +2963,9 @@ function tapClickGateKeeper(e) {
 
 // MOUSE
 function tapMouseDown(e) {
-  //console.log('mousedown ' + Date.now());
   if (e.isIonicTap || tapIgnoreEvent(e)) return null;
 
   if (tapEnabledTouchEvents) {
-    //console.log('mousedown', 'stop event');
     e.stopPropagation();
 
     if (!ionic.Platform.isEdge() && (!ionic.tap.isTextInput(e.target) || tapLastTouchTarget !== e.target) &&
@@ -2998,7 +2990,6 @@ function tapMouseDown(e) {
 }
 
 function tapMouseUp(e) {
-  //console.log("mouseup " + Date.now());
   if (tapEnabledTouchEvents) {
     e.stopPropagation();
     e.preventDefault();
@@ -3027,7 +3018,6 @@ function tapMouseMove(e) {
 
 // TOUCH
 function tapTouchStart(e) {
-  //console.log("touchstart " + Date.now());
   if (tapIgnoreEvent(e)) return;
 
   tapPointerMoved = false;
@@ -3054,7 +3044,6 @@ function tapTouchStart(e) {
 }
 
 function tapTouchEnd(e) {
-  //console.log('touchend ' + Date.now());
   if (tapIgnoreEvent(e)) return;
 
   tapEnableTouchEvents();
@@ -3145,7 +3134,6 @@ function tapHandleFocus(ele) {
 function tapFocusOutActive() {
   var ele = tapActiveElement();
   if (ele && ((/^(input|textarea|select)$/i).test(ele.tagName) || ele.isContentEditable)) {
-    //console.log('tapFocusOutActive', ele.tagName);
     ele.blur();
   }
   tapActiveElement(null);
@@ -3174,7 +3162,6 @@ function tapFocusIn(e) {
 }
 
 function tapFocusOut() {
-  //console.log("focusout");
   tapActiveElement(null);
 }
 
@@ -3835,8 +3822,6 @@ function keyboardInit() {
  */
 function keyboardNativeShow(e) {
   clearTimeout(keyboardFocusOutTimer);
-  //console.log("keyboardNativeShow fired at: " + Date.now());
-  //console.log("keyboardNativeshow window.innerHeight: " + window.innerHeight);
 
   if (!ionic.keyboard.isOpen || ionic.keyboard.isClosing) {
     ionic.keyboard.isOpening = true;
@@ -3844,7 +3829,6 @@ function keyboardNativeShow(e) {
   }
 
   ionic.keyboard.height = e.keyboardHeight;
-  //console.log('nativeshow keyboard height:' + e.keyboardHeight);
 
   if (wasOrientationChange) {
     keyboardWaitForResize(keyboardUpdateViewportHeight, true);
@@ -3864,7 +3848,6 @@ function keyboardNativeShow(e) {
  */
 function keyboardFocusIn(e) {
   clearTimeout(keyboardFocusOutTimer);
-  //console.log("keyboardFocusIn from: " + e.type + " at: " + Date.now());
 
   if (!e.target ||
       e.target.readOnly ||
@@ -3932,8 +3915,6 @@ function keyboardFocusIn(e) {
  */
 function keyboardFocusOut() {
   clearTimeout(keyboardFocusOutTimer);
-  //console.log("keyboardFocusOut fired at: " + Date.now());
-  //console.log("keyboardFocusOut event type: " + e.type);
 
   if (ionic.keyboard.isOpen || ionic.keyboard.isOpening) {
     ionic.keyboard.isClosing = true;
@@ -3972,8 +3953,6 @@ function keyboardFocusOut() {
  * open.
  */
 function keyboardOrientationChange() {
-  //console.log("orientationchange fired at: " + Date.now());
-  //console.log("orientation was: " + (ionic.keyboard.isLandscape ? "landscape" : "portrait"));
 
   // toggle orientation
   ionic.keyboard.isLandscape = !ionic.keyboard.isLandscape;
@@ -4044,10 +4023,6 @@ function keyboardWaitForResize(callback, isOpening) {
   var initialHeight = getViewportHeight();
   var viewportHeight = initialHeight;
 
-  //console.log("waitForResize initial viewport height: " + viewportHeight);
-  //var start = Date.now();
-  //console.log("start: " + start);
-
   // want to fail relatively quickly on modern android devices, since it's much
   // more likely we just have a bad keyboard height
   if (ionic.Platform.isAndroid() && ionic.Platform.version() < 4.4) {
@@ -4081,12 +4056,6 @@ function keyboardWaitForResize(callback, isOpening) {
     ionic.keyboard.isOpen = isOpening;
 
     clearInterval(waitForResizeTimer);
-    //var end = Date.now();
-    //console.log("waitForResize count: " + count);
-    //console.log("end: " + end);
-    //console.log("difference: " + ( end - start ) + "ms");
-
-    //console.log("callback: " + callback.name);
     callback();
 
   }, 50);
@@ -4103,8 +4072,6 @@ function keyboardWaitForResize(callback, isOpening) {
  */
 function keyboardHide() {
   clearTimeout(keyboardFocusOutTimer);
-  //console.log("keyboardHide");
-
   ionic.keyboard.isOpen = false;
   ionic.keyboard.isClosing = false;
 
@@ -4161,15 +4128,9 @@ function keyboardShow() {
     details.elementBottom = Math.round(elementBounds.bottom);
 
     details.windowHeight = details.viewportHeight - details.keyboardHeight;
-    //console.log("keyboardShow viewportHeight: " + details.viewportHeight +
-    //", windowHeight: " + details.windowHeight +
-    //", keyboardHeight: " + details.keyboardHeight);
 
     // figure out if the element is under the keyboard
     details.isElementUnderKeyboard = (details.elementBottom > details.windowHeight);
-    //console.log("isUnderKeyboard: " + details.isElementUnderKeyboard);
-    //console.log("elementBottom: " + details.elementBottom);
-
     // send event so the scroll view adjusts
     ionic.trigger('scrollChildIntoView', details, true);
   }
@@ -4238,11 +4199,9 @@ function keyboardUpdateViewportHeight() {
   keyboardCurrentViewportHeight = getViewportHeight();
 
   if (ionic.keyboard.isLandscape && !keyboardLandscapeViewportHeight) {
-    //console.log("saved landscape: " + keyboardCurrentViewportHeight);
     keyboardLandscapeViewportHeight = keyboardCurrentViewportHeight;
 
   } else if (!ionic.keyboard.isLandscape && !keyboardPortraitViewportHeight) {
-    //console.log("saved portrait: " + keyboardCurrentViewportHeight);
     keyboardPortraitViewportHeight = keyboardCurrentViewportHeight;
   }
 
@@ -4264,8 +4223,6 @@ function keyboardInitViewportHeight() {
   if ((viewportHeight / window.innerWidth) < 1) {
     ionic.keyboard.isLandscape = true;
   }
-  //console.log("ionic.keyboard.isLandscape is: " + ionic.keyboard.isLandscape);
-
   // initialize or update the current viewport height values
   keyboardCurrentViewportHeight = viewportHeight;
   if (ionic.keyboard.isLandscape && !keyboardLandscapeViewportHeight) {
@@ -4277,10 +4234,6 @@ function keyboardInitViewportHeight() {
 
 function getViewportHeight() {
   var windowHeight = window.innerHeight;
-  //console.log('window.innerHeight is: ' + windowHeight);
-  //console.log('kb height is: ' + ionic.keyboard.height);
-  //console.log('kb isOpen: ' + ionic.keyboard.isOpen);
-
   //TODO: add iPad undocked/split kb once kb plugin supports it
   // the keyboard overlays the window on Android fullscreen
   if (!(ionic.Platform.isAndroid() && ionic.Platform.isFullScreen) &&
@@ -4300,28 +4253,6 @@ ionic.Platform.ready(function() {
   keyboardInitViewportHeight();
 
   window.addEventListener('orientationchange', keyboardOrientationChange);
-
-  // if orientation changes while app is in background, update on resuming
-  /*
-  if ( ionic.Platform.isWebView() ) {
-    document.addEventListener('resume', keyboardInitViewportHeight);
-
-    if (ionic.Platform.isAndroid()) {
-      //TODO: onbackpressed to detect keyboard close without focusout or plugin
-    }
-  }
-  */
-
-  // if orientation changes while app is in background, update on resuming
-/*  if ( ionic.Platform.isWebView() ) {
-    document.addEventListener('pause', function() {
-      window.removeEventListener('orientationchange', keyboardOrientationChange);
-    })
-    document.addEventListener('resume', function() {
-      keyboardInitViewportHeight();
-      window.addEventListener('orientationchange', keyboardOrientationChange)
-    });
-  }*/
 
   // Android sometimes reports bad innerHeight on window.load
   // try it again in a lil bit to play it safe
@@ -5141,7 +5072,6 @@ ionic.views.Scroll = ionic.views.View.inherit({
      * into view.
      */
     self.scrollChildIntoView = function(e) {
-      //console.log("scrollChildIntoView at: " + Date.now());
 
       // D
       var scrollBottomOffsetToTop = container.getBoundingClientRect().bottom;
@@ -5217,8 +5147,6 @@ ionic.views.Scroll = ionic.views.View.inherit({
           // middle of the scrollview, this is where we want to scroll to
           // (D - A) / 2
           var scrollMidpointOffset = scrollViewOffsetHeight * 0.5;
-          //console.log("container.offsetHeight: " + scrollViewOffsetHeight);
-
           // middle of the input we want to scroll into view
           // C
           var inputMidpoint = ((e.detail.elementBottom + e.detail.elementTop) / 2);
@@ -7324,12 +7252,7 @@ ionic.scroll = {
           self.__originalContainerHeight = rect.height;
         }
 
-        // D
-        //var scrollBottomOffsetToTop = rect.bottom;
-        // D - A
         scrollViewOffsetHeight = self.__originalContainerHeight;
-        //console.log('Scroll view offset height', scrollViewOffsetHeight);
-        //console.dir(container);
         var alreadyShrunk = self.isShrunkForKeyboard;
 
         var isModal = container.parentNode.classList.contains('modal');
@@ -7368,21 +7291,10 @@ ionic.scroll = {
 
             ionic.requestAnimationFrame(function(){
               // D - A or B - A if D > B       D - A             max(0, D - B)
-              scrollViewOffsetHeight = Math.max(0, Math.min(self.__originalContainerHeight, self.__originalContainerHeight - (e.detail.keyboardHeight - 43)));//keyboardOffset >= 0 ? scrollViewOffsetHeight - keyboardOffset : scrollViewOffsetHeight + keyboardOffset;
-
-              //console.log('Old container height', self.__originalContainerHeight, 'New container height', scrollViewOffsetHeight, 'Keyboard height', e.detail.keyboardHeight);
+              scrollViewOffsetHeight = Math.max(0, Math.min(self.__originalContainerHeight, self.__originalContainerHeight - (e.detail.keyboardHeight - 43)));
 
               container.style.height = scrollViewOffsetHeight + "px";
-
-              /*
-              if (ionic.Platform.isIOS()) {
-                // Force redraw to avoid disappearing content
-                var disp = container.style.display;
-                container.style.display = 'none';
-                var trick = container.offsetHeight;
-                container.style.display = disp;
-              }
-              */
+              
               container.classList.add('keyboard-up');
               //update scroll view
               self.resize();
@@ -7474,16 +7386,6 @@ ionic.scroll = {
         if (self.isShrunkForKeyboard) {
           self.isShrunkForKeyboard = false;
           container.style.height = "";
-
-          /*
-          if (ionic.Platform.isIOS()) {
-            // Force redraw to avoid disappearing content
-            var disp = container.style.display;
-            container.style.display = 'none';
-            var trick = container.offsetHeight;
-            container.style.display = disp;
-          }
-          */
 
           self.__originalContainerHeight = container.getBoundingClientRect().height;
 
@@ -7861,7 +7763,6 @@ ionic.scroll = {
 
       this._currentDrag.currentY = scrollY + pageY - offset;
 
-      // this._reorderItems();
     }
   });
 
@@ -8026,7 +7927,6 @@ ionic.scroll = {
     didStopScrolling: function() {
       if (this.isVirtual) {
         for (var i = 0; i < this._virtualItemsToRemove.length; i++) {
-          //el.parentNode.removeChild(el);
           this.didHideItem && this.didHideItem(i);
         }
         // Once scrolling stops, check if we need to remove old items
@@ -9793,11 +9693,6 @@ ionic.views.Slider = ionic.views.View.inherit({
             }
             // Normalize slideIndex
             if (newActiveIndex < 0 || typeof newActiveIndex === 'undefined') newActiveIndex = 0;
-            // for (i = 0; i < s.slidesGrid.length; i++) {
-                // if (- translate >= s.slidesGrid[i]) {
-                    // newActiveIndex = i;
-                // }
-            // }
             snapIndex = Math.floor(newActiveIndex / s.params.slidesPerGroup);
             if (snapIndex >= s.snapGrid.length) snapIndex = s.snapGrid.length - 1;
 
@@ -10255,7 +10150,6 @@ ionic.views.Slider = ionic.views.View.inherit({
             if (isTouchEvent && e.type === 'mousemove') return;
             if (e.preventedByNestedSwiper) return;
             if (s.params.onlyExternal) {
-                // isMoved = true;
                 s.allowClick = false;
                 if (isTouched) {
                     s.touches.startX = s.touches.currentX = e.type === 'touchmove' ? e.targetTouches[0].pageX : e.pageX;
@@ -11031,9 +10925,6 @@ ionic.views.Slider = ionic.views.View.inherit({
           ===========================*/
         // Create looped slides
         s.createLoop = function () {
-          //console.log("Slider create loop method");
-            //var toRemove = s.wrapper.children('.' + s.params.slideClass + '.' + s.params.slideDuplicateClass);
-            //angular.element(toRemove).remove();
             s.wrapper.children('.' + s.params.slideClass + '.' + s.params.slideDuplicateClass).remove();
 
             var slides = s.wrapper.children('.' + s.params.slideClass);
@@ -11061,10 +10952,8 @@ ionic.views.Slider = ionic.views.View.inherit({
               scope = angular.element(appendSlides[i]).scope();
               newNode = $compile(newNode)(scope);
               angular.element(s.wrapper).append(newNode);
-              //s.wrapper.append($(appendSlides[i].cloneNode(true)).addClass(s.params.slideDuplicateClass));
             }
             for (i = prependSlides.length - 1; i >= 0; i--) {
-              //s.wrapper.prepend($(prependSlides[i].cloneNode(true)).addClass(s.params.slideDuplicateClass));
 
               newNode = angular.element(prependSlides[i]).clone().addClass(s.params.slideDuplicateClass);
               newNode.removeAttr('ng-transclude');
@@ -11352,7 +11241,6 @@ ionic.views.Slider = ionic.views.View.inherit({
 
                         var rotateY = isH() ? rotate * offsetMultiplier : 0;
                         var rotateX = isH() ? 0 : rotate * offsetMultiplier;
-                        // var rotateZ = 0
                         var translateZ = -translate * Math.abs(offsetMultiplier);
 
                         var translateY = isH() ? 0 : s.params.coverflow.stretch * (offsetMultiplier);
@@ -12895,7 +12783,6 @@ ionic.views.Slider = ionic.views.View.inherit({
                     }
                     return false;
                 }
-
             },
             index: function () {
                 if (this[0]) {
@@ -12952,7 +12839,6 @@ ionic.views.Slider = ionic.views.View.inherit({
                         for (j = tempDiv.childNodes.length - 1; j >= 0; j--) {
                             this[i].insertBefore(tempDiv.childNodes[j], this[i].childNodes[0]);
                         }
-                        // this[i].insertAdjacentHTML('afterbegin', newChild);
                     }
                     else if (newChild instanceof Dom7) {
                         for (j = 0; j < newChild.length; j++) {

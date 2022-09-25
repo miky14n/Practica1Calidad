@@ -22,7 +22,6 @@ angular.module('starter', ['ionic','ionic.closePopup' ,'starter.controllers', 's
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    // db = $cordovaSQLite.openDB({ name: "my.db" }); // plaftorm specific
     db = window.openDatabase("CPSdatabase","1.0","Demo",2000);
     DataSeed.seed($cordovaSQLite, db);
     if(typeof analytics !== 'undefined') {
@@ -71,7 +70,6 @@ angular.module('starter', ['ionic','ionic.closePopup' ,'starter.controllers', 's
   $httpProvider.defaults.headers.post = {};
   $httpProvider.defaults.headers.put = {};
   $httpProvider.defaults.headers.patch = {};
-  // $link_root = "http://localhost:3000";
   $link_root = "http://cpsapi.herokuapp.com";
   $httpProvider.defaults.useXDomain = true;
   delete $httpProvider.defaults.headers.common['X-Requested-With'];

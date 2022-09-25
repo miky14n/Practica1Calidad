@@ -29,21 +29,11 @@ angular.module('starter.services')
         }
         
       }
-      
-      
-      // $cordovaInAppBrowser.open(link, '_self')
-      // .then(function(event) {
-      //   // success
-      // })
-      // .catch(function(event) {
-      //   // error
-      // });
     };
 
     browserInstance.closeBrowser = function() {
       this.destination = '';
       this.browser.hide();
-      // $cordovaInAppBrowser.close();
     };
 
       $ionicPlatform.onHardwareBackButton(function() {

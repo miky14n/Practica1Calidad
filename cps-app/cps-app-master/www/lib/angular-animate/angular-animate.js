@@ -1809,7 +1809,6 @@ var $$AnimateJsProvider = ['$animateProvider', function($animateProvider) {
        function($injector,   $$AnimateRunner,   $$jqLite) {
 
     var applyAnimationClasses = applyAnimationClassesFactory($$jqLite);
-         // $animateJs(element, 'enter');
     return function(element, event, classes, options) {
       var animationClosed = false;
 

@@ -258,7 +258,6 @@ app
         LaggingSkills.all($scope.activeChild.id, function(res) {
             $scope.laggingSkills = res;
         });
-        //$scope.uploadLaggingSkill($scope.laggingSkills,laggingskillId);
         if (typeof analytics !== 'undefined') {
             analytics.trackEvent('Lagging Skill', 'check');
         } else {
@@ -326,10 +325,6 @@ app
         })
         .then(function(response) {
           console.log(response.data.message);
-        //   var alertForAccountCreated = $ionicPopup.alert({
-        //       title: 'Success!',
-        //       template: 'LaggingSkill uploaded.'
-        //   });
         },
         function(response) {
           console.log(response.data.message);
@@ -643,56 +638,6 @@ app
         };
     });
 
-// OTHER FUNCTIONS
-
-
-// function getLaggingSkills(cordovaSQLite,child_id){
-//   var lagging_skills = [];
-//   var query ="SELECT * FROM lagging_skills WHERE child_id = ?";
-//   cordovaSQLite.execute(db,query,[child_id]).then(function(result) {
-//     var rows = result.rows;
-//     if(rows.length) {
-//       for(var i=0; i < rows.length; i++){
-//         lagging_skills.push(rows.item(i));
-//       }
-//     }
-//     },function(err){
-//       console.log(err.message);
-//     });
-//   return lagging_skills;
-// }
-
-
-// function getSolutions(cordovaSQLite,unsolvedProblemId) {
-//   var solutions = [];
-//   var query ="SELECT * FROM solutions WHERE unsolved_problem_id = ?";
-//   cordovaSQLite.execute(db,query,[unsolvedProblemId]).then(function(result) {
-//     var rows = result.rows;
-//     if(rows.length) {
-//       for(var i=0; i < rows.length; i++){
-//         solutions.push(rows.item(i));
-//       }
-//     }
-//   },function(err){console.log(err.message);});
-//   return solutions;
-// }
-
-// function getSolutions(cordovaSQLite,unsolvedProblemId,callback) {
-//   var solutions = [];
-//   var query ="SELECT * FROM solutions WHERE unsolved_problem_id = ?";
-//   cordovaSQLite.execute(db,query,[unsolvedProblemId]).then(function(result) {
-//     var rows = result.rows;
-//     if(rows.length) {
-//       for(var i=0; i < rows.length; i++){
-//         solutions.push(rows.item(i));
-//       }
-//       callback();
-//     }
-//   },function(err){console.log(err.message);});
-//   return solutions;
-// }
-
-
 function inputFieldIsEmpty(description) {
     return description.length === 0;
 }
@@ -706,22 +651,3 @@ function signupFieldsAreEmpty(name, last_name, phone, email, password, password_
     password_confirmation_is_empty = inputFieldIsEmpty(password_confirmation);
     return (name_is_empty || last_name_is_empty || phone_is_empty || email_is_empty || password_is_empty || password_confirmation_is_empty);
 }
-
-// function saveSolution(cordovaSQLite,solution){
-//   var query ="INSERT INTO solutions(description,unsolved_problem_id,rating) VALUES (?,?,?)";
-//   cordovaSQLite.execute(db,query,[solution.description,solution.unsolvedProblemId,solution.rating]);
-// }
-
-// function updateSolution($cordovaSQLite, solution){
-//   var query = "UPDATE solutions SET description = ? where id = ?";
-//   $cordovaSQLite.execute(db, query, [solution.description, solution.id]);
-// }
-
-// function uncheckLaggingSkill($cordovaSQLite,params){
-//   var query = "UPDATE lagging_skills SET checked = 0 where id = ?";
-//   $cordovaSQLite.execute(db,query,params);
-// }
-// function checkLaggingSkill($cordovaSQLite, params){
-//   var query = "UPDATE lagging_skills SET checked = 1 where id = ?";
-//   $cordovaSQLite.execute(db,query,params);
-// }
