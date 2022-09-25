@@ -412,7 +412,6 @@ angular
           $scope.childs = children;
         });
         console.log("Child updated");
-        // location.reload();
         $scope.syncChildModal.hide();
       });
     };
@@ -1133,7 +1132,6 @@ angular
       ]).then(function(translations) {
         // Link para factorizar ionicActionSheet: https://www.ghadeer.io/ionicactionsheet-example/
         var buttons = [{ text: translations.EditChildTitle }];
-        //var buttons = [{ text: translations.EditChildTitle },{text: translations.ShareALSUP} ];
         $scope.getFriendShared(child.id);
         $ionicActionSheet.show({
           buttons: buttons,

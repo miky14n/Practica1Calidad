@@ -19,10 +19,6 @@ angular.module('starter.controllers').controller('SolutionsCtrl', function($scop
     $scope.comments = comments;
   });
 
-  // getComments($stateParams.solutionId,$cordovaSQLite,function(comments){
-  //   $scope.comments = comments;
-  // });
-
   $ionicModal.fromTemplateUrl('create-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
