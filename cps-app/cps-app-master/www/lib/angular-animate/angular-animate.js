@@ -133,7 +133,8 @@ function stripCommentsFromElement(element) {
     switch (element.length) {
       case 0:
         return [];
-        break;
+        //Debido a que es un return si entra a este caso ya no se ejecutara lo que esta por debajo del return asi que el break es innecesario
+        //break;
 
       case 1:
         // there is no point of stripping anything if the element
@@ -146,7 +147,7 @@ function stripCommentsFromElement(element) {
 
       default:
         return jqLite(extractElementNode(element));
-        break;
+        
     }
   }
 
