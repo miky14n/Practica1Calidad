@@ -27,10 +27,10 @@ angular
     });
     $scope.contact = {};
     $scope.contact.mail = "";
-    $scope.userFriends;
-    $scope.userFriendsRequest;
-    $scope.userPendingSentRequest;
-    $scope.searchResults;
+    //$scope.userFriends;
+    //$scope.userFriendsRequest;
+    //$scope.userPendingSentRequest;
+    //$scope.searchResults;
     $ionicModal
       .fromTemplateUrl("templates/contacts/add-contact-modal.html", {
         scope: $scope,

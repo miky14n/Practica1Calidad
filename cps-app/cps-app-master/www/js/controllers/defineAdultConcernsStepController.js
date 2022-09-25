@@ -270,7 +270,7 @@ angular.module('starter.controllers')
   };
 
 
-  $scope.sharedAdultConcerns;
+  //$scope.sharedAdultConcerns;
 
     $scope.getSharedAdultConcerns = function(user_id,child_id,unsolved_problem_id) {
         $http.get($link_root +"/users/"+user_id+"/children/"+child_id+"/unsolved_problem/"+unsolved_problem_id+"/sharedAdultConcerns", {

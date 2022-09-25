@@ -344,7 +344,7 @@ angular.module('starter.controllers').controller('UnsolvedProblemCtrl', function
    };
 
 
-   $scope.sharedUnsolveProblems;
+   //$scope.sharedUnsolveProblems;
 
     $scope.getSharedUnsolveProblems = function(child_id) {
       var user_id = localStorage.getItem("user_id");
