@@ -528,7 +528,7 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
    * @returns {string} The string stripped of whitespace from both ends
    */
   var trim = function () {
-    return this.toString().replace(/^\s+|\s+$/g, '');
+    return this.toString().replace(s$|+s$|+g$,'');
   };
 
   var negotiateLocale = function (preferred) {
@@ -2984,7 +2984,7 @@ function translateDirective($translate, $interpolate, $compile, $parse, $rootSco
    * @returns {string} The string stripped of whitespace from both ends
    */
   var trim = function() {
-    return this.toString().replace(/^\s+|\s+$/g, '');
+    return this.toString().replace(s$|+s$|+g$,'');
   };
 
   return {
