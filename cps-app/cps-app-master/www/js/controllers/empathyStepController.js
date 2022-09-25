@@ -331,7 +331,7 @@ angular.module('starter.controllers')
     }
   };
 
-  $scope.sharedChildConcerns;
+  //$scope.sharedChildConcerns; 
 
     $scope.getSharedChildConcerns = function(user_id,child_id,unsolved_problem_id) {
         $http.get($link_root +"/users/"+user_id+"/children/"+child_id+"/unsolved_problem/"+unsolved_problem_id+"/sharedChildConcerns", {
