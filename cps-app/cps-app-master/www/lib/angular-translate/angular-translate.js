@@ -2985,7 +2985,7 @@ function translateDirective($translate, $interpolate, $compile, $parse, $rootSco
    */
   var trim = function() {
     
-    return this.toString().replace(/(\s+)\s+$/g,'');
+    return this.toString().replace(/(\s+\s+$)/g,'');
   };
 
   return {
