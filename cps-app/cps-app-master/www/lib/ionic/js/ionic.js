@@ -1047,6 +1047,7 @@ window.ionic.version = '1.3.1';
           }
 
           if(this.srcEvent.preventDefault) {
+            this.srcEvent.preventDefault();
           }
         },
 
