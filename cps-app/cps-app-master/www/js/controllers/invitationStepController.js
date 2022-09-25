@@ -524,8 +524,6 @@ $scope.editablePair=[];
     });
     };
 
-    //$scope.sharedChildConcerns; 
-
     $scope.getSharedChildConcerns = function(user_id,child_id,unsolved_problem_id) {
         $http.get($link_root +"/users/"+user_id+"/children/"+child_id+"/unsolved_problem/"+unsolved_problem_id+"/sharedChildConcerns", {
             headers: { Authorization: localStorage.getItem("auth_token") }
@@ -539,8 +537,6 @@ $scope.editablePair=[];
           });
       };
 
-      //$scope.sharedAdultConcerns; 
-
     $scope.getSharedAdultConcerns = function(user_id,child_id,unsolved_problem_id) {
         $http.get($link_root +"/users/"+user_id+"/children/"+child_id+"/unsolved_problem/"+unsolved_problem_id+"/sharedAdultConcerns", {
             headers: { Authorization: localStorage.getItem("auth_token") }
@@ -553,8 +549,6 @@ $scope.editablePair=[];
             console.log(error.message);
           });
       };
-
-      //$scope.sharedPosibleSolutions; 
 
     $scope.getSharedPosibleSolutions = function(user_id,child_id,unsolved_problem_id_app,unsolved_problem_id) {
         $http.get($link_root +"/users/"+user_id+"/children/"+child_id+"/unsolved_problem/"+unsolved_problem_id+"/sharedPosibleSolutions", {

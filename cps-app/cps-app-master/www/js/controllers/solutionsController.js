@@ -136,8 +136,6 @@ angular.module('starter.controllers').controller('SolutionsCtrl', function($scop
     }
   };
 
-  //$scope.sharedCommentSolutions; 
-
     $scope.getSharedPosibleSolutions = function(posible_solution_id) {
         console.log(posible_solution_id);
         $http.get($link_root +"/solution_commentaries/"+posible_solution_id, {

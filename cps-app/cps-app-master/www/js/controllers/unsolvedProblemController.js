@@ -343,9 +343,6 @@ angular.module('starter.controllers').controller('UnsolvedProblemCtrl', function
      }
    };
 
-
-   //$scope.sharedUnsolveProblems; 
-
     $scope.getSharedUnsolveProblems = function(child_id) {
       var user_id = localStorage.getItem("user_id");
         $http.get($link_root +"/users/"+user_id+"/children/"+child_id+"/sharedUnsolvedProblems", {
