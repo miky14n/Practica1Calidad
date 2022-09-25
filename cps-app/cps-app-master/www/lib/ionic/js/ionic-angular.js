@@ -11841,7 +11841,7 @@ IonicModule
     compile: function(tElement, tAttrs) {
       var side = 'left';
 
-      if (/^primary|secondary|right$/i.test(tAttrs.side || '')) {
+      if (/(primary|secondary|right)$/i.test(tAttrs.side || '')) {
         side = tAttrs.side.toLowerCase();
       }
 
