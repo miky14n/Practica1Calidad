@@ -23,12 +23,12 @@ angular
     PossibleSolutionFactory,
     AppTools
   ) {
-    $scope.friendShareID;
+    $scope.friendShareID = 0;
     $scope.user_friend = { id: "" };
     $scope.user_friend.id = "";
     $scope.child = {};
     $scope.child.first_name = "";
-    $scope.sharedAlsups;
+    $scope.sharedAlsups = 0;
 
     ChildrenFactory.all(function(children) {
       $scope.childs = children;
@@ -268,7 +268,7 @@ angular
         });
     };
 
-    $scope.sharedChildId;
+    $scope.sharedChildId = 0;
     $scope.getSharedChildId = function(shareChildId) {
       $scope.sharedChildId = shareChildId;
       console.log($scope.sharedChildId);
@@ -473,7 +473,7 @@ angular
         "/children/" +
         $scope.child.id +
         "/unsolved_problem";
-      $scope.unsolvedProblems;
+      $scope.unsolvedProblems = 0;
       $http.get(link).then(data => {
         $scope.unsolvedProblems = data.data;
         angular.forEach($scope.unsolvedProblems, function(value, key) {
@@ -645,7 +645,7 @@ angular
         $scope.child.id +
         "/unsolved_problem";
 
-      $scope.unsolvedProblems;
+      $scope.unsolvedProblems = 0;
       $http.get(linkUPData).then(data => {
         $scope.unsolvedProblems = data.data;
         angular.forEach($scope.unsolvedProblems, function(valueUP, key) {
@@ -749,7 +749,7 @@ angular
         "/children/" +
         $scope.child.id +
         "/unsolved_problem";
-      $scope.unsolvedProblems;
+      $scope.unsolvedProblems = 0;
       $http.get(linkUPData).then(data => {
         $scope.unsolvedProblems = data.data;
         angular.forEach($scope.unsolvedProblems, function(valueUP, key) {
@@ -858,7 +858,7 @@ angular
         "/children/" +
         $scope.child.id +
         "/unsolved_problem";
-      $scope.unsolvedProblems;
+      $scope.unsolvedProblems = 0;
       $http.get(linkUPData).then(data => {
         $scope.unsolvedProblems = data.data;
         angular.forEach($scope.unsolvedProblems, function(valueUP, key) {
@@ -974,8 +974,8 @@ angular
         "/children/" +
         $scope.child.id +
         "/unsolved_problem";
-      $scope.unsolvedProblems;
-      $scope.possibleSolutions;
+      $scope.unsolvedProblems = 0;
+      $scope.possibleSolutions = 0;
       $http.get(unsolvedProblemsLink).then(data => {
         $scope.unsolvedProblems = data.data;
         angular.forEach($scope.unsolvedProblems, function(
