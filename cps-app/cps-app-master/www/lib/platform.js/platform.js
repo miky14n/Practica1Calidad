@@ -237,7 +237,7 @@
    * @returns {string} The trimmed string.
    */
   function trim(string) {
-    return String(string).replace($^ +$| +$/g, '');
+    return String(string).replace(/( +| +$)/g, '');
   }
 
   /*--------------------------------------------------------------------------*/
