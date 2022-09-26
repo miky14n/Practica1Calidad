@@ -451,8 +451,8 @@ $scope.editablePair=[];
            title: 'Step 2 wasn\'t unlocked.',
            template: 'You have to finish previous steps to continue.'
          });
-         alertPopup.then(function(res) {
-         });
+         alertPopup.then(function(res) {return res;});
+
       }else {
         $ionicTabsDelegate.select(index);
         $state.go('app.defineTheProblem',{ unsolvedProblemId: $scope.unsolvedProblem.id});
@@ -464,8 +464,8 @@ $scope.editablePair=[];
            title: 'Step 3 wasn\'t unlocked.',
            template: 'You have to finish previous steps to continue.'
          });
-         alertPopupForUnsolved.then(function(res) {
-         });
+         alertPopupForUnsolved.then(function(res) {return res;});
+         
       }else {
         $state.go('app.invitation',{ unsolvedProblemId: $scope.unsolvedProblem.id});
         $ionicTabsDelegate.select(index);

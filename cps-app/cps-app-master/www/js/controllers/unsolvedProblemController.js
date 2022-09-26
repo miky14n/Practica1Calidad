@@ -234,8 +234,8 @@ angular.module('starter.controllers').controller('UnsolvedProblemCtrl', function
                title: translations.Step + " 2 "+ translations.wasntUnlock,
                template: translations.haveToFinishSteps
              });
-             alertPopup.then(function(res) {
-             });
+             alertPopup.then(function(res) {return res;});
+
           }else {
             $scope.openStep2(unsolvedProblem);
           }
@@ -246,8 +246,8 @@ angular.module('starter.controllers').controller('UnsolvedProblemCtrl', function
                title: translations.Step + " 3 "+ translations.wasntUnlock,
                template: translations.haveToFinishSteps
              });
-             alertPopupForUnsolved.then(function(res) {
-             });
+             alertPopupForUnsolved.then(function(res) {return res;});
+             
           }else {
             $state.go('app.invitation',{ unsolvedProblemId: unsolvedProblem.id});
           }

@@ -603,7 +603,7 @@ window.ionic.version = '1.3.1';
       gesture && gesture.off(type, callback);
     },
 
-    handlePopState: function() {}
+    handlePopState: function() {return true;}
   };
 
 
@@ -4418,7 +4418,7 @@ ionic.Platform.ready(function() {
   ionic.views.View.inherit = ionic.inherit;
 
   ionic.extend(ionic.views.View.prototype, {
-    initialize: function() {}
+    initialize: function() {return true;}
   });
 
 })(window.ionic);
@@ -4672,7 +4672,7 @@ let zyngaCore = { effect: {} };
  */
 
 (function(ionic) {
-  let NOOP = function(){};
+  let NOOP = function(){return true;};
 
   // Easing Equations (c) 2003 Robert Penner, all rights reserved.
   // Open source under the BSD License.
@@ -6908,7 +6908,7 @@ ionic.scroll = {
 })(ionic);
 
 (function(ionic) {
-  let NOOP = function() {};
+  let NOOP = function() {return true;};
   let deprecated = function(name) {
     void 0;
   };
@@ -7473,11 +7473,11 @@ ionic.scroll = {
   let ITEM_REORDERING_CLASS = 'item-reordering';
   let ITEM_REORDER_BTN_CLASS = 'item-reorder';
 
-  let DragOp = function() {};
+  let DragOp = function() {return true;};
   DragOp.prototype = {
-    start: function(){},
-    drag: function(){},
-    end: function(){},
+    start: function(){return true;},
+    drag: function(){return true;},
+    end: function(){return true;},
     isSameItem: function() {
       return false;
     }
@@ -7834,7 +7834,7 @@ ionic.scroll = {
       let self = this;
 
       opts = ionic.extend({
-        onReorder: function() {},
+        onReorder: function() {return true;},
         virtualRemoveThreshold: -200,
         virtualAddThreshold: 200,
         canSwipe: function() {
@@ -7848,9 +7848,9 @@ ionic.scroll = {
         self.itemHeight = self.listEl.children[0] && parseInt(self.listEl.children[0].style.height, 10);
       }
 
-      self.onRefresh = opts.onRefresh || function() {};
-      self.onRefreshOpening = opts.onRefreshOpening || function() {};
-      self.onRefreshHolding = opts.onRefreshHolding || function() {};
+      self.onRefresh = opts.onRefresh || function() {return true;};
+      self.onRefreshOpening = opts.onRefreshOpening || function() {return true;};
+      self.onRefreshHolding = opts.onRefreshHolding || function() {return true;};
 
       let gestureOpts = {};
       // don't prevent native scrolling
@@ -8156,8 +8156,8 @@ ionic.scroll = {
     initialize: function(opts) {
       ionic.extend(this, {
         animationClass: 'menu-animated',
-        onDrag: function() {},
-        onEndDrag: function() {}
+        onDrag: function() {return true;},
+        onEndDrag: function() {return true;}
       }, opts);
 
       ionic.onGesture('drag', ionic.proxy(this._onDrag, this), this.el);
@@ -8220,7 +8220,7 @@ ionic.views.Slider = ionic.views.View.inherit({
     let mouseEndEvent = 'mouseup';
 
     // utilities
-    let noop = function() {}; // simple no operation function
+    let noop = function() {return true;}; // simple no operation function
     let offloadFn = function(fn) { setTimeout(fn || noop, 0); }; // offload a functions execution
 
     // check browser capabilities
@@ -13107,7 +13107,7 @@ ionic.views.Slider = ionic.views.View.inherit({
       this.track = opts.track;
       this.handle = opts.handle;
       this.openPercent = -1;
-      this.onChange = opts.onChange || function() {};
+      this.onChange = opts.onChange || function() {return true;};
 
       this.triggerThreshold = opts.triggerThreshold || 20;
 

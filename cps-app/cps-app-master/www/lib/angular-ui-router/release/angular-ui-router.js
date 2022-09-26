@@ -25,7 +25,7 @@ let isDefined = angular.isDefined,
     copy = angular.copy;
 
 function inherit(parent, extra) {
-  return extend(new (extend(function() {}, { prototype: parent }))(), extra);
+  return extend(new (extend(function() {return true;}, { prototype: parent }))(), extra);
 }
 
 function merge(dst) {
@@ -1703,7 +1703,7 @@ function $UrlMatcherFactory() {
 
 // Register as a provider so it's available to other providers
 angular.module('ui.router.util').provider('$urlMatcherFactory', $UrlMatcherFactory);
-angular.module('ui.router.util').run(['$urlMatcherFactory', function($urlMatcherFactory) { }]);
+angular.module('ui.router.util').run(['$urlMatcherFactory', function($urlMatcherFactory) {return $urlMatcherFactory;}]);
 
 /**
  * @ngdoc object

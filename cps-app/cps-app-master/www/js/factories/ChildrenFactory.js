@@ -7,7 +7,7 @@ angular.module('starter.services').factory('ChildrenFactory', function($cordovaS
   });
 
   alertPopup.then(function(res) {
-
+    return res;
   });
 };
 

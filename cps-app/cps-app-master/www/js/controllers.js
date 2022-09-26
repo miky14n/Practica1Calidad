@@ -197,7 +197,7 @@ app
                 title: 'No child registered',
                 template: 'You need to register a child to continue.'
             });
-            alertForNoActiveChild.then(function(res) {});
+            alertForNoActiveChild.then(function(res) {return res;});
         } else {
             ChildrenFactory.active(function(active_child) {
                 $scope.activeChild = active_child;
@@ -234,7 +234,7 @@ app
                 title: 'No child registered',
                 template: 'You need to register a child to continue.'
             });
-            alertForNoActiveChild.then(function(res) {});
+            alertForNoActiveChild.then(function(res) {return res;});
         } else {
             $state.go(route);
         }
@@ -530,7 +530,7 @@ app
                         title: 'No child registered',
                         template: 'You need to register a child to continue.'
                     });
-                    alertForNoActiveChild.then(function(res) {});
+                    alertForNoActiveChild.then(function(res) {return res;});
                 } else {
                     $state.go(route);
                 }
@@ -575,7 +575,7 @@ app
                         title: 'No child registered',
                         template: 'You need to register a child to continue.'
                     });
-                    alertForNoActiveChild.then(function(res) {});
+                    alertForNoActiveChild.then(function(res) {return res;});
                 } else {
                     $state.go(route);
                 }
