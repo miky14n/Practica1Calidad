@@ -3053,10 +3053,7 @@ html {
   font-family: sans-serif;
   /* 1 */
   -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  /* 2 */
-  -webkit-text-size-adjust: 100%;
-  /* 2 */ }
+  -ms-text-size-adjust: 100%;}
 
 /**
  * Remove default margin.
@@ -3082,8 +3079,7 @@ a:hover {
  */
 a {
   -webkit-user-drag: none;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-tap-highlight-color: transparent; }
+  -webkit-tap-highlight-color: transparent;}
   a[href]:hover {
     cursor: pointer; }
 
@@ -3319,7 +3315,6 @@ body,
   -moz-text-size-adjust: none;
   text-size-adjust: none;
   -webkit-tap-highlight-color: transparent;
-  -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -3477,8 +3472,7 @@ ion-infinite-scroll {
   align-items: center; }
   ion-infinite-scroll .icon {
     color: #666666;
-    font-size: 30px;
-    color: #666666; }
+    font-size: 30px;}
   ion-infinite-scroll:not(.active) .spinner,
   ion-infinite-scroll:not(.active) .icon:before {
     display: none; }
@@ -6817,7 +6811,7 @@ button.item.item-button-right {
       transition: opacity 0.4s ease-in;
       opacity: 1; }
 
-.slider-slide.ng-enter, .slider-slide.ng-leave, .slider-slide.ng-animate,
+.slider-slide.ng-enter, .slider-slide.ng-leave, .slider-slide.ng-animate,Swiper
 .slider-pager-page.ng-enter,
 .slider-pager-page.ng-leave,
 .slider-pager-page.ng-animate {
@@ -7385,7 +7379,6 @@ ion-slides {
   .scroll-refresher.active.refreshing {
     -webkit-transition: -webkit-transform 0.2s;
     transition: -webkit-transform 0.2s;
-    -webkit-transition: transform 0.2s;
     transition: transform 0.2s;
     -webkit-transform: scale(1, 1);
     transform: scale(1, 1); }
@@ -9390,7 +9383,6 @@ a.button {
   -ms-user-select: none;
   user-select: none;
   -webkit-touch-callout: none;
-  -webkit-tap-highlight-color: transparent;
   -webkit-tap-highlight-color: transparent;
   -webkit-user-drag: none;
   -ms-touch-action: none;
