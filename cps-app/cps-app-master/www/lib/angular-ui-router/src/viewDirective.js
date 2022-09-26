@@ -208,7 +208,7 @@ function $ViewDirective(   $state,   $injector,   $uiViewScroll,   $interpolate)
         }
 
         function updateView(firstTime) {
-          var newScope,
+          let newScope,
               name            = getUiViewName(scope, attrs, $element, $interpolate),
               previousLocals  = name && $state.$current && $state.$current.locals[name];
 
