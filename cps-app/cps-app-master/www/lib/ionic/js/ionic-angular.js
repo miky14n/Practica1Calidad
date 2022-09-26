@@ -1271,7 +1271,7 @@ function($rootScope, $state, $location, $window, $timeout, $ionicViewSwitcher, $
      * @description Clears out the app's entire history, except for the current view.
      */
     clearHistory: function() {
-      var
+      let
       histories = viewHistory.histories,
       currentView = viewHistory.currentView;
 
