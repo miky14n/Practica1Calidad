@@ -33,7 +33,7 @@
     <ion-list ng-if="searchWord.length !== 0">
       <div name="search-results-challengingKidsQuestions" ng-if="searchResults.challengingKidsQuestions.length !== 0">
         <ion-item class="item item-divider">
-          <b>{{'challengingKidsTitle' | translate }}</b>
+          <strong>{{'challengingKidsTitle' | translate }}</strong>
         </ion-item>
         <ion-list>
           <div ng-repeat="question in challengingKidsQuestions | filter: searchWord" ng-if="isEnglish()">
@@ -67,7 +67,7 @@
 
       <div name="search-results-modelQuestions" ng-if="searchResults.modelQuestions.length !== 0">
         <ion-item class="item item-divider">
-          <b>{{'generalQuestionsAboutCPSTitle' | translate }}</b>
+          <strong>{{'generalQuestionsAboutCPSTitle' | translate }}</strong>
         </ion-item>
         <ion-list>
           <div ng-repeat="question in modelQuestions | filter: searchWord" ng-if="isEnglish()">
@@ -102,7 +102,7 @@
 
       <div name="search-results-plansQuestions" ng-if="searchResults.plansQuestions.length !== 0">
         <ion-item class="item item-divider">
-          <b>{{'questionAboutThePlansTitle' | translate }}</b>
+          <strong>{{'questionAboutThePlansTitle' | translate }}</strong>
         </ion-item>
         <ion-list>
           <div ng-repeat="question in plansQuestions | filter: searchWord" ng-if="isEnglish()">
@@ -137,7 +137,7 @@
 
       <div name="search-results-classroomQuestions" ng-if="searchResults.classroomQuestions.length !== 0">
         <ion-item class="item item-divider">
-          <b>{{'questionsAboutTheClassroomTitle' | translate }}</b>
+          <strong>{{'questionsAboutTheClassroomTitle' | translate }}</strong>
         </ion-item>
         <ion-list>
           <div ng-repeat="question in classroomQuestions | filter: searchWord" ng-if="isEnglish()">  
@@ -172,7 +172,7 @@
 
       <div name="search-results-policiesAndPracticesQuestions" ng-if="searchResults.policiesAndPracticesQuestions.length !== 0">
         <ion-item class="item item-divider">
-          <b>{{'questionsAboutPoliciesTitle' | translate }}</b>
+          <strong>{{'questionsAboutPoliciesTitle' | translate }}</strong>
         </ion-item>
         <ion-list>
           <div ng-repeat="question in policiesAndPracticesQuestions | filter: searchWord" ng-if="isEnglish()">

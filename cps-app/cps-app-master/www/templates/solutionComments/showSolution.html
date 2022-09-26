@@ -23,7 +23,7 @@
         <ion-list>
           <ion-item class="item item-divider item-icon-right">
             <h2>
-              <b>{{'ListComments' | translate }}</b>
+              <strong>{{'ListComments' | translate }}</strong>
             </h2>
             <a ng-click="openModal()">
               <i class="icon ion-plus"></i>
@@ -36,7 +36,7 @@
     
           <ion-item class="item item-text-wrap item-icon-right" ng-repeat="item in comments">
             {{item.description}} -
-            <b>{{parseDate(item.commented_at)}}</b>
+            <strong>{{parseDate(item.commented_at)}}</strong>
             <ion-option-button class="button button-balanced ion-edit" ng-click="editComment(item)"></ion-option-button>
             <ion-option-button class="button button-assertive ion-trash-a" ng-click="showDeletionConfirm(item)"></ion-option-button>
             <i class="icon dark ion-chevron-right"></i>
@@ -60,7 +60,7 @@
         <ion-list>
           <ion-item class="item item-divider item-icon-right">
             <h2>
-              <b>{{'ListComments' | translate }}</b>
+              <strong>{{'ListComments' | translate }}</strong>
             </h2>
           </ion-item>
           <div class="item item-text-wrap" ng-if="sharedCommentSolutions.length == 0">
@@ -70,7 +70,7 @@
   
           <ion-item class="item item-text-wrap" ng-repeat="sharedComment in sharedCommentSolutions">
             {{sharedComment.description}} -
-            <b>{{parseDate(sharedComment.commented_at)}}</b>
+            <strong>{{parseDate(sharedComment.commented_at)}}</strong>
           </ion-item>
         </ion-list>
       </div>
