@@ -189,7 +189,7 @@ angular
 
     $scope.shareChildForm = function(friend_id) {
       $scope.uploadData();
-      child_id = $scope.child.id;
+      let child_id = $scope.child.id;
       let user_id = localStorage.getItem("user_id");
       $http
         .post(
@@ -1238,6 +1238,7 @@ angular
       if (child.active === 1) {
         let beforeIndex;
         let beforeItem;
+        let active_child;
         let sizeOfList = $scope.childs.length;
         if (sizeOfList > 1) {
           beforeIndex = $scope.childs.indexOf(child) - 1;

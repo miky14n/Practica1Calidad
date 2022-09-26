@@ -1,7 +1,8 @@
 angular.module('starter.services').factory('ChildrenFactory', function($cordovaSQLite, $ionicPopup, $translate) {
-
+  let showNameAlert;
+  let alertPopup;
   showNameAlert = function() {
-  let alertPopup = $ionicPopup.alert({
+    alertPopup = $ionicPopup.alert({
     title: 'The name is too big!!',
     template: 'Please try again.'
   });
