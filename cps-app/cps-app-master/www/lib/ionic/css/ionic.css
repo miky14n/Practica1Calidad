@@ -6811,7 +6811,7 @@ button.item.item-button-right {
       transition: opacity 0.4s ease-in;
       opacity: 1; }
 
-.slider-slide.ng-enter, .slider-slide.ng-leave, .slider-slide.ng-animate,Swiper
+.slider-slide.ng-enter, .slider-slide.ng-leave, .slider-slide.ng-animate,
 .slider-pager-page.ng-enter,
 .slider-pager-page.ng-leave,
 .slider-pager-page.ng-animate {
