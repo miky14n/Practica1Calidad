@@ -10,7 +10,7 @@ if (typeof module !== "undefined" && typeof exports !== "undefined" && module.ex
   module.exports = 'ui.router';
 }
 
-(function (window, angular, undefined) {
+(function (window, angular, isNotDefined) {
 /*jshint globalstrict:true*/
 /*global angular:false*/
 'use strict';
@@ -382,7 +382,7 @@ function $Resolve(  $q,    $injector) {
     }
     
     return function (locals, parent, self) {
-      if (isResolve(locals) && self === undefined) {
+      if (isResolve(locals) && self === isNotDefined) {
         self = parent; parent = locals; locals = null;
       }
       if (!locals) locals = NO_LOCALS;
@@ -832,7 +832,7 @@ function UrlMatcher(pattern, config, parentMatcher) {
   compiled += quoteRegExp(segment) + (config.strict === false ? '\/?' : '') + '$';
   segments.push(segment);
 
-  this.regexp = new RegExp(compiled, config.caseInsensitive ? 'i' : undefined);
+  this.regexp = new RegExp(compiled, config.caseInsensitive ? 'i' : isNotDefined);
   this.prefix = segments[0];
   this.$$paramNames = paramNames;
 }
@@ -1177,7 +1177,7 @@ Type.prototype.$asArray = function(mode, isSearch) {
     // Unwrap array value for "auto" mode. Return undefined for empty array.
     function arrayUnwrap(val) {
       switch(val.length) {
-        case 0: return undefined;
+        case 0: return isNotDefined;
         case 1: return mode === "auto" ? val[0] : val;
         default: return val;
       }
@@ -1259,7 +1259,7 @@ function $UrlMatcherFactory() {
     date: {
       encode: function (val) {
         if (!this.is(val))
-          return undefined;
+          return isNotDefined;
         return [ val.getFullYear(),
           ('0' + (val.getMonth() + 1)).slice(-2),
           ('0' + val.getDate()).slice(-2)
@@ -1268,7 +1268,7 @@ function $UrlMatcherFactory() {
       decode: function (val) {
         if (this.is(val)) return val;
         var match = this.capture.exec(val);
-        return match ? new Date(match[1], match[2] - 1, match[3]) : undefined;
+        return match ? new Date(match[1], match[2] - 1, match[3]) : isNotDefined;
       },
       is: function(val) { return val instanceof Date && !isNaN(val.valueOf()); },
       equals: function (a, b) { return this.is(a) && this.is(b) && a.toISOString() === b.toISOString(); },
@@ -1558,9 +1558,9 @@ function $UrlMatcherFactory() {
     type = getType(config, type, location);
     var arrayMode = getArrayMode();
     type = arrayMode ? type.$asArray(arrayMode, location === "search") : type;
-    if (type.name === "string" && !arrayMode && location === "path" && config.value === undefined)
+    if (type.name === "string" && !arrayMode && location === "path" && config.value === isNotDefined)
       config.value = ""; // for 0.2.x; in 0.3.0+ do not automatically default to ""
-    var isOptional = config.value !== undefined;
+    var isOptional = config.value !== isNotDefined;
     var squash = getSquashPolicy(config, isOptional);
     var replace = getReplace(config, arrayMode, isOptional, squash);
 
@@ -1600,12 +1600,12 @@ function $UrlMatcherFactory() {
 
     function getReplace(config, arrayMode, isOptional, squash) {
       var replace, configuredKeys, defaultPolicy = [
-        { from: "",   to: (isOptional || arrayMode ? undefined : "") },
-        { from: null, to: (isOptional || arrayMode ? undefined : "") }
+        { from: "",   to: (isOptional || arrayMode ? isNotDefined : "") },
+        { from: null, to: (isOptional || arrayMode ? isNotDefined : "") }
       ];
       replace = isArray(config.replace) ? config.replace : [];
       if (isString(squash))
-        replace.push({ from: squash, to: undefined });
+        replace.push({ from: squash, to: isNotDefined });
       configuredKeys = map(replace, function(item) { return item.from; } );
       return filter(defaultPolicy, function(item) { return indexOf(configuredKeys, item.from) === -1; }).concat(replace);
     }
@@ -1643,7 +1643,7 @@ function $UrlMatcherFactory() {
       replace: replace,
       isOptional: isOptional,
       value: $value,
-      dynamic: undefined,
+      dynamic: isNotDefined,
       config: config,
       toString: toString
     });
@@ -1695,7 +1695,7 @@ function $UrlMatcherFactory() {
       });
       return result;
     },
-    $$parent: undefined
+    $$parent: isNotDefined
   };
 
   this.ParamSet = ParamSet;
@@ -1952,7 +1952,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
             no parameter is equivalent to `true`.
    */
   this.deferIntercept = function (defer) {
-    if (defer === undefined) defer = true;
+    if (defer === isNotDefined) defer = true;
     interceptDeferred = defer;
   };
 
@@ -1985,7 +1985,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
     function update(evt) {
       if (evt && evt.defaultPrevented) return;
       var ignoreUpdate = lastPushedUrl && $location.url() === lastPushedUrl;
-      lastPushedUrl = undefined;
+      lastPushedUrl = isNotDefined;
       if (ignoreUpdate) return true;
 
       function check(rule) {
@@ -2059,7 +2059,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
 
       push: function(urlMatcher, params, options) {
         $location.url(urlMatcher.format(params || {}));
-        lastPushedUrl = options && options.$$avoidResync ? $location.url() : undefined;
+        lastPushedUrl = options && options.$$avoidResync ? $location.url() : isNotDefined;
         if (options && options.replace) $location.replace();
       },
 
@@ -2234,7 +2234,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
   }
 
   function findState(stateOrName, base) {
-    if (!stateOrName) return undefined;
+    if (!stateOrName) return isNotDefined;
 
     var isStr = isString(stateOrName),
         name  = isStr ? stateOrName : stateOrName.name,
@@ -2266,7 +2266,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
     if (state && (isStr || (!isStr && (state === stateOrName || state.self === stateOrName)))) {
       return state;
     }
-    return undefined;
+    return isNotDefined;
   }
 
   function queueState(parentName, state) {
@@ -3292,7 +3292,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
       options = extend({ relative: $state.$current }, options || {});
       var state = findState(stateOrName, options.relative);
 
-      if (!isDefined(state)) { return undefined; }
+      if (!isDefined(state)) { return isNotDefined; }
       if ($state.$current !== state) { return false; }
       return params ? equalForKeys(state.params.$$values(params), $stateParams) : true;
     };
@@ -3358,7 +3358,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
       }
 
       var state = findState(stateOrName, options.relative);
-      if (!isDefined(state)) { return undefined; }
+      if (!isDefined(state)) { return isNotDefined; }
       if (!isDefined($state.$current.includes[state.name])) { return false; }
       return params ? equalForKeys(state.params.$$values(params), $stateParams, objectKeys(params)) : true;
     };
@@ -3406,7 +3406,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
       
       var nav = (state && options.lossy) ? state.navigable : state;
 
-      if (!nav || nav.url === undefined || nav.url === null) {
+      if (!nav || nav.url === isNotDefined || nav.url === null) {
         return null;
       }
       return $urlRouter.href(nav.url, filterByKeys(state.params.$$keys(), params || {}), {
