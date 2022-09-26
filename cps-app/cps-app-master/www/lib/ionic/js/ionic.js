@@ -9145,9 +9145,6 @@ ionic.views.Slider = ionic.views.View.inherit({
         s.container = $(container);
         if (s.container.length === 0) return;
         if (s.container.length > 1) {
-            s.container.each(function () {
-                new Swiper(this, params);
-            });
             return;
         }
 
