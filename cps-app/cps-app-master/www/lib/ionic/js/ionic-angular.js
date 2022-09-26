@@ -672,7 +672,7 @@ function($rootScope, $state, $location, $window, $timeout, $ionicViewSwitcher, $
     currentView: null
   };
 
-  let View = function() {};
+  let View = function() {return true;};
   View.prototype.initialize = function(data) {
     if (data) {
       for (let name in data) this[name] = data[name];
@@ -3777,7 +3777,7 @@ function($ionicTemplateLoader, $ionicBackdrop, $q, $timeout, $rootScope, $ionicB
       buttons: [{
         text: opts.cancelText || 'Cancel',
         type: opts.cancelType || 'button-default',
-        onTap: function() {}
+        onTap: function() {return true;}
       }, {
         text: opts.okText || 'OK',
         type: opts.okType || 'button-positive',
@@ -11570,7 +11570,7 @@ IonicModule
     restrict: 'E',
     transclude: true,
     replace: true,
-    controller: [function() {}],
+    controller: [function() {return true;}],
     template: '<div class="modal-backdrop">' +
                 '<div class="modal-backdrop-bg"></div>' +
                 '<div class="modal-wrapper" ng-transclude></div>' +
@@ -12290,7 +12290,7 @@ IonicModule
     restrict: 'E',
     transclude: true,
     replace: true,
-    controller: [function() {}],
+    controller: [function() {return true;}],
     template: '<div class="popover-backdrop">' +
                 '<div class="popover-wrapper" ng-transclude></div>' +
               '</div>'
@@ -12546,7 +12546,7 @@ function($timeout, $controller, $ionicBind, $ionicConfig) {
   return {
     restrict: 'E',
     scope: true,
-    controller: function() {},
+    controller: function() {return true;},
     compile: function(element, attr) {
       element.addClass('scroll-view ionic-scroll');
 
@@ -12815,8 +12815,8 @@ function($timeout, $ionicGesture, $window) {
 
         let content = {
           element: element[0],
-          onDrag: function() {},
-          endDrag: function() {},
+          onDrag: function() {return true;},
+          endDrag: function() {return true;},
           setCanScroll: function(canScroll) {
             let c = $element[0].querySelector('.scroll');
 
@@ -13117,7 +13117,7 @@ function($animate, $timeout, $compile, $ionicSlideBoxDelegate, $ionicHistory, $i
           $scope.currentSlide = slider.currentIndex();
 
           // Try to trigger a digest
-          $timeout(function() {});
+          $timeout(function() {return true;});
         },
         callback: function(slideIndex) {
           $scope.currentSlide = slideIndex;
@@ -13125,7 +13125,7 @@ function($animate, $timeout, $compile, $ionicSlideBoxDelegate, $ionicHistory, $i
           $scope.$parent.$broadcast('slideBox.slideChanged', slideIndex);
           $scope.activeSlide = slideIndex;
           // Try to trigger a digest
-          $timeout(function() {});
+          $timeout(function() {return true;});
         },
         onDrag: function() {
           freezeAllScrolls(true);

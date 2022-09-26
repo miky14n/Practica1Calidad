@@ -243,7 +243,7 @@ function $translateSanitizationProvider () {
             try {
               cachedStrategyMap[strategies[selectedStrategy]] = $injector.get(strategies[selectedStrategy]);
             } catch (e) {
-              cachedStrategyMap[strategies[selectedStrategy]] = function() {};
+              
               throw new Error('pascalprecht.translate.$translateSanitization: Unknown sanitization strategy: \'' + selectedStrategy + '\'');
             }
           }

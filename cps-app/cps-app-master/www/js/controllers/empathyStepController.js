@@ -167,8 +167,8 @@ angular.module('starter.controllers')
           title: translations.Step + " 2 "+ translations.wasntUnlock,
           template: translations.haveToFinishSteps
          });
-         alertPopup.then(function(res) {
-         });
+         alertPopup.then(function(res) {return res;});
+
       }else {
         $scope.verifyToGoToStep2();
       }
@@ -179,8 +179,8 @@ angular.module('starter.controllers')
           title: translations.Step + " 3 "+ translations.wasntUnlock,
           template: translations.haveToFinishSteps
          });
-         alertPopupForUnsolved.then(function(res) {
-         });
+         alertPopupForUnsolved.then(function(res) {return res;});
+         
       }else {
         $state.go('app.invitation',{ unsolvedProblemId: $scope.unsolvedProblem.id});
         $ionicTabsDelegate.select(index);
