@@ -257,7 +257,7 @@ angular.module('starter.controllers')
 
       ChildConcernFactory.getPair(function(respAux){
       $scope.resp=respAux;
-        for(i=0;i<$scope.resp.length;i++) {
+        for(let i=0;i<$scope.resp.length;i++) {
           if($scope.resp[i].description === $scope.auxForUpdateChildConcernPair.description)
           {
               $scope.childConcernPair=$scope.resp[i];
@@ -274,7 +274,7 @@ angular.module('starter.controllers')
       $scope.childsConcerns.splice($scope.childsConcerns.indexOf(childConcern), 1);
     });
     ChildConcernFactory.getPair(function(auxPair){
-      for(i=0;i<auxPair.length;i++) {
+      for(let i=0;i<auxPair.length;i++) {
         if(auxPair[i].description === childConcern.description)
         {
             $scope.childConcernPair=auxPair[i];
@@ -314,11 +314,13 @@ angular.module('starter.controllers')
  };
  $scope.showHint = function() {
   $translate(['ChildsConcernHint', 'CancelOption','OKMessage']).then (function(translations){
+    let confirmPopup;
    if(localStorage.getItem("showHint") === null){
        localStorage.setItem("showHint", true);
-       let confirmPopup = $ionicPopup.alert({
-         title: translations.ChildsConcernHint,
-         okText: translations.OKMessage
+       
+        confirmPopup = $ionicPopup.alert({
+          title: translations.ChildsConcernHint,
+          okText: translations.OKMessage
        });
      }
     });

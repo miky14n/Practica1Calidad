@@ -11,26 +11,15 @@ $scope.alert = function(){
       if ((content.title == "Help with the wording of unsolved problems" || content.title == "Ayuda con la redacción de problemas no resueltos")){
         if ($scope.isContentShown(content)) {
           $scope.shownContent = content;
-        } else {
-          $scope.shownContent = null;
-        }
-        }
-      else
-      {
-        if ($scope.isContentShown(content)) {
-          $scope.shownContent = null;
-        } else {
-          $scope.shownContent = content;
-        }
-      }
+        } 
        $scope.comes_from_help = false;
-    }else{
-      if ($scope.isContentShown(content)) {
-        $scope.shownContent = null;
-      } else {
-        $scope.shownContent = content;
       }
+    }else if ($scope.isContentShown(content)) {
+        $scope.shownContent = null;
+    } else {
+      $scope.shownContent = content;
     }
+    
   };
   $scope.isContentShown = function(content) {
 
@@ -76,10 +65,11 @@ $scope.alert = function(){
 
   $scope.checkConnection = function(){
     console.log("Entro");
+    let alertNotConnection;
     if(window.Connection) {
       if(navigator.connection.type == Connection.NONE)
       {
-        let alertNotConnection = $ionicPopup.alert({
+        alertNotConnection = $ionicPopup.alert({
           title: 'Required Connection',
           template: "Internet access is required to view this page. Please check your internet settings and try again."
         });
@@ -92,9 +82,10 @@ $scope.alert = function(){
   $scope.checkPlanBVideoConnection = function(){
     if(window.Connection) {
       console.log("Entro");
+      let alertNotConnection;
       if(navigator.connection.type == Connection.NONE)
       {
-        let alertNotConnection = $ionicPopup.alert({
+          alertNotConnection = $ionicPopup.alert({
           title: 'Required Connection',
           template: "Internet access is required to view this page. Please check your internet settings and try again."
         });
@@ -107,9 +98,10 @@ $scope.alert = function(){
   $scope.checkPAlsupMeetingVideoConnection = function(url){
     if(window.Connection) {
       console.log("Entro");
+      let alertNotConnection;
       if(navigator.connection.type == Connection.NONE)
       {
-        let alertNotConnection = $ionicPopup.alert({
+          alertNotConnection = $ionicPopup.alert({
           title: 'Required Connection',
           template: "Internet access is required to view this page. Please check your internet settings and try again."
         });

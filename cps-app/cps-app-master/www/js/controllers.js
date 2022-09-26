@@ -643,11 +643,11 @@ function inputFieldIsEmpty(description) {
 }
 
 function signupFieldsAreEmpty(name, last_name, phone, email, password, password_confirmation) {
-    name_is_empty = inputFieldIsEmpty(name);
-    last_name_is_empty = inputFieldIsEmpty(last_name);
-    phone_is_empty = inputFieldIsEmpty(phone);
-    email_is_empty = inputFieldIsEmpty(email);
-    password_is_empty = inputFieldIsEmpty(password);
-    password_confirmation_is_empty = inputFieldIsEmpty(password_confirmation);
+    let name_is_empty = inputFieldIsEmpty(name);
+    let last_name_is_empty = inputFieldIsEmpty(last_name);
+    let phone_is_empty = inputFieldIsEmpty(phone);
+    let email_is_empty = inputFieldIsEmpty(email);
+    let password_is_empty = inputFieldIsEmpty(password);
+    let password_confirmation_is_empty = inputFieldIsEmpty(password_confirmation);
     return (name_is_empty || last_name_is_empty || phone_is_empty || email_is_empty || password_is_empty || password_confirmation_is_empty);
 }

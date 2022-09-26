@@ -66,7 +66,7 @@ angular.module('starter.controllers')
 
       AdultConcernFactory.getPair(function(respAux){
         $scope.resp=respAux;
-        for(i=0;i<$scope.resp.length;i++) {
+        for(let i=0;i<$scope.resp.length;i++) {
 
           if($scope.resp[i].description2 === $scope.auxForUpdateAdultsConcernPair.description)
           {
@@ -107,7 +107,7 @@ angular.module('starter.controllers')
       $scope.adultsConcerns.splice($scope.adultsConcerns.indexOf(adultsConcern), 1);
     });
     AdultConcernFactory.getPair(function(auxPair){
-     for(i=0;i<auxPair.length;i++) {
+     for(let i=0;i<auxPair.length;i++) {
        if(auxPair[i].description2 === adultsConcern.description)
        {
            $scope.adultsConcernPair=auxPair[i];
