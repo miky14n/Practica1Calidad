@@ -6,15 +6,15 @@
   <ion-content class="has-subheader">
     <div class="list">
       <a class="item item-thumbnail-left" ng-click="checkActiveToContinue('app.laggingSkills')">
-        <img src="img/home/laggingskills-icon.png">
+        <img src="img/home/laggingskills-icon.png" alt="lagging skills icon">
        {{'LaggingSkillsTitle' | translate }}
       </a>
       <a class="item item-thumbnail-left" ng-if="sharedChild == 0" ng-click="checkActiveToContinue('app.newUnsolvedProblem')">
-        <img src="img/home/unsolvedproblem-icon.png">
+        <img src="img/home/unsolvedproblem-icon.png" alt="unsolved problem title icon">
         {{'UnsolvedProblemsTitle' | translate }}
       </a>
       <a class="item item-thumbnail-left" ng-if="sharedChild > 0" ng-click="getDataChildShared(sharedChild)" href="#/app/unsolvedProblems/shared/{{sharedChild}}">
-        <img src="img/home/unsolvedproblem-icon.png"> {{'UnsolvedProblemsTitle' | translate }}
+        <img src="img/home/unsolvedproblem-icon.png" alt="unsolved problem icon"> {{'UnsolvedProblemsTitle' | translate }}
       </a>
     </div>
   </ion-content>
