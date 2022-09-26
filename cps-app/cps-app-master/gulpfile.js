@@ -1,13 +1,13 @@
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var bower = require('bower');
-var concat = require('gulp-concat');
-var sass = require('gulp-sass');
-var minifyCss = require('gulp-minify-css');
-var rename = require('gulp-rename');
-var sh = require('shelljs');
+let gulp = require('gulp');
+let gutil = require('gulp-util');
+let bower = require('bower');
+let concat = require('gulp-concat');
+let sass = require('gulp-sass');
+let minifyCss = require('gulp-minify-css');
+let rename = require('gulp-rename');
+let sh = require('shelljs');
 
-var paths = {
+let paths = {
   sass: ['./scss/**/*.scss']
 };
 

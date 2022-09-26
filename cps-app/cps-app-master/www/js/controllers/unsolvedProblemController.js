@@ -33,7 +33,7 @@ angular.module('starter.controllers').controller('UnsolvedProblemCtrl', function
   };
 
   $scope.moveItem = function(unsolvedProblem, fromIndex, toIndex) {
-    var greaterIndex, lesserIndex, unsolvedProblemOrderModifier;
+    let greaterIndex, lesserIndex, unsolvedProblemOrderModifier;
     $scope.unsolvedProblems[fromIndex].unsolved_order = toIndex;
     if(fromIndex > toIndex){
       greaterIndex = fromIndex;
@@ -45,7 +45,7 @@ angular.module('starter.controllers').controller('UnsolvedProblemCtrl', function
       lesserIndex = fromIndex;
       unsolvedProblemOrderModifier = -1;
     }
-    for(var i = lesserIndex; i < greaterIndex; i++ ){
+    for(let i = lesserIndex; i < greaterIndex; i++ ){
       UnsolvedProblemFactory.update({
         description: $scope.unsolvedProblems[i].description,
         unsolved_order: (i + unsolvedProblemOrderModifier),
@@ -117,7 +117,7 @@ angular.module('starter.controllers').controller('UnsolvedProblemCtrl', function
   $scope.verifyToGoToStep1 = function(id) {
     $translate(['goingTo','Step', 'EmpathyStep','NoMessage','YesMessage','listmoreexples','step1VerifyBody','idid']).then (function(translations){
     if($scope.unsolvedProblems.length > 0){
-      var confirmPopup = $ionicPopup.confirm({
+      let confirmPopup = $ionicPopup.confirm({
         title: translations.goingTo +" "+ translations.Step + " 1: " +translations.EmpathyStep,
         template: translations.step1VerifyBody,
         cancelText: translations.NoMessage+", " + translations.listmoreexples,
@@ -138,7 +138,7 @@ angular.module('starter.controllers').controller('UnsolvedProblemCtrl', function
   };
 
   $scope.childsConcernsFlag = function(unsolvedProblem){
-      var query ="SELECT COUNT(*) AS childsCount FROM childs_concerns where unsolved_problem_id = ?";
+      let query ="SELECT COUNT(*) AS childsCount FROM childs_concerns where unsolved_problem_id = ?";
       $cordovaSQLite.execute(db,query,[unsolvedProblem.id])
         .then( function(result) {
           $scope.childsFlag = result.rows.item(0).childsCount;
@@ -146,7 +146,7 @@ angular.module('starter.controllers').controller('UnsolvedProblemCtrl', function
   };
 
   $scope.adultsConcernsFlag = function(unsolvedProblem){
-    var query ="SELECT COUNT(*) adultsCount FROM adults_concerns where unsolved_problem_id = ?";
+    let query ="SELECT COUNT(*) adultsCount FROM adults_concerns where unsolved_problem_id = ?";
     $cordovaSQLite.execute(db,query,[unsolvedProblem.id])
       .then( function(result) {
         $scope.adultsFlag = result.rows.item(0).adultsCount;
@@ -230,7 +230,7 @@ angular.module('starter.controllers').controller('UnsolvedProblemCtrl', function
         }
         if(index == 1){
           if($scope.childsFlag === 0){
-            var alertPopup = $ionicPopup.alert({
+            let alertPopup = $ionicPopup.alert({
                title: translations.Step + " 2 "+ translations.wasntUnlock,
                template: translations.haveToFinishSteps
              });
@@ -242,7 +242,7 @@ angular.module('starter.controllers').controller('UnsolvedProblemCtrl', function
         }
         if(index==2){
           if($scope.childsFlag === 0 || $scope.adultsFlag === 0){
-            var alertPopupForUnsolved = $ionicPopup.alert({
+            let alertPopupForUnsolved = $ionicPopup.alert({
                title: translations.Step + " 3 "+ translations.wasntUnlock,
                template: translations.haveToFinishSteps
              });
@@ -273,7 +273,7 @@ angular.module('starter.controllers').controller('UnsolvedProblemCtrl', function
 
    $scope.showConfirm = function(item) {
     $translate(['DeleteUnsolvedProblemTitle','DeleteUnsolvedProblemBody', 'CancelOption','YesMessage']).then (function(translations){
-     var confirmPopup = $ionicPopup.confirm({
+     let confirmPopup = $ionicPopup.confirm({
        title: translations.DeleteUnsolvedProblemTitle,
        template: translations.DeleteUnsolvedProblemBody,
        cancelText: translations.CancelOption,
@@ -296,7 +296,7 @@ angular.module('starter.controllers').controller('UnsolvedProblemCtrl', function
    };
 
    $scope.getRatingIcon = function(unsolvedProblem) {
-     var rating = unsolvedProblem.unsolved_score;
+     let rating = unsolvedProblem.unsolved_score;
      if (rating === 0) {
        return 'ion-android-radio-button-off';
      } else if (rating === 1) {
@@ -344,7 +344,7 @@ angular.module('starter.controllers').controller('UnsolvedProblemCtrl', function
    };
 
     $scope.getSharedUnsolveProblems = function(child_id) {
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
         $http.get($link_root +"/users/"+user_id+"/children/"+child_id+"/sharedUnsolvedProblems", {
             headers: { Authorization: localStorage.getItem("auth_token") }
           })

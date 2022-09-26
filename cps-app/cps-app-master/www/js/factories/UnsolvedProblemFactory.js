@@ -1,18 +1,18 @@
 angular.module('starter.services').factory('UnsolvedProblemFactory', function($cordovaSQLite) {
   function saveUnsolvedProblem(unsolvedProblem){
-    var query = "INSERT INTO unsolved_problems(description, solved, unsolved_order, child_id) VALUES (?,?,?,?)";
+    let query = "INSERT INTO unsolved_problems(description, solved, unsolved_order, child_id) VALUES (?,?,?,?)";
     $cordovaSQLite.execute(db, query, [unsolvedProblem.description, 0, unsolvedProblem.unsolved_order,unsolvedProblem.child_id]);
-    var query2 = "UPDATE childs SET unsolved_problems = unsolved_problems + 1 where id = ?";
+    let query2 = "UPDATE childs SET unsolved_problems = unsolved_problems + 1 where id = ?";
     $cordovaSQLite.execute(db,query2,[unsolvedProblem.child_id]);
   }
 
   function getUnsolvedProblems(childId,callback) {
-    var unsolved_problems = [];
-    var query ="SELECT * FROM unsolved_problems WHERE child_id = ? ORDER BY unsolved_order";
+    let unsolved_problems = [];
+    let query ="SELECT * FROM unsolved_problems WHERE child_id = ? ORDER BY unsolved_order";
     $cordovaSQLite.execute(db,query,[childId]).then(function(result) {
-      var rows = result.rows;
+      let rows = result.rows;
       if(rows.length) {
-        for(var i=0; i < rows.length; i++){
+        for(let i=0; i < rows.length; i++){
           unsolved_problems.push(rows.item(i));
         }
       }
@@ -24,25 +24,25 @@ angular.module('starter.services').factory('UnsolvedProblemFactory', function($c
   }
 
   function updateUnsolvedProblem(unsolvedProblem){
-    var query = "UPDATE unsolved_problems SET description = ?, unsolved_order = ? where id = ?";
-    var params = [unsolvedProblem.description, unsolvedProblem.unsolved_order, unsolvedProblem.id];
+    let query = "UPDATE unsolved_problems SET description = ?, unsolved_order = ? where id = ?";
+    let params = [unsolvedProblem.description, unsolvedProblem.unsolved_order, unsolvedProblem.id];
     $cordovaSQLite.execute(db, query, params);
   }
 
   function deleteUnsolvedProblem(unsolvedProblem, callback){
-    var query = "DELETE FROM unsolved_problems where id = ?";
+    let query = "DELETE FROM unsolved_problems where id = ?";
     $cordovaSQLite.execute(db, query, [unsolvedProblem.id]).then(function(res) {
       callback();
     }, function (err) {
         console.error(err.message);
     });
 
-    var query2 = "UPDATE childs SET unsolved_problems = unsolved_problems - 1 where id = ?";
+    let query2 = "UPDATE childs SET unsolved_problems = unsolved_problems - 1 where id = ?";
     $cordovaSQLite.execute(db,query2,[unsolvedProblem.child_id]);
   }
 
   function findUnsolvedProblem(unsolvedProblemId, callback){
-    var query =" SELECT * FROM unsolved_problems where id = ? ";
+    let query =" SELECT * FROM unsolved_problems where id = ? ";
     $cordovaSQLite.execute(db,query,[unsolvedProblemId])
     .then( function(result) {
         callback(result);

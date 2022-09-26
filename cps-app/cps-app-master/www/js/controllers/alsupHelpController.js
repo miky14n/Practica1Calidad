@@ -79,7 +79,7 @@ $scope.alert = function(){
     if(window.Connection) {
       if(navigator.connection.type == Connection.NONE)
       {
-        var alertNotConnection = $ionicPopup.alert({
+        let alertNotConnection = $ionicPopup.alert({
           title: 'Required Connection',
           template: "Internet access is required to view this page. Please check your internet settings and try again."
         });
@@ -94,7 +94,7 @@ $scope.alert = function(){
       console.log("Entro");
       if(navigator.connection.type == Connection.NONE)
       {
-        var alertNotConnection = $ionicPopup.alert({
+        let alertNotConnection = $ionicPopup.alert({
           title: 'Required Connection',
           template: "Internet access is required to view this page. Please check your internet settings and try again."
         });
@@ -109,7 +109,7 @@ $scope.alert = function(){
       console.log("Entro");
       if(navigator.connection.type == Connection.NONE)
       {
-        var alertNotConnection = $ionicPopup.alert({
+        let alertNotConnection = $ionicPopup.alert({
           title: 'Required Connection',
           template: "Internet access is required to view this page. Please check your internet settings and try again."
         });

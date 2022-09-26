@@ -7,7 +7,7 @@
  */
 function $ViewScrollProvider() {
 
-  var useAnchorScroll = false;
+  let useAnchorScroll = false;
 
   /**
    * @ngdoc function

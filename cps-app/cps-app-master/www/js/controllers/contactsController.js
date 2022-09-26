@@ -103,7 +103,7 @@ angular
     };
 
     $scope.getFriendsRequests = function(){
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
       $http.get($link_root+'/users/'+user_id+'/friends_requests',
 
       {
@@ -119,7 +119,7 @@ angular
     }
 
     $scope.getPengingSentRequests = function(){
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
       $http.get($link_root+'/users/'+user_id+'/pendingRequests',
       {
         headers: { 'Authorization': localStorage.getItem("auth_token") },
@@ -133,7 +133,7 @@ angular
     }
 
     $scope.getUserFriends = function(){
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
       $http.get($link_root+'/users/'+user_id+'/contacts',
       {
         headers: { 'Authorization': localStorage.getItem("auth_token") },
@@ -163,7 +163,7 @@ angular
     }
 
     $scope.acceptFriendRequest = function(request_id){
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
       $http.post( $link_root +'/users/'+user_id+'/friends_requests/'+request_id+'/accept',
       {
 
@@ -173,7 +173,7 @@ angular
 
       })
       .then(data => {
-        var alertForAcceptedRequest = $ionicPopup.alert({
+        let alertForAcceptedRequest = $ionicPopup.alert({
           title: data.data.status,
           template: data.data.message,
         });
@@ -189,7 +189,7 @@ angular
     };
 
     $scope.rejectFriendRequest = function(request_id){
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
       $http.post( $link_root +'/users/'+user_id+'/friends_requests/'+request_id+'/reject',
       {
 
@@ -199,7 +199,7 @@ angular
 
       })
       .then(data => {
-        var alertForAcceptedRequest = $ionicPopup.alert({
+        let alertForAcceptedRequest = $ionicPopup.alert({
           title: data.data.status,
           template: data.data.message,
         });
@@ -215,7 +215,7 @@ angular
     };
 
     $scope.sendFriendRequest = function(friend_id){
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
       $http.post( $link_root +'/users/'+user_id+'/friends_requests?applicant_id='+friend_id,
       {
 
@@ -225,7 +225,7 @@ angular
 
       })
       .then(data => {
-        var alertForSentRequest = $ionicPopup.alert({
+        let alertForSentRequest = $ionicPopup.alert({
           title: data.data.status,
           template: data.data.message,
         });
@@ -237,7 +237,7 @@ angular
     };
 
     $scope.confirmDeleteContact =function(friend_id){
-      var alertForDeleteContact = $ionicPopup.confirm({
+      let alertForDeleteContact = $ionicPopup.confirm({
         title:"Delete contact",
         cancelText: "No",
         template: "Are you sure you want to delete this contact?",
@@ -251,14 +251,14 @@ angular
     }
 
     $scope.deleteContact = function(friend_id){
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
       $http.delete( $link_root +'/users/'+user_id+'/contacts/'+friend_id,
       {
       headers: { 'Authorization': localStorage.getItem("auth_token") },
 
       })
       .then(data => {
-        var alertForSentRequest = $ionicPopup.alert({
+        let alertForSentRequest = $ionicPopup.alert({
           title: data.data.status,
           template: data.data.message,
         });

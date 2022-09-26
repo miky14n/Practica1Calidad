@@ -156,7 +156,7 @@ angular
           }
           ChildrenFactory.all(function(children) {
             $scope.childs = children;
-            var lastChild = children.pop();
+            let lastChild = children.pop();
             createLaggingSkills($cordovaSQLite, [lastChild.id]);
             ChildrenFactory.activate(lastChild.id, function() {
               ChildrenFactory.active(function(active_child) {
@@ -190,7 +190,7 @@ angular
     $scope.shareChildForm = function(friend_id) {
       $scope.uploadData();
       child_id = $scope.child.id;
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
       $http
         .post(
           $link_root +
@@ -205,8 +205,8 @@ angular
           {
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             transformRequest: function(obj) {
-              var str = [];
-              for (var p in obj)
+              let str = [];
+              for (let p in obj)
                 str.push(
                   encodeURIComponent(p) + "=" + encodeURIComponent(obj[p])
                 );
@@ -217,7 +217,7 @@ angular
         .then(data => {
           console.log("Datos: ");
           console.log(data.data);
-          var alertForAcceptedRequest = $ionicPopup.alert({
+          let alertForAcceptedRequest = $ionicPopup.alert({
             title: "Result",
             template: data.data.message
           });
@@ -229,7 +229,7 @@ angular
     };
 
     $scope.getFriendShared = function(child_id) {
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
       $http
         .get(
           $link_root +
@@ -255,7 +255,7 @@ angular
     };
 
     $scope.getSharedAlsups = function() {
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
       $http
         .get($link_root + "/users/" + user_id + "/alsup_share", {
           headers: { Authorization: localStorage.getItem("auth_token") }
@@ -275,7 +275,7 @@ angular
     };
 
     $scope.confirmStopSharedAlsup = function(friend) {
-      var alertForStopSharedAlsup = $ionicPopup.confirm({
+      let alertForStopSharedAlsup = $ionicPopup.confirm({
         title: "Stop sharing ALSUP",
         cancelText: "No",
         template:
@@ -295,7 +295,7 @@ angular
     };
 
     $scope.stopSharedAlsup = function(friend_id) {
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
       $http
         .delete(
           $link_root +
@@ -310,7 +310,7 @@ angular
         )
         .then(
           data => {
-            var alertForSentRequest = $ionicPopup.alert({
+            let alertForSentRequest = $ionicPopup.alert({
               title: data.data.status,
               template: data.data.message
             });
@@ -334,7 +334,7 @@ angular
       console.log("Entro");
       if (window.Connection) {
         if (navigator.connection.type == Connection.NONE) {
-          var alertNotConnection = $ionicPopup.alert({
+          let alertNotConnection = $ionicPopup.alert({
             title: "Required Connection",
             template:
               "Internet access is required to view this page. Please check your internet settings and try again."
@@ -364,7 +364,7 @@ angular
       $scope.downloadPairSolution();
     };
     $scope.uploadChild = function() {
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
       $http
         .post(
           $link_root + "/users/" + user_id + "/children",
@@ -376,8 +376,8 @@ angular
           {
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             transformRequest: function(obj) {
-              var str = [];
-              for (var p in obj)
+              let str = [];
+              for (let p in obj)
                 str.push(
                   encodeURIComponent(p) + "=" + encodeURIComponent(obj[p])
                 );
@@ -398,14 +398,14 @@ angular
     };
 
     $scope.downloadChild = function() {
-      var user_id = localStorage.getItem("user_id");
-      var link = $link_root + "/users/" + user_id + "/children/";
-      var data = {};
+      let user_id = localStorage.getItem("user_id");
+      let link = $link_root + "/users/" + user_id + "/children/";
+      let data = {};
       $http.get(link + $scope.child.id).then(data => {
         $scope.s_child = data.data;
         console.log($scope.s_child.child_id);
-        var query = "UPDATE childs SET first_name = ? where id = ?";
-        var params = [$scope.s_child.name, $scope.s_child.child_id];
+        let query = "UPDATE childs SET first_name = ? where id = ?";
+        let params = [$scope.s_child.name, $scope.s_child.child_id];
         console.log("Nombre: " + $scope.s_child.name);
         $cordovaSQLite.execute(db, query, params);
         ChildrenFactory.all(function(children) {
@@ -417,8 +417,8 @@ angular
     };
 
     $scope.uploadUnsolvedProblem = function() {
-      var user_id = localStorage.getItem("user_id");
-      var link =
+      let user_id = localStorage.getItem("user_id");
+      let link =
         $link_root +
         "/users/" +
         user_id +
@@ -427,9 +427,9 @@ angular
         "/unsolved_problem";
       $scope.unsolvedProblems = {};
       UnsolvedProblemFactory.all($scope.child.id, function(result) {
-        var data = result;
+        let data = result;
         console.log(data);
-        var user_id = localStorage.getItem("user_id");
+        let user_id = localStorage.getItem("user_id");
 
         $http
           .post(
@@ -441,8 +441,8 @@ angular
             {
               headers: { "Content-Type": "application/x-www-form-urlencoded" },
               transformRequest: function(obj) {
-                var str = [];
-                for (var p in obj)
+                let str = [];
+                for (let p in obj)
                   str.push(
                     encodeURIComponent(p) + "=" + encodeURIComponent(obj[p])
                   );
@@ -465,8 +465,8 @@ angular
     };
 
     $scope.downloadUnsolvedProblems = function() {
-      var user_id = localStorage.getItem("user_id");
-      var link =
+      let user_id = localStorage.getItem("user_id");
+      let link =
         $link_root +
         "/users/" +
         user_id +
@@ -477,9 +477,9 @@ angular
       $http.get(link).then(data => {
         $scope.unsolvedProblems = data.data;
         angular.forEach($scope.unsolvedProblems, function(value, key) {
-          var query =
+          let query =
             "UPDATE unsolved_problems SET description = ?, unsolved_order = ? where id = ?";
-          var params = [
+          let params = [
             value.description,
             value.unsolved_order,
             value.unsolved_problem_id_app
@@ -487,7 +487,7 @@ angular
           console.log(value);
           $cordovaSQLite.execute(db, query, params);
         });
-        var alertForAccountCreated = $ionicPopup.alert({
+        let alertForAccountCreated = $ionicPopup.alert({
           title: " Success!",
           template: "Child's unsovled problems downloaded"
         });
@@ -496,8 +496,8 @@ angular
     };
 
     $scope.uploadLaggingSkill = function() {
-      var user_id = localStorage.getItem("user_id");
-      var data = [];
+      let user_id = localStorage.getItem("user_id");
+      let data = [];
       data = LaggingSkills.getChecked($scope.laggingSkills);
       console.log(data);
 
@@ -515,8 +515,8 @@ angular
           {
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             transformRequest: function(obj) {
-              var str = [];
-              for (var p in obj)
+              let str = [];
+              for (let p in obj)
                 str.push(
                   encodeURIComponent(p) + "=" + encodeURIComponent(obj[p])
                 );
@@ -527,7 +527,7 @@ angular
         .then(
           data => {
             console.log("LaggingSkill uploated");
-            var alertForAccountCreated = $ionicPopup.alert({
+            let alertForAccountCreated = $ionicPopup.alert({
               title: "Success!",
               template: "Child uploaded."
             });
@@ -542,23 +542,23 @@ angular
     };
 
     $scope.downloadLaggingSkill = function() {
-      var user_id = localStorage.getItem("user_id");
-      var link =
+      let user_id = localStorage.getItem("user_id");
+      let link =
         $link_root +
         "/users/" +
         user_id +
         "/children/" +
         $scope.child.id +
         "/getLaggingSkills";
-      var data = {};
+      let data = {};
       $http.get(link).then(data => {
         $scope.list = data.data;
         console.log($scope.list);
 
         angular.forEach($scope.list, function(laggingSkill) {
-          var query =
+          let query =
             "UPDATE lagging_skills SET description = ?, checked = ? , child_id = ? where id = ?";
-          var params = [
+          let params = [
             laggingSkill.description,
             laggingSkill.checked,
             $scope.child.id,
@@ -574,11 +574,11 @@ angular
     $scope.uploadAdultConcern = function() {
       $scope.unsolvedProblems = {};
       UnsolvedProblemFactory.all($scope.child.id, function(result) {
-        var dataUP = result;
-        var user_id = localStorage.getItem("user_id");
+        let dataUP = result;
+        let user_id = localStorage.getItem("user_id");
 
         angular.forEach(dataUP, function(unsolvedProblem) {
-          var link =
+          let link =
             $link_root +
             "/users/" +
             user_id +
@@ -588,7 +588,7 @@ angular
             unsolvedProblem.id +
             "/adult_concern";
           AdultConcernFactory.all(unsolvedProblem.id, function(result) {
-            var data = result;
+            let data = result;
             console.log(data);
 
             $http
@@ -602,8 +602,8 @@ angular
                     "Content-Type": "application/x-www-form-urlencoded"
                   },
                   transformRequest: function(obj) {
-                    var str = [];
-                    for (var p in obj)
+                    let str = [];
+                    for (let p in obj)
                       str.push(
                         encodeURIComponent(p) + "=" + encodeURIComponent(obj[p])
                       );
@@ -635,9 +635,9 @@ angular
     };
 
     $scope.downloadAdultConcern = function() {
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
 
-      var linkUPData =
+      let linkUPData =
         $link_root +
         "/users/" +
         user_id +
@@ -649,7 +649,7 @@ angular
       $http.get(linkUPData).then(data => {
         $scope.unsolvedProblems = data.data;
         angular.forEach($scope.unsolvedProblems, function(valueUP, key) {
-          var link =
+          let link =
             $link_root +
             "/users/" +
             user_id +
@@ -661,9 +661,9 @@ angular
           $http.get(link).then(data => {
             $scope.adultConcerns = data.data;
             angular.forEach($scope.adultConcerns, function(value, key) {
-              var query =
+              let query =
                 "UPDATE adults_concerns SET description = ?, unsolved_problem_id = ? where id = ?";
-              var params = [
+              let params = [
                 value.description,
                 value.unsolved_problem_id,
                 value.concern_id
@@ -682,11 +682,11 @@ angular
     $scope.uploadChildConcern = function() {
       $scope.unsolvedProblems = {};
       UnsolvedProblemFactory.all($scope.child.id, function(result) {
-        var dataUP = result;
+        let dataUP = result;
         console.log(dataUP);
-        var user_id = localStorage.getItem("user_id");
+        let user_id = localStorage.getItem("user_id");
         angular.forEach(dataUP, function(unsolvedProblem) {
-          var link =
+          let link =
             $link_root +
             "/users/" +
             user_id +
@@ -697,7 +697,7 @@ angular
             "/child_concern";
           console.log(link);
           ChildConcernFactory.all(unsolvedProblem.id, function(result) {
-            var data = result;
+            let data = result;
             console.log(data);
             $http
               .post(
@@ -710,8 +710,8 @@ angular
                     "Content-Type": "application/x-www-form-urlencoded"
                   },
                   transformRequest: function(obj) {
-                    var str = [];
-                    for (var p in obj)
+                    let str = [];
+                    for (let p in obj)
                       str.push(
                         encodeURIComponent(p) + "=" + encodeURIComponent(obj[p])
                       );
@@ -741,8 +741,8 @@ angular
     };
 
     $scope.downloadChildConcerns = function() {
-      var user_id = localStorage.getItem("user_id");
-      var linkUPData =
+      let user_id = localStorage.getItem("user_id");
+      let linkUPData =
         $link_root +
         "/users/" +
         user_id +
@@ -753,7 +753,7 @@ angular
       $http.get(linkUPData).then(data => {
         $scope.unsolvedProblems = data.data;
         angular.forEach($scope.unsolvedProblems, function(valueUP, key) {
-          var link =
+          let link =
             $link_root +
             "/users/" +
             user_id +
@@ -765,9 +765,9 @@ angular
           $http.get(link).then(data => {
             $scope.childConcerns = data.data;
             angular.forEach($scope.childConcerns, function(value, key) {
-              var query =
+              let query =
                 "UPDATE childs_concerns SET description = ?, unsolved_order =? , unsolved_problem_id = ? where id = ?";
-              var params = [
+              let params = [
                 value.description,
                 value.order,
                 value.unsolved_problem_id,
@@ -786,11 +786,11 @@ angular
     };
 
     $scope.uploadSolution = function() {
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
       UnsolvedProblemFactory.all($scope.child.id, function(result) {
-        var dataUP = result;
+        let dataUP = result;
         angular.forEach(dataUP, function(unsolvedProblem) {
-          var link =
+          let link =
             $link_root +
             "/users/" +
             user_id +
@@ -800,7 +800,7 @@ angular
             unsolvedProblem.id +
             "/posible_solution";
           PossibleSolutionFactory.all(unsolvedProblem.id, function(result) {
-            var data = result;
+            let data = result;
             console.log("All UP app:");
             console.log(data);
             $http
@@ -817,8 +817,8 @@ angular
                     "Content-Type": "application/x-www-form-urlencoded"
                   },
                   transformRequest: function(obj) {
-                    var str = [];
-                    for (var p in obj)
+                    let str = [];
+                    for (let p in obj)
                       str.push(
                         encodeURIComponent(p) + "=" + encodeURIComponent(obj[p])
                       );
@@ -850,8 +850,8 @@ angular
     };
 
     $scope.downloadPosibleSolutions = function() {
-      var user_id = localStorage.getItem("user_id");
-      var linkUPData =
+      let user_id = localStorage.getItem("user_id");
+      let linkUPData =
         $link_root +
         "/users/" +
         user_id +
@@ -862,7 +862,7 @@ angular
       $http.get(linkUPData).then(data => {
         $scope.unsolvedProblems = data.data;
         angular.forEach($scope.unsolvedProblems, function(valueUP, key) {
-          var link =
+          let link =
             $link_root +
             "/users/" +
             user_id +
@@ -876,9 +876,9 @@ angular
             console.log("All UP API:");
             console.log(($scope.possibleSolution = data.data));
             angular.forEach($scope.possibleSolution, function(value, key) {
-              var query =
+              let query =
                 "UPDATE solutions SET description = ?, rating =? where id = ? ";
-              var params = [
+              let params = [
                 value.description,
                 value.rating,
                 value.posible_solution_id
@@ -893,14 +893,14 @@ angular
     };
 
     $scope.uploadSolutionComentary = function() {
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
       UnsolvedProblemFactory.all($scope.child.id, function(result) {
-        var dataUP = result;
+        let dataUP = result;
         angular.forEach(dataUP, function(unsolvedProblem) {
           PossibleSolutionFactory.all(unsolvedProblem.id, function(result) {
-            var dataSolutions = result;
+            let dataSolutions = result;
             angular.forEach(dataSolutions, function(solutions) {
-              var link =
+              let link =
                 $link_root +
                 "/users/" +
                 user_id +
@@ -914,7 +914,7 @@ angular
               PossibleSolutionFactory.getComments(solutions.id, function(
                 result
               ) {
-                var data = result;
+                let data = result;
                 console.log("All commentaries:");
                 console.log(data);
                 $http
@@ -932,8 +932,8 @@ angular
                         "Content-Type": "application/x-www-form-urlencoded"
                       },
                       transformRequest: function(obj) {
-                        var str = [];
-                        for (var p in obj)
+                        let str = [];
+                        for (let p in obj)
                           str.push(
                             encodeURIComponent(p) +
                               "=" +
@@ -966,8 +966,8 @@ angular
     };
 
     $scope.downloadSolutionComentary = function() {
-      var user_id = localStorage.getItem("user_id");
-      var unsolvedProblemsLink =
+      let user_id = localStorage.getItem("user_id");
+      let unsolvedProblemsLink =
         $link_root +
         "/users/" +
         user_id +
@@ -982,7 +982,7 @@ angular
           unsolvedProblem,
           key
         ) {
-          var possibleSolutionsLink =
+          let possibleSolutionsLink =
             $link_root +
             "/users/" +
             user_id +
@@ -997,7 +997,7 @@ angular
               possibleSolution,
               key
             ) {
-              var commentariesLink =
+              let commentariesLink =
                 $link_root +
                 "/users/" +
                 user_id +
@@ -1011,9 +1011,9 @@ angular
               $http.get(commentariesLink).then(data => {
                 $scope.commentaries = data.data;
                 angular.forEach($scope.commentaries, function(value, key) {
-                  var query =
+                  let query =
                     "UPDATE solution_comments SET description = ?, commented_at =? where id = ? ";
-                  var params = [
+                  let params = [
                     value.description,
                     value.updated_at,
                     value.solution_commentary_id_app
@@ -1028,14 +1028,14 @@ angular
       });
     };
     $scope.uploadPairSolution = function() {
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
       UnsolvedProblemFactory.all($scope.child.id, function(result) {
-        var dataUP = result;
+        let dataUP = result;
         angular.forEach(dataUP, function(unsolvedProblem) {
           PossibleSolutionFactory.all(unsolvedProblem.id, function(result) {
-            var dataSolutions = result;
+            let dataSolutions = result;
             angular.forEach(dataSolutions, function(solutions) {
-              var link =
+              let link =
                 $link_root +
                 "/users/" +
                 user_id +
@@ -1047,7 +1047,7 @@ angular
                 solutions.id +
                 "/solution_pairs";
               PossibleSolutionFactory.allPairs(solutions.id, function(result) {
-                var data = result;
+                let data = result;
                 console.log("All pairs:");
                 console.log(data);
                 $http
@@ -1065,8 +1065,8 @@ angular
                         "Content-Type": "application/x-www-form-urlencoded"
                       },
                       transformRequest: function(obj) {
-                        var str = [];
-                        for (var p in obj)
+                        let str = [];
+                        for (let p in obj)
                           str.push(
                             encodeURIComponent(p) +
                               "=" +
@@ -1095,8 +1095,8 @@ angular
     };
     $scope.downloadPairSolution = function() {
       console.log("entra a pares");
-      var user_id = localStorage.getItem("user_id");
-      var solution_pairs_link =
+      let user_id = localStorage.getItem("user_id");
+      let solution_pairs_link =
         $link_root +
         "/users/" +
         user_id +
@@ -1110,9 +1110,9 @@ angular
         .then(data => {
           $scope.solution_pairs = data.data;
           angular.forEach($scope.solution_pairs, function(value, key) {
-            var query =
+            let query =
               "UPDATE pair_childConcerntoadultConcern SET description = ?, description2 = ? where id = ? ";
-            var params = [
+            let params = [
               value.description,
               value.description2,
               value.solution_id
@@ -1131,7 +1131,7 @@ angular
         "unShareALSUP"
       ]).then(function(translations) {
         // Link para factorizar ionicActionSheet: https://www.ghadeer.io/ionicactionsheet-example/
-        var buttons = [{ text: translations.EditChildTitle }];
+        let buttons = [{ text: translations.EditChildTitle }];
         $scope.getFriendShared(child.id);
         $ionicActionSheet.show({
           buttons: buttons,
@@ -1162,7 +1162,7 @@ angular
     };
 
     $scope.getUserFriends = function() {
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
       $http
         .get($link_root + "/users/" + user_id + "/contacts", {
           headers: { Authorization: localStorage.getItem("auth_token") }
@@ -1219,7 +1219,7 @@ angular
       if (child.active === 0) {
         $scope.activateChild(child);
       }
-      var confirmPopup = $ionicPopup.confirm({
+      let confirmPopup = $ionicPopup.confirm({
         template: "Are you finished with the ALSUP?",
         cancelText: "No",
         okText: "Yes"
@@ -1236,9 +1236,9 @@ angular
 
     $scope.deleteChild = function(child) {
       if (child.active === 1) {
-        var beforeIndex;
-        var beforeItem;
-        var sizeOfList = $scope.childs.length;
+        let beforeIndex;
+        let beforeItem;
+        let sizeOfList = $scope.childs.length;
         if (sizeOfList > 1) {
           beforeIndex = $scope.childs.indexOf(child) - 1;
           beforeItem = $scope.childs[beforeIndex];
@@ -1282,7 +1282,7 @@ angular
         "ConfirmDeleteChildMessage",
         "YesMessage"
       ]).then(function(translations) {
-        var confirmPopup = $ionicPopup.confirm({
+        let confirmPopup = $ionicPopup.confirm({
           title: translations.DeleteChildTitle,
           template: translations.ConfirmDeleteChildMessage,
           cancelText: "No",
@@ -1298,7 +1298,7 @@ angular
       });
     };
     $scope.upload = function() {
-      var options = {
+      let options = {
         fileKey: "avatar",
         fileName: "image.png",
         chunkedMode: false,
@@ -1324,7 +1324,7 @@ angular
     };
 
     $scope.noConnection = function (){
-      var alertNotConnection = $ionicPopup.alert({
+      let alertNotConnection = $ionicPopup.alert({
         title: "Required Connection",
         template:
           "Internet access is required to view this page. Please check your internet settings and try again.",
@@ -1348,7 +1348,7 @@ $translate([
           "launchApp",
           "tellMeMoreCps"
         ]).then(function(translations) {
-      var myPopup = $ionicPopup.show({
+      let myPopup = $ionicPopup.show({
             title: translations.WelcomeMessage,
             buttons: [
               {
@@ -1423,7 +1423,7 @@ $translate([
   });
 
 function createLaggingSkills(cordovaSQLite, child_id) {
-  var sqlLaggingSkills = [
+  let sqlLaggingSkills = [
     'INSERT INTO lagging_skills (description,checked,child_id) VALUES ("LaggingSkill_1",0,?)',
     'INSERT INTO lagging_skills (description,checked,child_id) VALUES ("LaggingSkill_2",0,?)',
     'INSERT INTO lagging_skills (description,checked,child_id) VALUES ("LaggingSkill_3",0,?)',

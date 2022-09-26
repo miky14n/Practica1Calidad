@@ -126,14 +126,14 @@ function $ViewDirective(   $state,   $injector,   $uiViewScroll,   $interpolate)
     };
   }
 
-  var service = getService(),
+  let service = getService(),
       $animator = service('$animator'),
       $animate = service('$animate');
 
   // Returns a set of DOM manipulation functions based on which Angular version
   // it should use
   function getRenderer(attrs, scope) {
-    var statics = function() {
+    let statics = function() {
       return {
         enter: function (element, target, cb) { target.after(element); cb(); },
         leave: function (element, cb) { element.remove(); cb(); }
@@ -143,18 +143,18 @@ function $ViewDirective(   $state,   $injector,   $uiViewScroll,   $interpolate)
     if ($animate) {
       return {
         enter: function(element, target, cb) {
-          var promise = $animate.enter(element, null, target, cb);
+          let promise = $animate.enter(element, null, target, cb);
           if (promise && promise.then) promise.then(cb);
         },
         leave: function(element, cb) {
-          var promise = $animate.leave(element, cb);
+          let promise = $animate.leave(element, cb);
           if (promise && promise.then) promise.then(cb);
         }
       };
     }
 
     if ($animator) {
-      var animate = $animator && $animator(scope, attrs);
+      let animate = $animator && $animator(scope, attrs);
 
       return {
         enter: function(element, target, cb) {animate.enter(element, null, target); cb(); },
@@ -165,14 +165,14 @@ function $ViewDirective(   $state,   $injector,   $uiViewScroll,   $interpolate)
     return statics();
   }
 
-  var directive = {
+  let directive = {
     restrict: 'ECA',
     terminal: true,
     priority: 400,
     transclude: 'element',
     compile: function (tElement, tAttrs, $transclude) {
       return function (scope, $element, attrs) {
-        var previousEl, currentEl, currentScope, latestLocals,
+        let previousEl, currentEl, currentScope, latestLocals,
             onloadExp     = attrs.onload || '',
             autoScrollExp = attrs.autoscroll,
             renderer      = getRenderer(attrs, scope);
@@ -216,7 +216,7 @@ function $ViewDirective(   $state,   $injector,   $uiViewScroll,   $interpolate)
           newScope = scope.$new();
           latestLocals = $state.$current.locals[name];
 
-          var clone = $transclude(newScope, function(clone) {
+          let clone = $transclude(newScope, function(clone) {
             renderer.enter(clone, $element, function onUiViewEnter() {
               if(currentScope) {
                 currentScope.$emit('$viewContentAnimationEnded');
@@ -257,9 +257,9 @@ function $ViewDirectiveFill (  $compile,   $controller,   $state,   $interpolate
     restrict: 'ECA',
     priority: -400,
     compile: function (tElement) {
-      var initial = tElement.html();
+      let initial = tElement.html();
       return function (scope, $element, attrs) {
-        var current = $state.$current,
+        let current = $state.$current,
             name = getUiViewName(scope, attrs, $element, $interpolate),
             locals  = current && current.locals[name];
 
@@ -270,11 +270,11 @@ function $ViewDirectiveFill (  $compile,   $controller,   $state,   $interpolate
         $element.data('$uiView', { name: name, state: locals.$$state });
         $element.html(locals.$template ? locals.$template : initial);
 
-        var link = $compile($element.contents());
+        let link = $compile($element.contents());
 
         if (locals.$$controller) {
           locals.$scope = scope;
-          var controller = $controller(locals.$$controller, locals);
+          let controller = $controller(locals.$$controller, locals);
           if (locals.$$controllerAs) {
             scope[locals.$$controllerAs] = controller;
           }
@@ -293,8 +293,8 @@ function $ViewDirectiveFill (  $compile,   $controller,   $state,   $interpolate
  * Given scope, element, and its attributes, return the view's name
  */
 function getUiViewName(scope, attrs, element, $interpolate) {
-  var name = $interpolate(attrs.uiView || attrs.name || '')(scope);
-  var inherited = element.inheritedData('$uiView');
+  let name = $interpolate(attrs.uiView || attrs.name || '')(scope);
+  let inherited = element.inheritedData('$uiView');
   return name.indexOf('@') >= 0 ?  name :  (name + '@' + (inherited ? inherited.state.name : ''));
 }
 

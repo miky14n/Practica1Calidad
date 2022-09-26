@@ -1,4 +1,4 @@
-var app = angular.module('starter.controllers', ['pascalprecht.translate']);
+let app = angular.module('starter.controllers', ['pascalprecht.translate']);
 app
 .config(function($ionicConfigProvider) {
     $ionicConfigProvider.tabs.position("bottom");
@@ -45,7 +45,7 @@ app
         if(window.Connection) {
         if(navigator.connection.type == Connection.NONE)
         { 
-          var alertNotConnection = $ionicPopup.alert({
+          let alertNotConnection = $ionicPopup.alert({
             title: 'Required Connection',
             template: "Internet access is required to view this page. Please check your internet settings and try again."
           });
@@ -63,7 +63,7 @@ app
             "YesMessage",
             "NoMessage"
           ]).then(function(translations) {
-            var confirmPopup = $ionicPopup.confirm({
+            let confirmPopup = $ionicPopup.confirm({
                 title: translations.LogoutTitle,
                 template: translations.ConfirmationToLogout,
                 cancelText: translations.NoMessage,
@@ -77,7 +77,7 @@ app
                     localStorage.removeItem("user_name");
 
                     window.plugins.OneSignal.sendTag("User_Id", "");
-                    var alertForAccountCreated = $ionicPopup.alert({
+                    let alertForAccountCreated = $ionicPopup.alert({
                         title: translations.SuccessTitle,
                         template: translations.LogoutSuccessfull
                     });
@@ -124,7 +124,7 @@ app
     $scope.childFromShared = 0;
 
     $scope.getDataChildShared = function(child_id) {
-      var user_id = localStorage.getItem("user_id");
+      let user_id = localStorage.getItem("user_id");
       $http.get($link_root+'/users/'+user_id+"/children/"+child_id+"/getChild", {
           headers: { Authorization: localStorage.getItem("auth_token") }
         })
@@ -193,7 +193,7 @@ app
 
     $scope.UnsolvedProblemsTutorial = function() {
         if ($scope.activeChild.first_name === '') {
-            var alertForNoActiveChild = $ionicPopup.alert({
+            let alertForNoActiveChild = $ionicPopup.alert({
                 title: 'No child registered',
                 template: 'You need to register a child to continue.'
             });
@@ -217,7 +217,7 @@ app
           console.log("Entro");
           if(navigator.connection.type == Connection.NONE)
           {
-            var alertNotConnection = $ionicPopup.alert({
+            let alertNotConnection = $ionicPopup.alert({
               title: 'Required Connection',
               template: "Internet access is required to view this page. Please check your internet settings and try again."
             });
@@ -230,7 +230,7 @@ app
 
     $scope.checkActiveToContinue = function(route) {
         if ($scope.activeChild.first_name === '') {
-            var alertForNoActiveChild = $ionicPopup.alert({
+            let alertForNoActiveChild = $ionicPopup.alert({
                 title: 'No child registered',
                 template: 'You need to register a child to continue.'
             });
@@ -305,8 +305,8 @@ app
         $scope.activeLaggingSkill = LaggingSkills.get(laggingskillList,laggingskillId);
         console.log($scope.activeLaggingSkill.checked);
         console.log("paso la carga");
-        var link = "http://cpsapi.herokuapp.com/createLaggingSkill";
-        var data = {
+        let link = "http://cpsapi.herokuapp.com/createLaggingSkill";
+        let data = {
            description: $scope.activeLaggingSkill.description,
            checked: $scope.activeLaggingSkill.checked,
            child_id: $scope.activeChild.id
@@ -316,8 +316,8 @@ app
           url: link,
           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
           transformRequest: function(obj) {
-            var str = [];
-            for(var p in obj)
+            let str = [];
+            for(let p in obj)
             str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
             return str.join("&");
           },
@@ -350,7 +350,7 @@ app
         if(window.Connection) {
         if(navigator.connection.type == Connection.NONE)
         { 
-          var alertNotConnection = $ionicPopup.alert({
+          let alertNotConnection = $ionicPopup.alert({
             title: 'Required Connection',
             template: "Internet access is required to view this page. Please check your internet settings and try again."
           });
@@ -376,7 +376,7 @@ app
         if(window.Connection) {
         if(navigator.connection.type == Connection.NONE)
         { 
-          var alertNotConnection = $ionicPopup.alert({
+          let alertNotConnection = $ionicPopup.alert({
             title: 'Required Connection',
             template: "Internet access is required to view this page. Please check your internet settings and try again."
           });
@@ -409,7 +409,7 @@ app
         if(window.Connection) {
         if(navigator.connection.type == Connection.NONE)
         { 
-          var alertNotConnection = $ionicPopup.alert({
+          let alertNotConnection = $ionicPopup.alert({
             title: 'Required Connection',
             template: "Internet access is required to view this page. Please check your internet settings and try again."
           });
@@ -526,7 +526,7 @@ app
             ChildrenFactory.active(function(active_child) {
                 $scope.activeChild = active_child;
                 if ($scope.activeChild.first_name === '') {
-                    var alertForNoActiveChild = $ionicPopup.alert({
+                    let alertForNoActiveChild = $ionicPopup.alert({
                         title: 'No child registered',
                         template: 'You need to register a child to continue.'
                     });
@@ -571,7 +571,7 @@ app
             ChildrenFactory.active(function(active_child) {
                 $scope.activeChild = active_child;
                 if ($scope.activeChild.first_name === '') {
-                    var alertForNoActiveChild = $ionicPopup.alert({
+                    let alertForNoActiveChild = $ionicPopup.alert({
                         title: 'No child registered',
                         template: 'You need to register a child to continue.'
                     });

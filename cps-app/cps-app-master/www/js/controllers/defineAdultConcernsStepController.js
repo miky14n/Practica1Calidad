@@ -20,7 +20,7 @@ angular.module('starter.controllers')
     $translate(['MoveToInvitationStep']).then (function(translations){
       if(localStorage.getItem("showAdultsConcernHint") === null){
           localStorage.setItem("showAdultsConcernHint", true);
-          var confirmPopup = $ionicPopup.alert({
+          let confirmPopup = $ionicPopup.alert({
             title: translations.MoveToInvitationStep
           });
       }
@@ -87,7 +87,7 @@ angular.module('starter.controllers')
 
   $scope.showDeleteConfirmationPopup = function(adultsConcern) {
     $translate(['DeleteAdultConcernTitle','DeleteAdultConcernTemplate','CancelOption','YesMessage']).then (function(translations){
-      var confirmPopup = $ionicPopup.confirm({
+      let confirmPopup = $ionicPopup.confirm({
         title: translations.DeleteAdultConcernTitle,
         template: translations.DeleteAdultConcernTemplate,
         cancelText: translations.CancelOption,
@@ -191,7 +191,7 @@ angular.module('starter.controllers')
     }
     if(index == 1){
       if($scope.childsConcerns.length === 0){
-        var alertPopup = $ionicPopup.alert({
+        let alertPopup = $ionicPopup.alert({
            title: 'Step 2 wasn\'t unlocked.',
            template: 'You have to finish previous steps to continue.'
          });
@@ -204,7 +204,7 @@ angular.module('starter.controllers')
     }
     if(index==2){
       if($scope.adultsConcerns.length === 0 || $scope.childsConcerns.length === 0){
-        var alertPopupForUnsolved = $ionicPopup.alert({
+        let alertPopupForUnsolved = $ionicPopup.alert({
            title: 'Step 3 wasn\'t unlocked.',
            template: 'You have to finish previous steps to continue.'
          });
@@ -255,7 +255,7 @@ angular.module('starter.controllers')
 
   $scope.verifyToGoToStep3 = function(id) {
     $translate(['goingTo','Step', 'InvitationStep','NoMessage','YesMessage','keepDrilling','step3VerifyBody','imSure']).then (function(translations){
-      var confirmPopup = $ionicPopup.confirm({
+      let confirmPopup = $ionicPopup.confirm({
         title: translations.goingTo +" "+ translations.Step + " 3: " +translations.InvitationStep, //translations.goingTo +" "+ translations.Step + " 1: " +translations.EmpathyStep,
         template: translations.step3VerifyBody,
         cancelText: translations.NoMessage+", " + translations.keepDrilling,

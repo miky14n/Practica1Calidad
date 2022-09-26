@@ -1,6 +1,6 @@
 angular.module('starter.services').factory('HelpInformationFactory', function() {
 
-  var step1Help = [
+  let step1Help = [
     {
       name : "help_category_01",
       description : "The child isn’t talking",
@@ -104,7 +104,7 @@ angular.module('starter.services').factory('HelpInformationFactory', function() 
       ]
     }
   ];
-  var step2Help = [
+  let step2Help = [
     {
       title:"DEFINE THE PROBLEM STEP | INGREDIENT/GOAL",
       content:"Enter the concern of the second party (often the adult) into consideration"
@@ -126,7 +126,7 @@ angular.module('starter.services').factory('HelpInformationFactory', function() 
       content:""
     },
   ];
-  var step3Help = [
+  let step3Help = [
     {
       description : "Invitation Step | Ingredient/Goal",
       topics:[{ description: "Generate solutions that are realistic (meaning both parties can do what they are agreeing to) and mutually satisfactory (meaning the solution truly addresses the concerns of both parties)"}]
@@ -161,7 +161,7 @@ angular.module('starter.services').factory('HelpInformationFactory', function() 
       {description: "The solution didn’t work", url:"http://www.blogtalkradio.com/dr-ross-greene/2011/03/15/parenting-challenging-kids-collaborative-problem-solving-at-home"}
     ]}
   ];
-  var faq = [
+  let faq = [
     {
       question:"Why are challenging childs challenging?",
       answer:"Because they’re lacking the skills not to be challenging. If they had the skills, they wouldn’t be challenging. That’s because –and this is perhaps the key theme of the model – childs do well if they can. And because (here’s another key theme) Doing well is preferable to not doing well. This, of course, is a dramatic departure from the view of challenging childs as attention-seeking, manipulative, coercive, limit-testing, and poorly motivated. It’s a completely di erent set of lenses, supported by research in the neurosciences over the past 30-40 years, and it has dramatic implications for how caregivers go about helping such childs."

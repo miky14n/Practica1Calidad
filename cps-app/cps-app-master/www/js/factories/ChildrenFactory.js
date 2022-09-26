@@ -1,7 +1,7 @@
 angular.module('starter.services').factory('ChildrenFactory', function($cordovaSQLite, $ionicPopup, $translate) {
 
   showNameAlert = function() {
-  var alertPopup = $ionicPopup.alert({
+  let alertPopup = $ionicPopup.alert({
     title: 'The name is too big!!',
     template: 'Please try again.'
   });
@@ -13,26 +13,26 @@ angular.module('starter.services').factory('ChildrenFactory', function($cordovaS
 
 
 
-var date = new Date();
+let date = new Date();
 
   function saveChild(child,callback){
     if (child.first_name.length > 60) {
       showNameAlert();
       return;
     }
-    var query = "INSERT INTO childs(first_name,active, unsolved_problems, lagging_skills_check) VALUES (?,1,0,0)";
+    let query = "INSERT INTO childs(first_name,active, unsolved_problems, lagging_skills_check) VALUES (?,1,0,0)";
     $cordovaSQLite.execute(db,query,[child.first_name]).then(function(){
       callback();
     });
   }
   function getChildren(callback) {
-    var children = [];
-    var query ="SELECT * FROM childs";
+    let children = [];
+    let query ="SELECT * FROM childs";
     $cordovaSQLite.execute(db,query)
     .then(function(result) {
-      var rows = result.rows;
+      let rows = result.rows;
       if(rows.length) {
-        for(var i=0; i < rows.length; i++){
+        for(let i=0; i < rows.length; i++){
           children.push(rows.item(i));
         }
       }
@@ -43,8 +43,8 @@ var date = new Date();
   }
 
   function getActiveChild(callback){
-    var activeChild = {first_name:''};
-    var query ="SELECT * FROM childs WHERE active = 1";
+    let activeChild = {first_name:''};
+    let query ="SELECT * FROM childs WHERE active = 1";
     $cordovaSQLite.execute(db,query).then(function(result) {
       if(result.rows.length > 0){
         activeChild = result.rows.item(0);
@@ -56,20 +56,20 @@ var date = new Date();
   }
 
   function activateChild(childId,callback){
-    var query = "UPDATE childs SET active = 1 where id = ?";
+    let query = "UPDATE childs SET active = 1 where id = ?";
     $cordovaSQLite.execute(db,query,[childId]).then(function(result){
       callback();
     });
   }
   function deactivateChildren(callback){
-    var query = "UPDATE childs SET active = 0";
+    let query = "UPDATE childs SET active = 0";
     $cordovaSQLite.execute(db,query).then(function(result){
       callback();
     });
   }
 
   function deleteChild(child,callback){
-    var query = "DELETE FROM childs where id = ?";
+    let query = "DELETE FROM childs where id = ?";
     $cordovaSQLite.execute(db, query, [child.id]).then(function(res) {
         callback();
     }, function (err) {
@@ -80,8 +80,8 @@ var date = new Date();
 
   function updateChild(child){
 
-    var query = "UPDATE childs SET first_name = ? where id = ?";
-    var params = [child.first_name,  child.id];
+    let query = "UPDATE childs SET first_name = ? where id = ?";
+    let params = [child.first_name,  child.id];
     $cordovaSQLite.execute(db, query, params);
   }
 
