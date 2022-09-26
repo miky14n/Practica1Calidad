@@ -36,8 +36,8 @@ app
     $scope.isUserLogged = function(){
         if(localStorage.getItem("auth_token") !== null ){
             return false;
-        }else
-        return true;
+        }else{
+        return true;}
     }
 
     $scope.checkConnection = function(){
@@ -197,7 +197,7 @@ app
                 title: 'No child registered',
                 template: 'You need to register a child to continue.'
             });
-            alertForNoActiveChild.then(function(res) {return res;});
+            alertForNoActiveChild.then(function(res) {});
         } else {
             ChildrenFactory.active(function(active_child) {
                 $scope.activeChild = active_child;
@@ -234,7 +234,7 @@ app
                 title: 'No child registered',
                 template: 'You need to register a child to continue.'
             });
-            alertForNoActiveChild.then(function(res) {return res;});
+            alertForNoActiveChild.then(function(res) {});
         } else {
             $state.go(route);
         }
@@ -318,7 +318,7 @@ app
           transformRequest: function(obj) {
             let str = [];
             for(let p in obj)
-            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            {str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));}
             return str.join("&");
           },
           data: data
@@ -530,7 +530,7 @@ app
                         title: 'No child registered',
                         template: 'You need to register a child to continue.'
                     });
-                    alertForNoActiveChild.then(function(res) {return res;});
+                    alertForNoActiveChild.then(function(res) {});
                 } else {
                     $state.go(route);
                 }
@@ -575,7 +575,7 @@ app
                         title: 'No child registered',
                         template: 'You need to register a child to continue.'
                     });
-                    alertForNoActiveChild.then(function(res) {return res;});
+                    alertForNoActiveChild.then(function(res) {});
                 } else {
                     $state.go(route);
                 }
