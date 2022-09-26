@@ -1238,7 +1238,7 @@ angular
       if (child.active === 1) {
         let beforeIndex;
         let beforeItem;
-        let active_child;
+        let active_child= { first_name: "" };
         let sizeOfList = $scope.childs.length;
         if (sizeOfList > 1) {
           beforeIndex = $scope.childs.indexOf(child) - 1;
@@ -1260,8 +1260,6 @@ angular
           }
 
           console.log(active_child);
-        } else {
-          active_child = { first_name: "" };
         }
       }
       ChildrenFactory.delete(child, function() {

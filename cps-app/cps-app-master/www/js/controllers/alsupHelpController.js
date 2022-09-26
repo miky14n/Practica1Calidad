@@ -65,10 +65,11 @@ $scope.alert = function(){
 
   $scope.checkConnection = function(){
     console.log("Entro");
+    let alertNotConnection;
     if(window.Connection) {
       if(navigator.connection.type == Connection.NONE)
       {
-        let alertNotConnection = $ionicPopup.alert({
+        alertNotConnection = $ionicPopup.alert({
           title: 'Required Connection',
           template: "Internet access is required to view this page. Please check your internet settings and try again."
         });
@@ -81,9 +82,10 @@ $scope.alert = function(){
   $scope.checkPlanBVideoConnection = function(){
     if(window.Connection) {
       console.log("Entro");
+      let alertNotConnection;
       if(navigator.connection.type == Connection.NONE)
       {
-        let alertNotConnection = $ionicPopup.alert({
+          alertNotConnection = $ionicPopup.alert({
           title: 'Required Connection',
           template: "Internet access is required to view this page. Please check your internet settings and try again."
         });
@@ -96,9 +98,10 @@ $scope.alert = function(){
   $scope.checkPAlsupMeetingVideoConnection = function(url){
     if(window.Connection) {
       console.log("Entro");
+      let alertNotConnection;
       if(navigator.connection.type == Connection.NONE)
       {
-        let alertNotConnection = $ionicPopup.alert({
+          alertNotConnection = $ionicPopup.alert({
           title: 'Required Connection',
           template: "Internet access is required to view this page. Please check your internet settings and try again."
         });

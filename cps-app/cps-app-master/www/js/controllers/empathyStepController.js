@@ -314,12 +314,13 @@ angular.module('starter.controllers')
  };
  $scope.showHint = function() {
   $translate(['ChildsConcernHint', 'CancelOption','OKMessage']).then (function(translations){
+    let confirmPopup;
    if(localStorage.getItem("showHint") === null){
        localStorage.setItem("showHint", true);
-       let confirmPopup;
-       confirmPopup = $ionicPopup.alert({
-         title: translations.ChildsConcernHint,
-         okText: translations.OKMessage
+       
+        confirmPopup = $ionicPopup.alert({
+          title: translations.ChildsConcernHint,
+          okText: translations.OKMessage
        });
      }
     });
