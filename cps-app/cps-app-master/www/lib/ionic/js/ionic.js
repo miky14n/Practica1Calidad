@@ -12755,8 +12755,8 @@ ionic.views.Slider = ionic.views.View.inherit({
                 var compareWith, i;
                 if (typeof selector === 'string') {
                     var el = this[0];
-                    if (el == document) return selector === document;
-                    if (el == window) return selector === window;
+                    if (el == document) return document;
+                    if (el == window) return window;
 
                     if (el.matches) return el.matches(selector);
                     else if (el.webkitMatchesSelector) return el.webkitMatchesSelector(selector);
