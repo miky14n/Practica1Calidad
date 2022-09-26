@@ -3,7 +3,7 @@
  * (c) 2010-2016 Google, Inc. http://angularjs.org
  * License: MIT
  */
-(function(window, angular, undefined) {'use strict';
+(function(window, angular, isNotDefined) {'use strict';
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *     Any commits to this file should be reviewed with security in mind.  *
@@ -333,7 +333,7 @@ var inertBodyElement;
  * @param {object} handler
  */
 function htmlParser(html, handler) {
-  if (html === null || html === undefined) {
+  if (html === null || html === isNotDefined) {
     html = '';
   } else if (typeof html !== 'string') {
     html = '' + html;
