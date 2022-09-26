@@ -12,16 +12,16 @@
           <ion-item ng-repeat="friend in userFriends" class="row">
           <div class="col col-67">
               <h2>
-                <b> {{ friend.name + ' ' + friend.last_name }}</b>
+                <strong> {{ friend.name + ' ' + friend.last_name }}</strong>
               </h2>
               <p>{{ friend.email }}</p>
             </div>
               <div class="button-bar col-center" >
                 <div class="button button-small button-positive"  ng-click="shareChildForm(friend.id)" ng-show="!friendName.email">
-                  <i>Share</i>
+                  <em>Share</em>
                 </div>
                 <div class="button button-small button-assertive" ng-click="confirmStopSharedAlsup(friend)" ng-show="friendName.email===friend.email">
-                  <i >Stop sharing</i>
+                  <i >Stop sharing</em>
                 </div>
             </div>
           </ion-item>

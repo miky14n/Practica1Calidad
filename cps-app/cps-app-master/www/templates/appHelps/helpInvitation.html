@@ -20,7 +20,7 @@
           ng-click="toggleHelp(helpCategory)"
           ng-class="{active: isTopicShown(helpCategory)}">
           <i class="icon" ng-class="isTopicShown(helpCategory) ? 'ion-minus' : 'ion-plus'" ></i>
-          <b>{{helpCategory.description}}</b>
+          <strong>{{helpCategory.description}}</strong>
         </ion-item>
         <ion-list>
           <div ng-repeat="topic in helpCategory.topics">
@@ -46,7 +46,7 @@
             ng-click="toggleHelp(helpCategory)"
             ng-class="{active: isTopicShown(helpCategory)}">
             <i class="icon" ng-class="isTopicShown(helpCategory) ? 'ion-minus' : 'ion-plus'" ></i>
-            <b>{{helpCategory.description}}</b>
+            <strong>{{helpCategory.description}}</strong>
           </ion-item>
           <ion-list>
             <div ng-repeat="topic in helpCategory.topics">

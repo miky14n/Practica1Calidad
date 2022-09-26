@@ -6,7 +6,7 @@
           <i class="icon ion-plus"></i>
         </a>
         <div class="col col-75">
-          <h2><b>{{'MyChildrenTitle' | translate }}</b></h2>
+          <h2><strong>{{'MyChildrenTitle' | translate }}</strong></h2>
         </div>
       </div>
       <div class="row" ng-if="childs.length === 0">
@@ -17,8 +17,8 @@
             <div class="item item-text-wrap text-center" >
               <h2>
                 {{'HavntRegisteredAChildAlert' | translate }}
-                <br> <b>{{'RegisterChildMessage' | translate }}
-                </b>
+                <br> <strong>{{'RegisterChildMessage' | translate }}
+                </strong>
               </h2>
             </div>
           </div>
@@ -32,7 +32,7 @@
             <div class="card">
               <!-- <div class="item item-text-wrap text-center" ng-click="checkConnection();showSyncModal(child)"> -->
               <div class="item item-text-wrap text-center">
-                <h2><b>{{child.first_name}}</b></h2>
+                <h2><strong>{{child.first_name}}</strong></h2>
               </div>
               <div class="item item-divider item-text-wrap text-center">
                 <div class="button-bar">
@@ -56,7 +56,7 @@
             <div class="card">
               <!-- <div class="item item-text-wrap text-center" ng-click="checkConnection();showSyncModal(childs[$index+1])"> -->
               <div class="item item-text-wrap text-center">
-                <h2><b>{{childs[$index+1].first_name}}</b></h2>
+                <h2><strong>{{childs[$index+1].first_name}}</strong></h2>
               </div>
               <div class="item item-divider item-text-wrap text-center">
                 <div class="button-bar">
@@ -85,7 +85,7 @@
         <div class="item item-divider item-text-wrap">
           <div class="col col-75">
             <h2>
-              <b>Shared Children</b>
+              <strong>Shared Children</strong>
               <span class="badge badge-energized">{{sharedAlsups.length}}</span>
             </h2>
           </div>
@@ -97,7 +97,7 @@
               <div class="card">
                 <div class="item item-text-wrap text-center">
                   <h2>
-                    <b>{{shared.name}}</b>
+                    <strong>{{shared.name}}</strong>
                   </h2>
                 </div>
                 <div class="item item-divider item-text-wrap text-center">
@@ -113,7 +113,7 @@
               <div class="card">
                 <div class="item item-text-wrap text-center">
                   <h2>
-                    <b>{{sharedAlsups[$index+1].name}}</b>
+                    <strong>{{sharedAlsups[$index+1].name}}</strong>
                   </h2>
                 </div>
                 <div class="item item-divider item-text-wrap text-center">
