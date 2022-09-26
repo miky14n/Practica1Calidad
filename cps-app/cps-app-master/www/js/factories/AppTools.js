@@ -1,7 +1,7 @@
 angular.module('starter.services')
 .factory('AppTools', function($sce, $ionicModal, $window ,$cordovaInAppBrowser, $ionicPlatform, $ionicPopup) {
   function createNewBrowser(options){
-    var browserInstance = {
+    let browserInstance = {
       title: '',
       destination: ''
     };
@@ -17,7 +17,7 @@ angular.module('starter.services')
       if(window.Connection) {
         if(navigator.connection.type == Connection.NONE)
         {
-          var alertNotConnection = $ionicPopup.alert({
+          let alertNotConnection = $ionicPopup.alert({
             title: 'Required Connection',
             template: "Internet access is required to view this page. Please check your internet settings and try again."
           });

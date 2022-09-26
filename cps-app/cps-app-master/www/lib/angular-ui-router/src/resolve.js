@@ -11,7 +11,7 @@
 $Resolve.$inject = ['$q', '$injector'];
 function $Resolve(  $q,    $injector) {
   
-  var VISIT_IN_PROGRESS = 1,
+  let VISIT_IN_PROGRESS = 1,
       VISIT_DONE = 2,
       NOTHING = {},
       NO_DEPENDENCIES = [],
@@ -41,10 +41,10 @@ function $Resolve(  $q,    $injector) {
    */
   this.study = function (invocables) {
     if (!isObject(invocables)) throw new Error("'invocables' must be an object");
-    var invocableKeys = objectKeys(invocables || {});
+    let invocableKeys = objectKeys(invocables || {});
     
     // Perform a topological sort of invocables to build an ordered plan
-    var plan = [], cycle = [], visited = {};
+    let plan = [], cycle = [], visited = {};
     function visit(value, key) {
       if (visited[key] === VISIT_DONE) return;
       
@@ -58,7 +58,7 @@ function $Resolve(  $q,    $injector) {
       if (isString(value)) {
         plan.push(key, [ function() { return $injector.get(value); }], NO_DEPENDENCIES);
       } else {
-        var params = $injector.annotate(value);
+        let params = $injector.annotate(value);
         forEach(params, function (param) {
           if (param !== key && invocables.hasOwnProperty(param)) visit(invocables[param], param);
         });
@@ -90,7 +90,7 @@ function $Resolve(  $q,    $injector) {
       
       // To complete the overall resolution, we have to wait for the parent
       // promise and for the promise for each invokable in our plan.
-      var resolution = $q.defer(),
+      let resolution = $q.defer(),
           result = resolution.promise,
           promises = result.$$promises = {},
           values = extend({}, locals),
@@ -138,14 +138,14 @@ function $Resolve(  $q,    $injector) {
       }
       
       // Process each invocable in the plan, but ignore any where a local of the same name exists.
-      for (var i=0, ii=plan.length; i<ii; i+=3) {
+      for (let i=0, ii=plan.length; i<ii; i+=3) {
         if (locals.hasOwnProperty(plan[i])) done();
         else invoke(plan[i], plan[i+1], plan[i+2]);
       }
       
       function invoke(key, invocable, params) {
         // Create a deferred for this invocation. Failures will propagate to the resolution as well.
-        var invocation = $q.defer(), waitParams = 0;
+        let invocation = $q.defer(), waitParams = 0;
         function onfailure(reason) {
           invocation.reject(reason);
           fail(reason);

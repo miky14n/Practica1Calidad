@@ -9,7 +9,7 @@
  */
 $IsStateFilter.$inject = ['$state'];
 function $IsStateFilter($state) {
-  var isFilter = function (state) {
+  let isFilter = function (state) {
     return $state.is(state);
   };
   isFilter.$stateful = true;
@@ -27,7 +27,7 @@ function $IsStateFilter($state) {
  */
 $IncludedByStateFilter.$inject = ['$state'];
 function $IncludedByStateFilter($state) {
-  var includesFilter = function (state) {
+  let includesFilter = function (state) {
     return $state.includes(state);
   };
   includesFilter.$stateful = true;

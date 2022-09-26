@@ -16,11 +16,11 @@
  */
 $UrlRouterProvider.$inject = ['$locationProvider', '$urlMatcherFactoryProvider'];
 function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
-  var rules = [], otherwise = null, interceptDeferred = false, listener;
+  let rules = [], otherwise = null, interceptDeferred = false, listener;
 
   // Returns a string that is a prefix of all strings matching the RegExp
   function regExpPrefix(re) {
-    var prefix = /^\^((?:\\[^a-zA-Z0-9]|[^\\\[\]\^$*+?.()|{}]+)*)/.exec(re.source);
+    let prefix = /^\^((?:\\[^a-zA-Z0-9]|[^\\\[\]\^$*+?.()|{}]+)*)/.exec(re.source);
     return (prefix != null) ? prefix[1].replace(/\\(.)/g, "$1") : '';
   }
 
@@ -42,12 +42,12 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
    *
    * @example
    * <pre>
-   * var app = angular.module('app', ['ui.router.router']);
+   * let app = angular.module('app', ['ui.router.router']);
    *
    * app.config(function ($urlRouterProvider) {
    *   // Here's an example of how you might allow case insensitive urls
    *   $urlRouterProvider.rule(function ($injector, $location) {
-   *     var path = $location.path(),
+   *     let path = $location.path(),
    *         normalized = path.toLowerCase();
    *
    *     if (path !== normalized) {
@@ -78,7 +78,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
    *
    * @example
    * <pre>
-   * var app = angular.module('app', ['ui.router.router']);
+   * let app = angular.module('app', ['ui.router.router']);
    *
    * app.config(function ($urlRouterProvider) {
    *   // if the path doesn't match any of the urls you configured
@@ -101,7 +101,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
    */
   this.otherwise = function (rule) {
     if (isString(rule)) {
-      var redirect = rule;
+      let redirect = rule;
       rule = function () { return redirect; };
     }
     else if (!isFunction(rule)) throw new Error("'rule' must be a function");
@@ -112,7 +112,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
 
   function handleIfMatch($injector, handler, match) {
     if (!match) return false;
-    var result = $injector.invoke(handler, handler, { $match: match });
+    let result = $injector.invoke(handler, handler, { $match: match });
     return isDefined(result) ? result : true;
   }
 
@@ -138,7 +138,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
    *
    * @example
    * <pre>
-   * var app = angular.module('app', ['ui.router.router']);
+   * let app = angular.module('app', ['ui.router.router']);
    *
    * app.config(function ($urlRouterProvider) {
    *   $urlRouterProvider.when($state.url, function ($match, $stateParams) {
@@ -154,13 +154,13 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
    * @param {string|object} handler The path you want to redirect your user to.
    */
   this.when = function (what, handler) {
-    var redirect, handlerIsString = isString(handler);
+    let redirect, handlerIsString = isString(handler);
     if (isString(what)) what = $urlMatcherFactory.compile(what);
 
     if (!handlerIsString && !isFunction(handler) && !isArray(handler))
       throw new Error("invalid 'handler' in when()");
 
-    var strategies = {
+    let strategies = {
       matcher: function (what, handler) {
         if (handlerIsString) {
           redirect = $urlMatcherFactory.compile(handler);
@@ -187,9 +187,9 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
       }
     };
 
-    var check = { matcher: $urlMatcherFactory.isMatcher(what), regex: what instanceof RegExp };
+    let check = { matcher: $urlMatcherFactory.isMatcher(what), regex: what instanceof RegExp };
 
-    for (var n in check) {
+    for (let n in check) {
       if (check[n]) return this.rule(strategies[n](what, handler));
     }
 
@@ -211,7 +211,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
    *
    * @example
    * <pre>
-   * var app = angular.module('app', ['ui.router.router']);
+   * let app = angular.module('app', ['ui.router.router']);
    *
    * app.config(function ($urlRouterProvider) {
    *
@@ -265,7 +265,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
   $get.$inject = ['$location', '$rootScope', '$injector', '$browser'];
   function $get(   $location,   $rootScope,   $injector,   $browser) {
 
-    var baseHref = $browser.baseHref(), location = $location.url(), lastPushedUrl;
+    let baseHref = $browser.baseHref(), location = $location.url(), lastPushedUrl;
 
     function appendBasePath(url, isHtml5, absolute) {
       if (baseHref === '/') return url;
@@ -277,18 +277,18 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
     // TODO: Optimize groups of rules with non-empty prefix into some sort of decision tree
     function update(evt) {
       if (evt && evt.defaultPrevented) return;
-      var ignoreUpdate = lastPushedUrl && $location.url() === lastPushedUrl;
+      let ignoreUpdate = lastPushedUrl && $location.url() === lastPushedUrl;
       lastPushedUrl = undefined;
       if (ignoreUpdate) return true;
 
       function check(rule) {
-        var handled = rule($injector, $location);
+        let handled = rule($injector, $location);
 
         if (!handled) return false;
         if (isString(handled)) $location.replace().url(handled);
         return true;
       }
-      var n = rules.length, i;
+      let n = rules.length, i;
 
       for (i = 0; i < n; i++) {
         if (check(rules[i])) return;
@@ -324,7 +324,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
        *       // Halt state change from even starting
        *       evt.preventDefault();
        *       // Perform custom logic
-       *       var meetsRequirement = ...
+       *       let meetsRequirement = ...
        *       // Continue with the update and state transition if logic allows
        *       if (meetsRequirement) $urlRouter.sync();
        *     });
@@ -384,12 +384,12 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
       href: function(urlMatcher, params, options) {
         if (!urlMatcher.validates(params)) return null;
 
-        var isHtml5 = $locationProvider.html5Mode();
+        let isHtml5 = $locationProvider.html5Mode();
         if (angular.isObject(isHtml5)) {
           isHtml5 = isHtml5.enabled;
         }
         
-        var url = urlMatcher.format(params);
+        let url = urlMatcher.format(params);
         options = options || {};
 
         if (!isHtml5 && url !== null) {
@@ -401,7 +401,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
           return url;
         }
 
-        var slash = (!isHtml5 && url ? '/' : ''), port = $location.port();
+        let slash = (!isHtml5 && url ? '/' : ''), port = $location.port();
         port = (port === 80 || port === 443 ? '' : ':' + port);
 
         return [$location.protocol(), '://', $location.host(), port, slash, url].join('');

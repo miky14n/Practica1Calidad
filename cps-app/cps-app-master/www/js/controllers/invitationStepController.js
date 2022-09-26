@@ -45,7 +45,7 @@ angular.module('starter.controllers').controller('InvitationCtrl', function($sco
     }
   };
   $scope.moveItem = function(childsConcern, fromIndex, toIndex) {
-    var greaterIndex, lesserIndex, childConcernOrderModifier;
+    let greaterIndex, lesserIndex, childConcernOrderModifier;
     $scope.childsConcerns[fromIndex].unsolved_order = toIndex;
     if(fromIndex > toIndex){
       greaterIndex = fromIndex;
@@ -57,7 +57,7 @@ angular.module('starter.controllers').controller('InvitationCtrl', function($sco
       lesserIndex = fromIndex;
       childConcernOrderModifier = -1;
     }
-    for(var i = lesserIndex; i < greaterIndex; i++ ){
+    for(let i = lesserIndex; i < greaterIndex; i++ ){
       ChildConcernFactory.update({
         description: $scope.childsConcerns[i].description,
         unsolved_order: (i + childConcernOrderModifier),
@@ -108,7 +108,7 @@ angular.module('starter.controllers').controller('InvitationCtrl', function($sco
 
   $scope.showDeletionConfirm = function(solution) {
     $translate(['DeleteSolutionTitle','DeleteSolutionBody', 'CancelOption','YesMessage']).then (function(translations){
-    var confirmPopup = $ionicPopup.confirm({
+    let confirmPopup = $ionicPopup.confirm({
       title: translations.DeleteSolutionTitle,
       template: translations.DeleteSolutionBody,
       cancelText: translations.CancelOption,
@@ -304,7 +304,7 @@ $scope.editablePair=[];
     // Execute action
   });
   function findUnsolvedProblem() {
-    var query ="SELECT * FROM unsolved_problems WHERE id = ?";
+    let query ="SELECT * FROM unsolved_problems WHERE id = ?";
     $cordovaSQLite.execute(db,query,[$stateParams.unsolvedProblemId])
       .then( function(result) {
         $scope.unsolvedProblem = result.rows.item(0);
@@ -314,7 +314,7 @@ $scope.editablePair=[];
   //function here
   $scope.showRatingPopup = function(solution,unsolvedProblem) {
     $translate(['SubtitleRating','TitleRating']).then (function(translations){
-    var myPopup = $ionicPopup.show({
+    let myPopup = $ionicPopup.show({
     title: translations.TitleRating,
     subTitle: translations.SubtitleRating,
     buttons: [
@@ -356,7 +356,7 @@ $scope.editablePair=[];
 });
   $scope.showConfirmBestRate = function(solution,rate,unsolvedProblem) {
     $translate(['BestRatingTitle','BestRatingBody', 'CancelOption','YesMessage']).then (function(translations){
-    var confirmPopup = $ionicPopup.confirm({
+    let confirmPopup = $ionicPopup.confirm({
       title: translations.BestRatingTitle,
       template: translations.BestRatingBody,
       cancelText: translations.CancelOption,
@@ -374,7 +374,7 @@ $scope.editablePair=[];
   };
   $scope.showConfirmBestRate2 = function(solution,rate,unsolvedProblem) {
     $translate(['MediumRatingTitle', 'CancelOption','YesMessage']).then (function(translations){
-    var confirmPopup = $ionicPopup.confirm({
+    let confirmPopup = $ionicPopup.confirm({
       title: translations.MediumRatingTitle,
       template: "Sometimes the solution needs time to work - we are giving it a try.",
       cancelText: translations.CancelOption,
@@ -396,7 +396,7 @@ $scope.editablePair=[];
 
   $scope.showConfirmWorstRate = function(solution,rate,unsolvedProblem) {
     $translate(['WorstRatingTitle','WorstRatingBody', 'CancelOption','YesMessage']).then (function(translations){
-    var confirmPopup = $ionicPopup.confirm({
+    let confirmPopup = $ionicPopup.confirm({
       title: translations.WorstRatingTitle,
       template: translations.WorstRatingBody,
       cancelText: translations.CancelOption,
@@ -415,7 +415,7 @@ $scope.editablePair=[];
   };
 
   $scope.RateSolution = function(solution, rate){
-    var query = "UPDATE solutions SET rating = ? Where id = ?";
+    let query = "UPDATE solutions SET rating = ? Where id = ?";
     $cordovaSQLite.execute(db, query, [rate, solution.id]);
     PossibleSolutionFactory.all($stateParams.unsolvedProblemId, function(res){
       $scope.solutions = res;
@@ -429,11 +429,11 @@ $scope.editablePair=[];
   };
 
   $scope.BestRate = function(unsolvedProblem){
-    var query = "SELECT MAX(rating) AS 'Rating' FROM solutions Where unsolved_problem_id = ?";
-    var query2 = "UPDATE unsolved_problems SET unsolved_score = ? Where id = ?";
+    let query = "SELECT MAX(rating) AS 'Rating' FROM solutions Where unsolved_problem_id = ?";
+    let query2 = "UPDATE unsolved_problems SET unsolved_score = ? Where id = ?";
     $cordovaSQLite.execute(db, query, [unsolvedProblem.id])
     .then( function(result) {
-      var maxRating= result.rows.item(0);
+      let maxRating= result.rows.item(0);
       $cordovaSQLite.execute(db, query2, [maxRating.Rating,unsolvedProblem.id]);
     },function(error){
     console.log(error);
@@ -447,7 +447,7 @@ $scope.editablePair=[];
     }
     if(index == 1){
       if($scope.childsConcerns.length === 0){
-        var alertPopup = $ionicPopup.alert({
+        let alertPopup = $ionicPopup.alert({
            title: 'Step 2 wasn\'t unlocked.',
            template: 'You have to finish previous steps to continue.'
          });
@@ -460,7 +460,7 @@ $scope.editablePair=[];
     }
     if(index==2){
       if($scope.adultsConcerns.length === 0 || $scope.childsConcerns.length === 0){
-        var alertPopupForUnsolved = $ionicPopup.alert({
+        let alertPopupForUnsolved = $ionicPopup.alert({
            title: 'Step 3 wasn\'t unlocked.',
            template: 'You have to finish previous steps to continue.'
          });
@@ -490,7 +490,7 @@ $scope.editablePair=[];
   };
 
   $scope.getRatingIcon = function(solution) {
-    var rating = solution.rating;
+    let rating = solution.rating;
     if (rating === 0) {
       return 'ion-android-radio-button-off';
     } else if (rating === 1) {
@@ -516,7 +516,7 @@ $scope.editablePair=[];
     $translate(['InvitationStepHint', 'YesMessage']).then (function(translations){
     if(localStorage.getItem("showInfo") === null){
         localStorage.setItem("showInfo", true);
-        var confirmPopup = $ionicPopup.alert({
+        let confirmPopup = $ionicPopup.alert({
           title: translations.InvitationStepHint,
           okText: translations.YesMessage
         });

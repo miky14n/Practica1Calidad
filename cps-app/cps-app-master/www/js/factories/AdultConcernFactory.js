@@ -1,12 +1,12 @@
 angular.module('starter.services').factory('AdultConcernFactory', function($cordovaSQLite) {
 
   function getAdultsConcerns(unsolvedProblemId,callback){
-    var adultConcerns = [];
-    var query ="SELECT * FROM adults_concerns WHERE unsolved_problem_id = ?";
+    let adultConcerns = [];
+    let query ="SELECT * FROM adults_concerns WHERE unsolved_problem_id = ?";
     $cordovaSQLite.execute(db,query,[unsolvedProblemId]).then(function(result) {
-      var rows = result.rows;
+      let rows = result.rows;
       if(rows.length) {
-        for(var i=0; i < rows.length; i++){
+        for(let i=0; i < rows.length; i++){
           adultConcerns.push(rows.item(i));
         }
       }
@@ -17,18 +17,18 @@ angular.module('starter.services').factory('AdultConcernFactory', function($cord
   }
 
   function insertAdultsConcern(adultsConcern){
-    var query ="INSERT INTO adults_concerns(description,unsolved_problem_id) VALUES (?,?)";
+    let query ="INSERT INTO adults_concerns(description,unsolved_problem_id) VALUES (?,?)";
     $cordovaSQLite.execute(db,query,[adultsConcern.description,adultsConcern.unsolvedProblemId]);
   }
 
   function updateAdultsConcern(adultsConcern){
-    var query = "";
+    let query = "";
     query = "UPDATE adults_concerns SET description = ? where id = ?";
     return $cordovaSQLite.execute(db, query, [adultsConcern.description, adultsConcern.id]);
   }
 
   function deleteAdultsConcern(adultsConcern, callback) {
-    var query = "DELETE FROM adults_concerns where id = ?";
+    let query = "DELETE FROM adults_concerns where id = ?";
     $cordovaSQLite.execute(db, query, [adultsConcern.id]).then(function(res) {
         callback();
     }, function (err) {
@@ -37,13 +37,13 @@ angular.module('starter.services').factory('AdultConcernFactory', function($cord
   }
 
   function getPair(callback){
-    var pair = [];
-    var query ="SELECT * FROM pair_childConcerntoadultConcern";
+    let pair = [];
+    let query ="SELECT * FROM pair_childConcerntoadultConcern";
     $cordovaSQLite.execute(db,query)
     .then(function(result) {
-      var rows = result.rows;
+      let rows = result.rows;
       if(rows.length) {
-        for(var i=0; i < rows.length; i++){
+        for(let i=0; i < rows.length; i++){
           pair.push(rows.item(i));
         }
       }
@@ -55,12 +55,12 @@ angular.module('starter.services').factory('AdultConcernFactory', function($cord
    }
 
    function deleteAdultsConcernPair(pair) {
-     var query = "DELETE FROM pair_childConcerntoadultConcern where id = ?";
+     let query = "DELETE FROM pair_childConcerntoadultConcern where id = ?";
      $cordovaSQLite.execute(db, query, [pair.id]);
    }
 
    function updateAdultsConcernPair(adultsConcernDescription,pair){
-     var query = "UPDATE pair_childConcerntoadultConcern SET description = ?, description2 = ? where id = ?";
+     let query = "UPDATE pair_childConcerntoadultConcern SET description = ?, description2 = ? where id = ?";
      $cordovaSQLite.execute(db, query, [pair.description,adultsConcernDescription, pair.id]);
     }
 

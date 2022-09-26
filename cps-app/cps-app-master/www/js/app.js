@@ -9,7 +9,7 @@ angular.module('starter', ['ionic','ionic.closePopup' ,'starter.controllers', 's
 
 .run(function($ionicPlatform, $cordovaSQLite, DataSeed, $state, $rootScope) {
   $ionicPlatform.ready(function() {
-     var notificationOpenedCallback = function(jsonData) {
+     let notificationOpenedCallback = function(jsonData) {
         console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
       };
 
@@ -73,7 +73,7 @@ angular.module('starter', ['ionic','ionic.closePopup' ,'starter.controllers', 's
   $link_root = "http://cpsapi.herokuapp.com";
   $httpProvider.defaults.useXDomain = true;
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
-  var defaultOptions = {
+  let defaultOptions = {
     location: 'no',
     clearcache: 'no',
     toolbar: 'yes',
@@ -455,7 +455,7 @@ angular.module('starter', ['ionic','ionic.closePopup' ,'starter.controllers', 's
 
 .filter('orderObjectBy', function() {
   return function(items, field) {
-    var filtered = [];
+    let filtered = [];
     angular.forEach(items, function(item) {
       filtered.push(item);
     });

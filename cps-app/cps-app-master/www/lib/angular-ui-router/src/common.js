@@ -2,7 +2,7 @@
 /*global angular:false*/
 'use strict';
 
-var isDefined = angular.isDefined,
+let isDefined = angular.isDefined,
     isFunction = angular.isFunction,
     isString = angular.isString,
     isObject = angular.isObject,
@@ -34,9 +34,9 @@ function merge(dst) {
  * @return {Array} Returns an array of state names in descending order, not including the root.
  */
 function ancestors(first, second) {
-  var path = [];
+  let path = [];
 
-  for (var n in first.path) {
+  for (let n in first.path) {
     if (first.path[n] !== second.path[n]) break;
     path.push(first.path[n]);
   }
@@ -53,7 +53,7 @@ function objectKeys(object) {
   if (Object.keys) {
     return Object.keys(object);
   }
-  var result = [];
+  let result = [];
 
   angular.forEach(object, function(val, key) {
     result.push(key);
@@ -72,7 +72,7 @@ function indexOf(array, value) {
   if (Array.prototype.indexOf) {
     return array.indexOf(value, Number(arguments[2]) || 0);
   }
-  var len = array.length >>> 0, from = Number(arguments[2]) || 0;
+  let len = array.length >>> 0, from = Number(arguments[2]) || 0;
   from = (from < 0) ? Math.ceil(from) : Math.floor(from);
 
   if (from < 0) from += len;
@@ -93,14 +93,14 @@ function indexOf(array, value) {
  * @param {Object} $to Internal definition of object representing state to transition to.
  */
 function inheritParams(currentParams, newParams, $current, $to) {
-  var parents = ancestors($current, $to), parentParams, inherited = {}, inheritList = [];
+  let parents = ancestors($current, $to), parentParams, inherited = {}, inheritList = [];
 
-  for (var i in parents) {
+  for (let i in parents) {
     if (!parents[i].params) continue;
     parentParams = objectKeys(parents[i].params);
     if (!parentParams.length) continue;
 
-    for (var j in parentParams) {
+    for (let j in parentParams) {
       if (indexOf(inheritList, parentParams[j]) >= 0) continue;
       inheritList.push(parentParams[j]);
       inherited[parentParams[j]] = currentParams[parentParams[j]];
@@ -121,11 +121,11 @@ function inheritParams(currentParams, newParams, $current, $to) {
 function equalForKeys(a, b, keys) {
   if (!keys) {
     keys = [];
-    for (var n in a) keys.push(n); // Used instead of Object.keys() for IE8 compatibility
+    for (let n in a) keys.push(n); // Used instead of Object.keys() for IE8 compatibility
   }
 
-  for (var i=0; i<keys.length; i++) {
-    var k = keys[i];
+  for (let i=0; i<keys.length; i++) {
+    let k = keys[i];
     if (a[k] != b[k]) return false; // Not '===', values aren't necessarily normalized
   }
   return true;
@@ -139,7 +139,7 @@ function equalForKeys(a, b, keys) {
  * @return {Boolean} Returns a subset of `values`.
  */
 function filterByKeys(keys, values) {
-  var filtered = {};
+  let filtered = {};
 
   forEach(keys, function (name) {
     filtered[name] = values[name];
@@ -150,7 +150,7 @@ function filterByKeys(keys, values) {
 // like _.indexBy
 // when you know that your index values will be unique, or you want last-one-in to win
 function indexBy(array, propName) {
-  var result = {};
+  let result = {};
   forEach(array, function(item) {
     result[item[propName]] = item;
   });
@@ -160,8 +160,8 @@ function indexBy(array, propName) {
 // extracted from underscore.js
 // Return a copy of the object only containing the whitelisted properties.
 function pick(obj) {
-  var copy = {};
-  var keys = Array.prototype.concat.apply(Array.prototype, Array.prototype.slice.call(arguments, 1));
+  let copy = {};
+  let keys = Array.prototype.concat.apply(Array.prototype, Array.prototype.slice.call(arguments, 1));
   forEach(keys, function(key) {
     if (key in obj) copy[key] = obj[key];
   });
@@ -171,16 +171,16 @@ function pick(obj) {
 // extracted from underscore.js
 // Return a copy of the object omitting the blacklisted properties.
 function omit(obj) {
-  var copy = {};
-  var keys = Array.prototype.concat.apply(Array.prototype, Array.prototype.slice.call(arguments, 1));
-  for (var key in obj) {
+  let copy = {};
+  let keys = Array.prototype.concat.apply(Array.prototype, Array.prototype.slice.call(arguments, 1));
+  for (let key in obj) {
     if (indexOf(keys, key) == -1) copy[key] = obj[key];
   }
   return copy;
 }
 
 function pluck(collection, key) {
-  var result = isArray(collection) ? [] : {};
+  let result = isArray(collection) ? [] : {};
 
   forEach(collection, function(val, i) {
     result[i] = isFunction(key) ? key(val) : val[key];
@@ -189,8 +189,8 @@ function pluck(collection, key) {
 }
 
 function filter(collection, callback) {
-  var array = isArray(collection);
-  var result = array ? [] : {};
+  let array = isArray(collection);
+  let result = array ? [] : {};
   forEach(collection, function(val, i) {
     if (callback(val, i)) {
       result[array ? result.length : i] = val;
@@ -200,7 +200,7 @@ function filter(collection, callback) {
 }
 
 function map(collection, callback) {
-  var result = isArray(collection) ? [] : {};
+  let result = isArray(collection) ? [] : {};
 
   forEach(collection, function(val, i) {
     result[i] = callback(val, i);
@@ -279,7 +279,7 @@ angular.module('ui.router.state', ['ui.router.router', 'ui.router.util']);
  *   <script src="js/angular-ui-router.min.js"></script>
  *   <script>
  *     // ...and add 'ui.router' as a dependency
- *     var myApp = angular.module('myApp', ['ui.router']);
+ *     let myApp = angular.module('myApp', ['ui.router']);
  *   </script>
  * </head>
  * <body>

@@ -7,10 +7,10 @@ angular.module('starter.controllers')
       step3: [],
       faq: [],
   };
-  var step1Help = [];
-  var step2Help = [];
-  var step3Help = [];
-  var faq = [];
+  let step1Help = [];
+  let step2Help = [];
+  let step3Help = [];
+  let faq = [];
 
   $scope.getHelpInfo = function(){
     HelpInformationFactory.getStep1Help(function(helpInfo){
@@ -51,23 +51,23 @@ angular.module('starter.controllers')
         faq: [],
     };
     if($scope.searchWord === '') return;
-    var re = new RegExp($scope.searchWord.toLowerCase());
-    for(var i = 0; i < step2Help.length; i++){
+    let re = new RegExp($scope.searchWord.toLowerCase());
+    for(let i = 0; i < step2Help.length; i++){
       if(step2Help[i].title.toLowerCase().match(re) || step2Help[i].content.toLowerCase().match(re)){
         $scope.searchResults.step2.push(step2Help[i]);
       }
     }
 
-    for(i = 0; i < faq.length; i++){
+    for(let i = 0; i < faq.length; i++){
       if(faq[i].question.toLowerCase().match(re) || faq[i].answer.toLowerCase().match(re)){
         $scope.searchResults.faq.push(faq[i]);
       }
     }
 
-    for (i = 0; i < step1Help.length; i++) {
-      for (j = 0; j < step1Help[i].topics.length; j++) {
+    for (let i = 0; i < step1Help.length; i++) {
+      for (let j = 0; j < step1Help[i].topics.length; j++) {
         if(step1Help[i].topics[j].contents){
-          for (var k = 0; k < step1Help[i].topics[j].contents.length; k++) {
+          for (let k = 0; k < step1Help[i].topics[j].contents.length; k++) {
             if(step1Help[i].topics[j].contents[k].description.toLowerCase().match(re)){
               $scope.searchResults.step1.push({
                 description: step1Help[i].topics[j].contents[k].description,
@@ -81,8 +81,8 @@ angular.module('starter.controllers')
       }
     }
 
-    for (i = 0; i < step3Help.length; i++) {
-      for (j = 0; j < step3Help[i].topics.length; j++) {
+    for (let i = 0; i < step3Help.length; i++) {
+      for (let j = 0; j < step3Help[i].topics.length; j++) {
         if(step3Help[i].topics[j].description.toLowerCase().match(re)){
           $scope.searchResults.step3.push(step3Help[i].topics[j].description);
         }

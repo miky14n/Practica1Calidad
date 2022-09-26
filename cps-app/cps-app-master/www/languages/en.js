@@ -1,4 +1,4 @@
-var $translations_en = {
+let $translations_en = {
   LanguageOptionSpanish: "Spanish",
   LanguageOptionEnglish: "English",
   LanguageTitle: "Language",

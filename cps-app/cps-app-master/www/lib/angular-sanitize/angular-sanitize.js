@@ -16,7 +16,7 @@
  *     Or gives undesired access to variables likes document or window?    *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-var $sanitizeMinErr = angular.$$minErr('$sanitize');
+let $sanitizeMinErr = angular.$$minErr('$sanitize');
 
 /**
  * @ngdoc module
@@ -145,14 +145,14 @@ var $sanitizeMinErr = angular.$$minErr('$sanitize');
  * Creates and configures {@link $sanitize} instance.
  */
 function $SanitizeProvider() {
-  var svgEnabled = false;
+  let svgEnabled = false;
 
   this.$get = ['$$sanitizeUri', function($$sanitizeUri) {
     if (svgEnabled) {
       angular.extend(validElements, svgElements);
     }
     return function(html) {
-      var buf = [];
+      let buf = [];
       htmlParser(html, htmlSanitizeWriter(buf, function(uri, isImage) {
         return !/^unsafe:/.test($$sanitizeUri(uri, isImage));
       }));
@@ -202,15 +202,15 @@ function $SanitizeProvider() {
 }
 
 function sanitizeText(chars) {
-  var buf = [];
-  var writer = htmlSanitizeWriter(buf, angular.noop);
+  let buf = [];
+  let writer = htmlSanitizeWriter(buf, angular.noop);
   writer.chars(chars);
   return buf.join('');
 }
 
 
 // Regular Expressions for parsing tags and attributes
-var SURROGATE_PAIR_REGEXP = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g,
+let SURROGATE_PAIR_REGEXP = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g,
   // Match everything outside of normal chars and " (quote character)
   NON_ALPHANUMERIC_REGEXP = /([^\#-~ |!])/g;
 
@@ -221,23 +221,23 @@ var SURROGATE_PAIR_REGEXP = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g,
 
 // Safe Void Elements - HTML5
 // http://dev.w3.org/html5/spec/Overview.html#void-elements
-var voidElements = toMap("area,br,col,hr,img,wbr");
+let voidElements = toMap("area,br,col,hr,img,wbr");
 
 // Elements that you can, intentionally, leave open (and which close themselves)
 // http://dev.w3.org/html5/spec/Overview.html#optional-tags
-var optionalEndTagBlockElements = toMap("colgroup,dd,dt,li,p,tbody,td,tfoot,th,thead,tr"),
+let optionalEndTagBlockElements = toMap("colgroup,dd,dt,li,p,tbody,td,tfoot,th,thead,tr"),
     optionalEndTagInlineElements = toMap("rp,rt"),
     optionalEndTagElements = angular.extend({},
                                             optionalEndTagInlineElements,
                                             optionalEndTagBlockElements);
 
 // Safe Block Elements - HTML5
-var blockElements = angular.extend({}, optionalEndTagBlockElements, toMap("address,article," +
+let blockElements = angular.extend({}, optionalEndTagBlockElements, toMap("address,article," +
         "aside,blockquote,caption,center,del,dir,div,dl,figure,figcaption,footer,h1,h2,h3,h4,h5," +
         "h6,header,hgroup,hr,ins,map,menu,nav,ol,pre,section,table,ul"));
 
 // Inline Elements - HTML5
-var inlineElements = angular.extend({}, optionalEndTagInlineElements, toMap("a,abbr,acronym,b," +
+let inlineElements = angular.extend({}, optionalEndTagInlineElements, toMap("a,abbr,acronym,b," +
         "bdi,bdo,big,br,cite,code,del,dfn,em,font,i,img,ins,kbd,label,map,mark,q,ruby,rp,rt,s," +
         "samp,small,span,strike,strong,sub,sup,time,tt,u,var"));
 
@@ -245,23 +245,23 @@ var inlineElements = angular.extend({}, optionalEndTagInlineElements, toMap("a,a
 // https://wiki.whatwg.org/wiki/Sanitization_rules#svg_Elements
 // Note: the elements animate,animateColor,animateMotion,animateTransform,set are intentionally omitted.
 // They can potentially allow for arbitrary javascript to be executed. See #11290
-var svgElements = toMap("circle,defs,desc,ellipse,font-face,font-face-name,font-face-src,g,glyph," +
+let svgElements = toMap("circle,defs,desc,ellipse,font-face,font-face-name,font-face-src,g,glyph," +
         "hkern,image,linearGradient,line,marker,metadata,missing-glyph,mpath,path,polygon,polyline," +
         "radialGradient,rect,stop,svg,switch,text,title,tspan");
 
 // Blocked Elements (will be stripped)
-var blockedElements = toMap("script,style");
+let blockedElements = toMap("script,style");
 
-var validElements = angular.extend({},
+let validElements = angular.extend({},
                                    voidElements,
                                    blockElements,
                                    inlineElements,
                                    optionalEndTagElements);
 
 //Attributes that have href and hence need to be sanitized
-var uriAttrs = toMap("background,cite,href,longdesc,src,xlink:href");
+let uriAttrs = toMap("background,cite,href,longdesc,src,xlink:href");
 
-var htmlAttrs = toMap('abbr,align,alt,axis,bgcolor,border,cellpadding,cellspacing,class,clear,' +
+let htmlAttrs = toMap('abbr,align,alt,axis,bgcolor,border,cellpadding,cellspacing,class,clear,' +
     'color,cols,colspan,compact,coords,dir,face,headers,height,hreflang,hspace,' +
     'ismap,lang,language,nohref,nowrap,rel,rev,rows,rowspan,rules,' +
     'scope,scrolling,shape,size,span,start,summary,tabindex,target,title,type,' +
@@ -269,7 +269,7 @@ var htmlAttrs = toMap('abbr,align,alt,axis,bgcolor,border,cellpadding,cellspacin
 
 // SVG attributes (without "id" and "name" attributes)
 // https://wiki.whatwg.org/wiki/Sanitization_rules#svg_Attributes
-var svgAttrs = toMap('accent-height,accumulate,additive,alphabetic,arabic-form,ascent,' +
+let svgAttrs = toMap('accent-height,accumulate,additive,alphabetic,arabic-form,ascent,' +
     'baseProfile,bbox,begin,by,calcMode,cap-height,class,color,color-rendering,content,' +
     'cx,cy,d,dx,dy,descent,display,dur,end,fill,fill-rule,font-family,font-size,font-stretch,' +
     'font-style,font-variant,font-weight,from,fx,fy,g1,g2,glyph-name,gradientUnits,hanging,' +
@@ -285,35 +285,35 @@ var svgAttrs = toMap('accent-height,accumulate,additive,alphabetic,arabic-form,a
     'width,widths,x,x-height,x1,x2,xlink:actuate,xlink:arcrole,xlink:role,xlink:show,xlink:title,' +
     'xlink:type,xml:base,xml:lang,xml:space,xmlns,xmlns:xlink,y,y1,y2,zoomAndPan', true);
 
-var validAttrs = angular.extend({},
+let validAttrs = angular.extend({},
                                 uriAttrs,
                                 svgAttrs,
                                 htmlAttrs);
 
 function toMap(str, lowercaseKeys) {
-  var obj = {}, items = str.split(','), i;
+  let obj = {}, items = str.split(','), i;
   for (i = 0; i < items.length; i++) {
     obj[lowercaseKeys ? angular.lowercase(items[i]) : items[i]] = true;
   }
   return obj;
 }
 
-var inertBodyElement;
+let inertBodyElement;
 (function(window) {
-  var doc;
+  let doc;
   if (window.document && window.document.implementation) {
     doc = window.document.implementation.createHTMLDocument("inert");
   } else {
     throw $sanitizeMinErr('noinert', "Can't create an inert html document");
   }
-  var docElement = doc.documentElement || doc.getDocumentElement();
-  var bodyElements = docElement.getElementsByTagName('body');
+  let docElement = doc.documentElement || doc.getDocumentElement();
+  let bodyElements = docElement.getElementsByTagName('body');
 
   // usually there should be only one body element in the document, but IE doesn't have any, so we need to create one
   if (bodyElements.length === 1) {
     inertBodyElement = bodyElements[0];
   } else {
-    var html = doc.createElement('html');
+    let html = doc.createElement('html');
     inertBodyElement = doc.createElement('body');
     html.appendChild(inertBodyElement);
     doc.appendChild(html);
@@ -341,7 +341,7 @@ function htmlParser(html, handler) {
   inertBodyElement.innerHTML = html;
 
   //mXSS protection
-  var mXSSAttempts = 5;
+  let mXSSAttempts = 5;
   do {
     if (mXSSAttempts === 0) {
       throw $sanitizeMinErr('uinput', "Failed to sanitize html because the input is unstable");
@@ -356,7 +356,7 @@ function htmlParser(html, handler) {
     inertBodyElement.innerHTML = html;
   } while (html !== inertBodyElement.innerHTML);
 
-  var node = inertBodyElement.firstChild;
+  let node = inertBodyElement.firstChild;
   while (node) {
     switch (node.nodeType) {
       case 1: // ELEMENT_NODE
@@ -367,7 +367,7 @@ function htmlParser(html, handler) {
         break;
     }
 
-    var nextNode;
+    let nextNode;
     if (!(nextNode = node.firstChild)) {
       if (node.nodeType == 1) {
         handler.end(node.nodeName.toLowerCase());
@@ -393,9 +393,9 @@ function htmlParser(html, handler) {
 }
 
 function attrToMap(attrs) {
-  var map = {};
-  for (var i = 0, ii = attrs.length; i < ii; i++) {
-    var attr = attrs[i];
+  let map = {};
+  for (let i = 0, ii = attrs.length; i < ii; i++) {
+    let attr = attrs[i];
     map[attr.name] = attr.value;
   }
   return map;
@@ -413,8 +413,8 @@ function encodeEntities(value) {
   return value.
     replace(/&/g, '&amp;').
     replace(SURROGATE_PAIR_REGEXP, function(value) {
-      var hi = value.charCodeAt(0);
-      var low = value.charCodeAt(1);
+      let hi = value.charCodeAt(0);
+      let low = value.charCodeAt(1);
       return '&#' + (((hi - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000) + ';';
     }).
     replace(NON_ALPHANUMERIC_REGEXP, function(value) {
@@ -435,8 +435,8 @@ function encodeEntities(value) {
  * }
  */
 function htmlSanitizeWriter(buf, uriValidator) {
-  var ignoreCurrentElement = false;
-  var out = angular.bind(buf, buf.push);
+  let ignoreCurrentElement = false;
+  let out = angular.bind(buf, buf.push);
   return {
     start: function(tag, attrs) {
       tag = angular.lowercase(tag);
@@ -447,8 +447,8 @@ function htmlSanitizeWriter(buf, uriValidator) {
         out('<');
         out(tag);
         angular.forEach(attrs, function(value, key) {
-          var lkey=angular.lowercase(key);
-          var isImage = (tag === 'img' && lkey === 'src') || (lkey === 'background');
+          let lkey=angular.lowercase(key);
+          let isImage = (tag === 'img' && lkey === 'src') || (lkey === 'background');
           if (validAttrs[lkey] === true &&
             (uriAttrs[lkey] !== true || uriValidator(value, isImage))) {
             out(' ');
@@ -490,10 +490,10 @@ function htmlSanitizeWriter(buf, uriValidator) {
  */
 function stripCustomNsAttrs(node) {
   if (node.nodeType === Node.ELEMENT_NODE) {
-    var attrs = node.attributes;
-    for (var i = 0, l = attrs.length; i < l; i++) {
-      var attrNode = attrs[i];
-      var attrName = attrNode.name.toLowerCase();
+    let attrs = node.attributes;
+    for (let i = 0, l = attrs.length; i < l; i++) {
+      let attrNode = attrs[i];
+      let attrName = attrNode.name.toLowerCase();
       if (attrName === 'xmlns:ns1' || attrName.indexOf('ns1:') === 0) {
         node.removeAttributeNode(attrNode);
         i--;
@@ -502,7 +502,7 @@ function stripCustomNsAttrs(node) {
     }
   }
 
-  var nextNode = node.firstChild;
+  let nextNode = node.firstChild;
   if (nextNode) {
     stripCustomNsAttrs(nextNode);
   }
@@ -648,22 +648,22 @@ angular.module('ngSanitize', []).provider('$sanitize', $SanitizeProvider);
    </example>
  */
 angular.module('ngSanitize').filter('linky', ['$sanitize', function($sanitize) {
-  var LINKY_URL_REGEXP =
+  let LINKY_URL_REGEXP =
         /((ftp|https?):\/\/|(www\.)|(mailto:)?[A-Za-z0-9._%+-]+@)\S*[^\s.;,(){}<>"\u201d\u2019]/i,
       MAILTO_REGEXP = /^mailto:/i;
 
-  var linkyMinErr = angular.$$minErr('linky');
-  var isString = angular.isString;
+  let linkyMinErr = angular.$$minErr('linky');
+  let isString = angular.isString;
 
   return function(text, target, attributes) {
     if (text == null || text === '') return text;
     if (!isString(text)) throw linkyMinErr('notstring', 'Expected string but received: {0}', text);
 
-    var match;
-    var raw = text;
-    var html = [];
-    var url;
-    var i;
+    let match;
+    let raw = text;
+    let html = [];
+    let url;
+    let i;
     while ((match = raw.match(LINKY_URL_REGEXP))) {
       // We can not end in these as they are sometimes found at the end of the sentence
       url = match[0];
@@ -687,7 +687,7 @@ angular.module('ngSanitize').filter('linky', ['$sanitize', function($sanitize) {
     }
 
     function addLink(url, text) {
-      var key;
+      let key;
       html.push('<a ');
       if (angular.isFunction(attributes)) {
         attributes = attributes(url);

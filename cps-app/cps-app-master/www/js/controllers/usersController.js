@@ -1,4 +1,4 @@
-var link = "";
+let link = "";
 angular.module('starter.controllers')
   .controller('UserCtrl', function($scope, $cordovaSQLite, $state, $window, $ionicActionSheet, $ionicListDelegate, $ionicPopup, $ionicModal, $stateParams, $filter, $timeout, $cordovaFileTransfer, $translate, $http,$ionicHistory) {
     $scope.user = {};
@@ -19,7 +19,7 @@ angular.module('starter.controllers')
       $scope.modalSignup.hide();
     });
     $scope.get_user_info = function(){
-      var email = localStorage.getItem("email")
+      let email = localStorage.getItem("email")
       $http.get($link_root+'/users/me',
 
       {
@@ -98,8 +98,8 @@ angular.module('starter.controllers')
       // Execute action
     });
     $scope.signup = function(){
-      var number = $scope.user.phone.toString();
-      var email = $scope.user.email;
+      let number = $scope.user.phone.toString();
+      let email = $scope.user.email;
       console.log("Link raiz: "+ $link_root);
       $translate([
         "SuccessTitle",
@@ -118,8 +118,8 @@ angular.module('starter.controllers')
         {
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           transformRequest: function(obj) {
-                  var str = [];
-                  for(var p in obj)
+                  let str = [];
+                  for(let p in obj)
                   str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
                   return str.join("&");
               },
@@ -128,7 +128,7 @@ angular.module('starter.controllers')
           console.log(data.data.auth_token);
           localStorage.setItem("auth_token",data.data.auth_token);
           localStorage.setItem("email",email);
-          var alertForAccountCreated = $ionicPopup.alert({
+          let alertForAccountCreated = $ionicPopup.alert({
                   title: translations.SuccessTitle,
                   template: translations.AcountCreatedSuccessfully
               });
@@ -151,7 +151,7 @@ angular.module('starter.controllers')
         "ErrorTitle",
         "IncorrectUserOrPassword"
       ]).then(function(translations) {
-        var email = $scope.user.email;
+        let email = $scope.user.email;
         $http.post($link_root+'/auth/login',
         {
           email:$scope.user.email,
@@ -160,8 +160,8 @@ angular.module('starter.controllers')
         {
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           transformRequest: function(obj) {
-                  var str = [];
-                  for(var p in obj)
+                  let str = [];
+                  for(let p in obj)
                   str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
                   return str.join("&");
               },
@@ -170,13 +170,13 @@ angular.module('starter.controllers')
           console.log(data.data);
           localStorage.setItem("auth_token",data.data.auth_token);
           localStorage.setItem("email",email);
-          var alertForAccountCreated = $ionicPopup.alert({
+          let alertForAccountCreated = $ionicPopup.alert({
                   title: translations.LoginSuccessful,
                   template: translations.WelcomeBackMessage
               });
               $scope.get_user_info();
         }).catch(error => {
-          var alertForAccountCreated = $ionicPopup.alert({
+          let alertForAccountCreated = $ionicPopup.alert({
             title: translations.ErrorTitle,
             template: translations.IncorrectUserOrPassword
           });
@@ -192,7 +192,7 @@ angular.module('starter.controllers')
 
     $scope.passwordInfoAlert = function(){
     $translate(['passwordInfo','passwordMustHave','passwordCondition1','passwordCondition2','passwordCondition3']).then (function(translations){
-      var alertForNoActiveChild = $ionicPopup.alert({
+      let alertForNoActiveChild = $ionicPopup.alert({
           title: translations.passwordInfo,
           template: translations.passwordMustHave
                    + "<br><br>  - 8 " + translations.passwordCondition1
@@ -207,7 +207,7 @@ angular.module('starter.controllers')
       if(window.Connection) {
       if(navigator.connection.type == Connection.NONE)
       { 
-        var alertNotConnection = $ionicPopup.alert({
+        let alertNotConnection = $ionicPopup.alert({
           title: 'Required Connection',
           template: "Internet access is required to view this page. Please check your internet settings and try again."
         });

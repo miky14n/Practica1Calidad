@@ -97,7 +97,7 @@ angular.module('starter.controllers').controller('SolutionsCtrl', function($scop
 
   $scope.showDeletionConfirm = function(comment) {
     $translate(['DeleteCommentTitle','DeleteCommentBody', 'CancelOption','YesMessage']).then (function(translations){
-    var confirmPopup = $ionicPopup.confirm({
+    let confirmPopup = $ionicPopup.confirm({
       title: translations.DeleteCommentTitle,
       template: translations.DeleteCommentBody,
       cancelText: translations.CancelOption,
@@ -105,7 +105,7 @@ angular.module('starter.controllers').controller('SolutionsCtrl', function($scop
     });
     confirmPopup.then(function(res) {
       if(res) {
-        var query = "DELETE FROM solution_comments where id = ?";
+        let query = "DELETE FROM solution_comments where id = ?";
         $cordovaSQLite.execute(db, query, [comment.id]).then(function(res) {
             $scope.comments.splice($scope.comments.indexOf(comment), 1);
         }, function (err) {
@@ -122,7 +122,7 @@ angular.module('starter.controllers').controller('SolutionsCtrl', function($scop
   };
 
   $scope.getRatingIcon = function(solution) {
-    var rating = solution.rating;
+    let rating = solution.rating;
     if (rating === 0) {
       return 'ion-help';
     } else if (rating === 1) {

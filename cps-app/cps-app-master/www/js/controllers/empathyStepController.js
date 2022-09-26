@@ -9,7 +9,7 @@ angular.module('starter.controllers')
   $scope.childsConcerns = {};
   $scope.shouldShowReorder = false;
   $scope.moveItem = function(childsConcern, fromIndex, toIndex) {
-    var greaterIndex, lesserIndex, childConcernOrderModifier;
+    let greaterIndex, lesserIndex, childConcernOrderModifier;
     $scope.childsConcerns[fromIndex].unsolved_order = toIndex;
     if(fromIndex > toIndex){
       greaterIndex = fromIndex;
@@ -21,7 +21,7 @@ angular.module('starter.controllers')
       lesserIndex = fromIndex;
       childConcernOrderModifier = -1;
     }
-    for(var i = lesserIndex; i < greaterIndex; i++ ){
+    for(let i = lesserIndex; i < greaterIndex; i++ ){
       ChildConcernFactory.update({
         description: $scope.childsConcerns[i].description,
         unsolved_order: (i + childConcernOrderModifier),
@@ -137,7 +137,7 @@ angular.module('starter.controllers')
   $scope.verifyToGoToStep2 = function() {
     $translate(['goingTo','Step', 'DefineAdultsConcern','NoMessage','YesMessage','keepDrilling','step2VerifyBody','iHave']).then (function(translations){
     if($scope.adultsConcerns.length === 0){
-      var confirmPopup = $ionicPopup.confirm({
+      let confirmPopup = $ionicPopup.confirm({
         title: translations.goingTo + " "+ translations.Step + " 2: " + translations.DefineAdultsConcern,
         template: translations.step2VerifyBody,
         cancelText: translations.NoMessage+", " + translations.keepDrilling,
@@ -163,7 +163,7 @@ angular.module('starter.controllers')
     }
     if(index == 1){
       if($scope.childsConcerns.length === 0){
-        var alertPopup = $ionicPopup.alert({
+        let alertPopup = $ionicPopup.alert({
           title: translations.Step + " 2 "+ translations.wasntUnlock,
           template: translations.haveToFinishSteps
          });
@@ -175,7 +175,7 @@ angular.module('starter.controllers')
     }
     if(index==2){
       if($scope.adultsConcerns.length === 0 || $scope.childsConcerns.length === 0){
-        var alertPopupForUnsolved = $ionicPopup.alert({
+        let alertPopupForUnsolved = $ionicPopup.alert({
           title: translations.Step + " 3 "+ translations.wasntUnlock,
           template: translations.haveToFinishSteps
          });
@@ -287,7 +287,7 @@ angular.module('starter.controllers')
 
  $scope.showConfirmChildsConcern = function(item) {
   $translate(['DeleteChildsConcernTitle','DeleteChildsConcernBody', 'CancelOption','YesMessage']).then (function(translations){
-   var confirmPopup = $ionicPopup.confirm({
+   let confirmPopup = $ionicPopup.confirm({
     title: translations.DeleteChildsConcernTitle,
      template: translations.DeleteChildsConcernBody,
      cancelText: translations.CancelOption,
@@ -316,7 +316,7 @@ angular.module('starter.controllers')
   $translate(['ChildsConcernHint', 'CancelOption','OKMessage']).then (function(translations){
    if(localStorage.getItem("showHint") === null){
        localStorage.setItem("showHint", true);
-       var confirmPopup = $ionicPopup.alert({
+       let confirmPopup = $ionicPopup.alert({
          title: translations.ChildsConcernHint,
          okText: translations.OKMessage
        });

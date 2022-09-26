@@ -28,7 +28,7 @@ function $ViewProvider() {
        * @param {object} options option object.
        */
       load: function load(name, options) {
-        var result, defaults = {
+        let result, defaults = {
           template: null, controller: null, view: null, locals: null, notify: true, async: true, params: {}
         };
         options = extend(defaults, options);

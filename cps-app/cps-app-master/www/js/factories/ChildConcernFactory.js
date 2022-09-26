@@ -1,13 +1,13 @@
 angular.module('starter.services').factory('ChildConcernFactory', function($cordovaSQLite) {
 
   function getChildConcerns(unsolvedProblemId,callback) {
-    var childConcerns = [];
-    var query ="SELECT * FROM childs_concerns WHERE unsolved_problem_id = ? ORDER BY unsolved_order";
+    let childConcerns = [];
+    let query ="SELECT * FROM childs_concerns WHERE unsolved_problem_id = ? ORDER BY unsolved_order";
     $cordovaSQLite.execute(db,query,[unsolvedProblemId])
     .then(function(result) {
-      var rows = result.rows;
+      let rows = result.rows;
       if(rows.length) {
-        for(var i=0; i < rows.length; i++){
+        for(let i=0; i < rows.length; i++){
           childConcerns.push(rows.item(i));
         }
       }
@@ -18,12 +18,12 @@ angular.module('starter.services').factory('ChildConcernFactory', function($cord
   }
 
   function insertChildsConcern(childsConcern){
-    var query ="INSERT INTO childs_concerns(description,unsolved_problem_id,unsolved_order) VALUES (?,?,?)";
+    let query ="INSERT INTO childs_concerns(description,unsolved_problem_id,unsolved_order) VALUES (?,?,?)";
     $cordovaSQLite.execute(db,query,[childsConcern.description,childsConcern.unsolvedProblemId,childsConcern.unsolvedOrder]);
   }
 
   function updateChildsConcern(childConcern){
-    var query = "";
+    let query = "";
     query = "UPDATE childs_concerns SET description = ?, unsolved_order = ? where id = ?";
     $cordovaSQLite.execute(db, query, [childConcern.description, childConcern.unsolved_order, childConcern.id]);
   }
@@ -31,13 +31,13 @@ angular.module('starter.services').factory('ChildConcernFactory', function($cord
 
 
   function getPair(callback){
-    var pair = [];
-    var query ="SELECT * FROM pair_childConcerntoadultConcern";
+    let pair = [];
+    let query ="SELECT * FROM pair_childConcerntoadultConcern";
     $cordovaSQLite.execute(db,query)
     .then(function(result) {
-      var rows = result.rows;
+      let rows = result.rows;
       if(rows.length) {
-        for(var i=0; i < rows.length; i++){
+        for(let i=0; i < rows.length; i++){
           pair.push(rows.item(i));
         }
       }
@@ -49,12 +49,12 @@ angular.module('starter.services').factory('ChildConcernFactory', function($cord
    }
 
    function updateChildsConcernPair(ChildsConcernDescription,pair){
-     var query = "UPDATE pair_childConcerntoadultConcern SET description = ?, description2 = ? where id = ?";
+     let query = "UPDATE pair_childConcerntoadultConcern SET description = ?, description2 = ? where id = ?";
      $cordovaSQLite.execute(db, query, [ChildsConcernDescription,pair.description2, pair.id]);
     }
 
   function deleteChildsConcern(childConcern, callback) {
-    var query = "DELETE FROM childs_concerns where id = ?";
+    let query = "DELETE FROM childs_concerns where id = ?";
     $cordovaSQLite.execute(db, query, [childConcern.id]).then(function(res) {
       callback();
     }, function (err) {
@@ -63,7 +63,7 @@ angular.module('starter.services').factory('ChildConcernFactory', function($cord
   }
 
   function deleteChildsConcernPair(pair) {
-    var query = "DELETE FROM pair_childConcerntoadultConcern where id = ?";
+    let query = "DELETE FROM pair_childConcerntoadultConcern where id = ?";
     $cordovaSQLite.execute(db, query, [pair.id]);
   }
 

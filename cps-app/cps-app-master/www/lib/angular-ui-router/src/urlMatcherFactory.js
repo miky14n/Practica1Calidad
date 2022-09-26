@@ -1,4 +1,4 @@
-var $$UMFP; // reference to $UrlMatcherFactoryProvider
+let $$UMFP; // reference to $UrlMatcherFactoryProvider
 
 /**
  * @ngdoc object
@@ -81,7 +81,7 @@ function UrlMatcher(pattern, config, parentMatcher) {
   //    [^{}\\]+                       - anything other than curly braces or backslash
   //    \\.                            - a backslash escape
   //    \{(?:[^{}\\]+|\\.)*\}          - a matched set of curly braces containing other atoms
-  var placeholder       = /([:*])([\w\[\]]+)|\{([\w\[\]]+)(?:\:((?:[^{}\\]+|\\.|\{(?:[^{}\\]+|\\.)*\})+))?\}/g,
+  let placeholder       = /([:*])([\w\[\]]+)|\{([\w\[\]]+)(?:\:((?:[^{}\\]+|\\.|\{(?:[^{}\\]+|\\.)*\})+))?\}/g,
       searchPlaceholder = /([:]?)([\w\[\]-]+)|\{([\w\[\]-]+)(?:\:((?:[^{}\\]+|\\.|\{(?:[^{}\\]+|\\.)*\})+))?\}/g,
       compiled = '^', last = 0, m,
       segments = this.segments = [],
@@ -99,7 +99,7 @@ function UrlMatcher(pattern, config, parentMatcher) {
   }
 
   function quoteRegExp(string, pattern, squash) {
-    var surroundPattern = ['',''], result = string.replace(/[\\\[\]\^$*+?.()|{}]/g, "\\$&");
+    let surroundPattern = ['',''], result = string.replace(/[\\\[\]\^$*+?.()|{}]/g, "\\$&");
     if (!pattern) return result;
     switch(squash) {
       case false: surroundPattern = ['(', ')'];   break;
@@ -114,7 +114,7 @@ function UrlMatcher(pattern, config, parentMatcher) {
   // Split into static segments separated by path parameter placeholders.
   // The number of segments is always 1 more than the number of parameters.
   function matchDetails(m, isSearch) {
-    var id, regexp, segment, type, cfg, arrayMode;
+    let id, regexp, segment, type, cfg, arrayMode;
     id          = m[2] || m[3]; // IE[78] returns '' for unmatched groups instead of null
     cfg         = config.params[id];
     segment     = pattern.substring(last, m.index);
@@ -125,7 +125,7 @@ function UrlMatcher(pattern, config, parentMatcher) {
     };
   }
 
-  var p, param, segment;
+  let p, param, segment;
   while ((m = placeholder.exec(pattern))) {
     p = matchDetails(m, false);
     if (p.segment.indexOf('?') >= 0) break; // we're into the search part
@@ -138,10 +138,10 @@ function UrlMatcher(pattern, config, parentMatcher) {
   segment = pattern.substring(last);
 
   // Find any search parameter names and remove them from the last segment
-  var i = segment.indexOf('?');
+  let i = segment.indexOf('?');
 
   if (i >= 0) {
-    var search = this.sourceSearch = segment.substring(i);
+    let search = this.sourceSearch = segment.substring(i);
     segment = segment.substring(0, i);
     this.sourcePath = pattern.substring(0, last + i);
 
@@ -193,7 +193,7 @@ UrlMatcher.prototype.concat = function (pattern, config) {
   // Because order of search parameters is irrelevant, we can add our own search
   // parameters to the end of the new pattern. Parse the new pattern by itself
   // and then join the bits together, but it's much easier to do this on a string level.
-  var defaultConfig = {
+  let defaultConfig = {
     caseInsensitive: $$UMFP.caseInsensitive(),
     strict: $$UMFP.strictMode(),
     squash: $$UMFP.defaultSquashPolicy()
@@ -230,11 +230,11 @@ UrlMatcher.prototype.toString = function () {
  * @returns {Object}  The captured parameter values.
  */
 UrlMatcher.prototype.exec = function (path, searchParams) {
-  var m = this.regexp.exec(path);
+  let m = this.regexp.exec(path);
   if (!m) return null;
   searchParams = searchParams || {};
 
-  var paramNames = this.parameters(), nTotal = paramNames.length,
+  let paramNames = this.parameters(), nTotal = paramNames.length,
     nPath = this.segments.length - 1,
     values = {}, i, j, cfg, paramName;
 
@@ -244,15 +244,15 @@ UrlMatcher.prototype.exec = function (path, searchParams) {
     function reverseString(str) { return str.split("").reverse().join(""); }
     function unquoteDashes(str) { return str.replace(/\\-/, "-"); }
 
-    var split = reverseString(string).split(/-(?!\\)/);
-    var allReversed = map(split, reverseString);
+    let split = reverseString(string).split(/-(?!\\)/);
+    let allReversed = map(split, reverseString);
     return map(allReversed, unquoteDashes).reverse();
   }
 
   for (i = 0; i < nPath; i++) {
     paramName = paramNames[i];
-    var param = this.params[paramName];
-    var paramVal = m[i+1];
+    let param = this.params[paramName];
+    let paramVal = m[i+1];
     // if the param value matches a pre-replace pair, replace the value before decoding.
     for (j = 0; j < param.replace; j++) {
       if (param.replace[j].from === paramVal) paramVal = param.replace[j].to;
@@ -321,24 +321,24 @@ UrlMatcher.prototype.validates = function (params) {
  */
 UrlMatcher.prototype.format = function (values) {
   values = values || {};
-  var segments = this.segments, params = this.parameters(), paramset = this.params;
+  let segments = this.segments, params = this.parameters(), paramset = this.params;
   if (!this.validates(values)) return null;
 
-  var i, search = false, nPath = segments.length - 1, nTotal = params.length, result = segments[0];
+  let i, search = false, nPath = segments.length - 1, nTotal = params.length, result = segments[0];
 
   function encodeDashes(str) { // Replace dashes with encoded "\-"
     return encodeURIComponent(str).replace(/-/g, function(c) { return '%5C%' + c.charCodeAt(0).toString(16).toUpperCase(); });
   }
 
   for (i = 0; i < nTotal; i++) {
-    var isPathParam = i < nPath;
-    var name = params[i], param = paramset[name], value = param.value(values[name]);
-    var isDefaultValue = param.isOptional && param.type.equals(param.value(), value);
-    var squash = isDefaultValue ? param.squash : false;
-    var encoded = param.type.encode(value);
+    let isPathParam = i < nPath;
+    let name = params[i], param = paramset[name], value = param.value(values[name]);
+    let isDefaultValue = param.isOptional && param.type.equals(param.value(), value);
+    let squash = isDefaultValue ? param.squash : false;
+    let encoded = param.type.encode(value);
 
     if (isPathParam) {
-      var nextSegment = segments[i + 1];
+      let nextSegment = segments[i + 1];
       if (squash === false) {
         if (encoded != null) {
           if (isArray(encoded)) {
@@ -349,7 +349,7 @@ UrlMatcher.prototype.format = function (values) {
         }
         result += nextSegment;
       } else if (squash === true) {
-        var capture = result.match(/\/$/) ? /\/?(.*)/ : /(.*)/;
+        let capture = result.match(/\/$/) ? /\/?(.*)/ : /(.*)/;
         result += nextSegment.match(capture)[1];
       } else if (isString(squash)) {
         result += squash + nextSegment;
@@ -472,7 +472,7 @@ Type.prototype.equals = function(a, b) {
 };
 
 Type.prototype.$subPattern = function() {
-  var sub = this.pattern.toString();
+  let sub = this.pattern.toString();
   return sub.substr(1, sub.length - 2);
 };
 
@@ -518,7 +518,7 @@ Type.prototype.$asArray = function(mode, isSearch) {
     function arrayHandler(callback, allTruthyMode) {
       return function handleArray(val) {
         val = arrayWrap(val);
-        var result = map(val, callback);
+        let result = map(val, callback);
         if (allTruthyMode === true)
           return filter(result, falsey).length === 0;
         return arrayUnwrap(result);
@@ -528,9 +528,9 @@ Type.prototype.$asArray = function(mode, isSearch) {
     // Wraps type (.equals) functions to operate on each value of an array
     function arrayEqualsHandler(callback) {
       return function handleArray(val1, val2) {
-        var left = arrayWrap(val1), right = arrayWrap(val2);
+        let left = arrayWrap(val1), right = arrayWrap(val2);
         if (left.length !== right.length) return false;
-        for (var i = 0; i < left.length; i++) {
+        for (let i = 0; i < left.length; i++) {
           if (!callback(left[i], right[i])) return false;
         }
         return true;
@@ -559,7 +559,7 @@ Type.prototype.$asArray = function(mode, isSearch) {
 function $UrlMatcherFactory() {
   $$UMFP = this;
 
-  var isCaseInsensitive = false, isStrictMode = true, defaultSquashPolicy = false;
+  let isCaseInsensitive = false, isStrictMode = true, defaultSquashPolicy = false;
 
   function valToString(val) { return val != null ? val.toString().replace(/\//g, "%2F") : val; }
   function valFromString(val) { return val != null ? val.toString().replace(/%2F/g, "/") : val; }
@@ -567,7 +567,7 @@ function $UrlMatcherFactory() {
 //  function regexpMatches(val) { /*jshint validthis:true */ return isDefined(val) && this.pattern.test(val); }
   function regexpMatches(val) { /*jshint validthis:true */ return this.pattern.test(val); }
 
-  var $types = {}, enqueue = true, typeQueue = [], injector, defaultTypes = {
+  let $types = {}, enqueue = true, typeQueue = [], injector, defaultTypes = {
     string: {
       encode: valToString,
       decode: valFromString,
@@ -597,7 +597,7 @@ function $UrlMatcherFactory() {
       },
       decode: function (val) {
         if (this.is(val)) return val;
-        var match = this.capture.exec(val);
+        let match = this.capture.exec(val);
         return match ? new Date(match[1], match[2] - 1, match[3]) : undefined;
       },
       is: function(val) { return val instanceof Date && !isNaN(val.valueOf()); },
@@ -728,7 +728,7 @@ function $UrlMatcherFactory() {
    */
   this.isMatcher = function (o) {
     if (!isObject(o)) return false;
-    var result = true;
+    let result = true;
 
     forEach(UrlMatcher.prototype, function(val, name) {
       if (isFunction(val)) {
@@ -761,7 +761,7 @@ function $UrlMatcherFactory() {
    * array, using the array index as the URL-encoded value:
    *
    * <pre>
-   * var list = ['John', 'Paul', 'George', 'Ringo'];
+   * let list = ['John', 'Paul', 'George', 'Ringo'];
    *
    * $urlMatcherFactoryProvider.type('listItem', {
    *   encode: function(item) {
@@ -803,7 +803,7 @@ function $UrlMatcherFactory() {
    * $urlMatcherFactoryProvider.type('dbObject', {}, function(Users, Posts) {
    *
    *   // Matches up services to URL parameter names
-   *   var services = {
+   *   let services = {
    *     user: Users,
    *     post: Posts
    *   };
@@ -860,7 +860,7 @@ function $UrlMatcherFactory() {
   // `flushTypeQueue()` waits until `$urlMatcherFactory` is injected before invoking the queued `definitionFn`s
   function flushTypeQueue() {
     while(typeQueue.length) {
-      var type = typeQueue.shift();
+      let type = typeQueue.shift();
       if (type.pattern) throw new Error("You cannot override a type's .pattern at runtime.");
       angular.extend($types[type.name], injector.invoke(type.def));
     }
@@ -883,20 +883,20 @@ function $UrlMatcherFactory() {
   }];
 
   this.Param = function Param(id, type, config, location) {
-    var self = this;
+    let self = this;
     config = unwrapShorthand(config);
     type = getType(config, type, location);
-    var arrayMode = getArrayMode();
+    let arrayMode = getArrayMode();
     type = arrayMode ? type.$asArray(arrayMode, location === "search") : type;
     if (type.name === "string" && !arrayMode && location === "path" && config.value === undefined)
       config.value = ""; // for 0.2.x; in 0.3.0+ do not automatically default to ""
-    var isOptional = config.value !== undefined;
-    var squash = getSquashPolicy(config, isOptional);
-    var replace = getReplace(config, arrayMode, isOptional, squash);
+    let isOptional = config.value !== undefined;
+    let squash = getSquashPolicy(config, isOptional);
+    let replace = getReplace(config, arrayMode, isOptional, squash);
 
     function unwrapShorthand(config) {
-      var keys = isObject(config) ? objectKeys(config) : [];
-      var isShorthand = indexOf(keys, "value") === -1 && indexOf(keys, "type") === -1 &&
+      let keys = isObject(config) ? objectKeys(config) : [];
+      let isShorthand = indexOf(keys, "value") === -1 && indexOf(keys, "type") === -1 &&
                         indexOf(keys, "squash") === -1 && indexOf(keys, "array") === -1;
       if (isShorthand) config = { value: config };
       config.$$fn = isInjectable(config.value) ? config.value : function () { return config.value; };
@@ -912,8 +912,8 @@ function $UrlMatcherFactory() {
 
     // array config: param name (param[]) overrides default settings.  explicit config overrides param name.
     function getArrayMode() {
-      var arrayDefaults = { array: (location === "search" ? "auto" : false) };
-      var arrayParamNomenclature = id.match(/\[\]$/) ? { array: true } : {};
+      let arrayDefaults = { array: (location === "search" ? "auto" : false) };
+      let arrayParamNomenclature = id.match(/\[\]$/) ? { array: true } : {};
       return extend(arrayDefaults, arrayParamNomenclature, config).array;
     }
 
@@ -921,7 +921,7 @@ function $UrlMatcherFactory() {
      * returns false, true, or the squash value to indicate the "default parameter url squash policy".
      */
     function getSquashPolicy(config, isOptional) {
-      var squash = config.squash;
+      let squash = config.squash;
       if (!isOptional || squash === false) return false;
       if (!isDefined(squash) || squash == null) return defaultSquashPolicy;
       if (squash === true || isString(squash)) return squash;
@@ -929,7 +929,7 @@ function $UrlMatcherFactory() {
     }
 
     function getReplace(config, arrayMode, isOptional, squash) {
-      var replace, configuredKeys, defaultPolicy = [
+      let replace, configuredKeys, defaultPolicy = [
         { from: "",   to: (isOptional || arrayMode ? undefined : "") },
         { from: null, to: (isOptional || arrayMode ? undefined : "") }
       ];
@@ -955,7 +955,7 @@ function $UrlMatcherFactory() {
     function $value(value) {
       function hasReplaceVal(val) { return function(obj) { return obj.from === val; }; }
       function $replace(value) {
-        var replacement = map(filter(self.replace, hasReplaceVal(value)), function(obj) { return obj.to; });
+        let replacement = map(filter(self.replace, hasReplaceVal(value)), function(obj) { return obj.to; });
         return replacement.length ? replacement[0] : value;
       }
       value = $replace(value);
@@ -988,7 +988,7 @@ function $UrlMatcherFactory() {
       return inherit(this, extend(new ParamSet(), { $$parent: this}));
     },
     $$keys: function () {
-      var keys = [], chain = [], parent = this,
+      let keys = [], chain = [], parent = this,
         ignore = objectKeys(ParamSet.prototype);
       while (parent) { chain.push(parent); parent = parent.$$parent; }
       chain.reverse();
@@ -1000,22 +1000,22 @@ function $UrlMatcherFactory() {
       return keys;
     },
     $$values: function(paramValues) {
-      var values = {}, self = this;
+      let values = {}, self = this;
       forEach(self.$$keys(), function(key) {
         values[key] = self[key].value(paramValues && paramValues[key]);
       });
       return values;
     },
     $$equals: function(paramValues1, paramValues2) {
-      var equal = true, self = this;
+      let equal = true, self = this;
       forEach(self.$$keys(), function(key) {
-        var left = paramValues1 && paramValues1[key], right = paramValues2 && paramValues2[key];
+        let left = paramValues1 && paramValues1[key], right = paramValues2 && paramValues2[key];
         if (!self[key].type.equals(left, right)) equal = false;
       });
       return equal;
     },
     $$validates: function $$validate(paramValues) {
-      var result = true, isOptional, val, param, self = this;
+      let result = true, isOptional, val, param, self = this;
 
       forEach(this.$$keys(), function(key) {
         param = self[key];

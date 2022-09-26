@@ -3,12 +3,12 @@ angular.module('starter.services', ['ngCordova'])
 .factory('LaggingSkills', function($cordovaSQLite) {
   // Might use a resource here that returns a JSON array
   function getLaggingSkills(child_id, callback){
-    var lagging_skills = [];
-    var query ="SELECT * FROM lagging_skills WHERE child_id = ?";
+    let lagging_skills = [];
+    let query ="SELECT * FROM lagging_skills WHERE child_id = ?";
     $cordovaSQLite.execute(db,query,[child_id]).then(function(result) {
-      var rows = result.rows;
+      let rows = result.rows;
       if(rows.length) {
-        for(var i=0; i < rows.length; i++){
+        for(let i=0; i < rows.length; i++){
           lagging_skills.push(rows.item(i));
         }
         callback(lagging_skills);
@@ -19,17 +19,17 @@ angular.module('starter.services', ['ngCordova'])
   }
   function uncheckLaggingSkill(lagginSkillId,child_id){
     console.log("Controller out Child id:" + child_id);
-    var query = "UPDATE lagging_skills SET checked = 0 where id = ?";
+    let query = "UPDATE lagging_skills SET checked = 0 where id = ?";
     $cordovaSQLite.execute(db,query,lagginSkillId);
-    var query2 = "UPDATE childs SET lagging_skills_check = lagging_skills_check - 1 where id = ?";
+    let query2 = "UPDATE childs SET lagging_skills_check = lagging_skills_check - 1 where id = ?";
     $cordovaSQLite.execute(db,query2,child_id);
 
   }
   function checkLaggingSkill(lagginSkillId,child_id){
-    var query = "UPDATE lagging_skills SET checked = 1 where id = ?";
+    let query = "UPDATE lagging_skills SET checked = 1 where id = ?";
     $cordovaSQLite.execute(db,query,lagginSkillId);
     console.log("Services Child id: " + child_id);
-    var query2 = "UPDATE childs SET lagging_skills_check = lagging_skills_check + 1 where id = ?";
+    let query2 = "UPDATE childs SET lagging_skills_check = lagging_skills_check + 1 where id = ?";
     $cordovaSQLite.execute(db,query2,child_id);
   }
 
@@ -38,7 +38,7 @@ angular.module('starter.services', ['ngCordova'])
       getLaggingSkills(callback, childId);
     },
     get: function(laggingSkillList,laggingSkillsId) {
-      for (var i = 0; i < laggingSkillList.length; i++) {
+      for (let i = 0; i < laggingSkillList.length; i++) {
         if (laggingSkillList[i].id === parseInt(laggingSkillsId)) {
           return laggingSkillList[i];
         }
@@ -52,8 +52,8 @@ angular.module('starter.services', ['ngCordova'])
       uncheckLaggingSkill(laggingskillId, child_id);
     },
     getChecked: function(laggingSkillList){
-        var laggingSkillsCheckedList = [];
-        for (var i = 0; i < laggingSkillList.length; i++) {
+        let laggingSkillsCheckedList = [];
+        for (let i = 0; i < laggingSkillList.length; i++) {
           if (laggingSkillList[i].checked === 1) {
             laggingSkillsCheckedList.push(laggingSkillList[i]);
           }
@@ -61,9 +61,9 @@ angular.module('starter.services', ['ngCordova'])
         return laggingSkillsCheckedList;
     },
     getCheckedCount: function(laggingSkillList){
-      var laggingSkillsCheckedCount = 0;
+      let laggingSkillsCheckedCount = 0;
       
-      for (var i = 0; i < laggingSkillList.length; i++) {
+      for (let i = 0; i < laggingSkillList.length; i++) {
         if (laggingSkillList[i].checked === 1) {
           laggingSkillsCheckedCount = laggingSkillsCheckedCount + 1;
         }
@@ -89,7 +89,7 @@ angular.module('starter.services', ['ngCordova'])
 .factory('HelpCategoriesStep1',function(){
   // First Step help categories and data
 
-  var helpCategoriesForStep1 = [
+  let helpCategoriesForStep1 = [
     {name : "help_category_01" , description : "The child isn’t talking", image: "category_1.png",id:1,
       topics: [
         {name: "topic_01", description: "Maybe the unsolved problem wasn’t free of challenging behavior, or it wasn’t specific, or it contained an adult theory, or it was 'clumped'?", id:"1"},
@@ -175,7 +175,7 @@ angular.module('starter.services', ['ngCordova'])
       helpCategoriesForStep1.splice(helpCategoriesForStep1.indexOf(helpCategoryForStep1), 1);
     },
     get: function(helpCategoriesForStep1Id) {
-      for (var i = 0; i < helpCategoriesForStep1.length; i++) {
+      for (let i = 0; i < helpCategoriesForStep1.length; i++) {
         if (helpCategoriesForStep1[i].id === parseInt(helpCategoriesForStep1Id)) {
           return helpCategoriesForStep1[i];
         }
@@ -184,10 +184,10 @@ angular.module('starter.services', ['ngCordova'])
     },
 
     getContent: function(helpCategoriesForStep1Id, contentForTopicsId) {
-      for (var i = 0; i < helpCategoriesForStep1.length; i++) {
+      for (let i = 0; i < helpCategoriesForStep1.length; i++) {
         if (helpCategoriesForStep1[i].id === parseInt(helpCategoriesForStep1Id)) {
-          var category = helpCategoriesForStep1[i].topics;
-          for (var j = 0; j < category.length; j++) {
+          let category = helpCategoriesForStep1[i].topics;
+          for (let j = 0; j < category.length; j++) {
             if (category[j].id === contentForTopicsId)
               return category[j];
           }
@@ -201,7 +201,7 @@ angular.module('starter.services', ['ngCordova'])
 .factory('HelpCategoriesStep1Es',function(){
   // First Step help categories and data
 
-  var helpCategoriesForStep1 = [
+  let helpCategoriesForStep1 = [
     {name : "help_category_01" , description : "El niño no está hablando", image: "category_1.png",id:1,
       topics: [
         {name: "topic_01", description: 'Tal vez el problema no resuelto no estaba libre de conductas desafiantes, o no era específico, o contenía una teoría adulta, o estaba "agrupado".', id:"1"},
@@ -286,7 +286,7 @@ angular.module('starter.services', ['ngCordova'])
       helpCategoriesForStep1.splice(helpCategoriesForStep1.indexOf(helpCategoryForStep1), 1);
     },
     get: function(helpCategoriesForStep1Id) {
-      for (var i = 0; i < helpCategoriesForStep1.length; i++) {
+      for (let i = 0; i < helpCategoriesForStep1.length; i++) {
         if (helpCategoriesForStep1[i].id === parseInt(helpCategoriesForStep1Id)) {
           return helpCategoriesForStep1[i];
         }
@@ -295,10 +295,10 @@ angular.module('starter.services', ['ngCordova'])
     },
 
     getContent: function(helpCategoriesForStep1Id, contentForTopicsId) {
-      for (var i = 0; i < helpCategoriesForStep1.length; i++) {
+      for (let i = 0; i < helpCategoriesForStep1.length; i++) {
         if (helpCategoriesForStep1[i].id === parseInt(helpCategoriesForStep1Id)) {
-          var category = helpCategoriesForStep1[i].topics;
-          for (var j = 0; j < category.length; j++) {
+          let category = helpCategoriesForStep1[i].topics;
+          for (let j = 0; j < category.length; j++) {
             if (category[j].id === contentForTopicsId)
               return category[j];
           }
